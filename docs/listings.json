@@ -1,0 +1,40 @@
+[
+  {
+    "listing": "/projects.html",
+    "items": [
+      "/projects/railways.html",
+      "/projects/nowcasting.html",
+      "/projects/corpus.html",
+      "/projects/omia.html",
+      "/projects/gambling.html",
+      "/projects/trainingdashboard.html",
+      "/projects/socialnetworks.html",
+      "/projects/predictflu.html",
+      "/projects/protehome.html",
+      "/projects/vegmachine.html",
+      "/projects/testanalysis.html"
+    ]
+  },
+  {
+    "listing": "/posts.html",
+    "items": [
+      "/posts/2021-10-31-imagemagick3by6.html",
+      "/posts/210728_renvhpc.html",
+      "/posts/2021-04-12-ggplot2map.html",
+      "/posts/2021-04-09-redcap-api-crossplatform.html",
+      "/posts/2020-05-01-rswitch.html",
+      "/posts/2020-04-07-ardctalk.html",
+      "/posts/2020-04-03-online4instructor2.html",
+      "/posts/2020-04-02-online4instructors.html",
+      "/posts/2020-04-01-online4students.html",
+      "/posts/2019-12-04-r-for-data-science-day-1.html",
+      "/posts/2019-03-29-moving-to-hugo.html",
+      "/posts/2018-02-20-ANDS.html",
+      "/posts/2016-11-01-AWSworkshop.html",
+      "/posts/2016-08-12-pycon2016.html",
+      "/posts/2014-03-24-lorne2012poster.html",
+      "/posts/2013-01-01-helloworld.html",
+      "/posts/2013-07-13-ciRNApapers.html"
+    ]
+  }
+]

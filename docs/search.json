@@ -1,0 +1,856 @@
+[
+  {
+    "objectID": "contact.html",
+    "href": "contact.html",
+    "title": "Contact",
+    "section": "",
+    "text": "Physical address\nSydney Informatics Hub\nMerewether Building (H04)\nUniversity of Sydney\nDarlington NSW 2008\n\n\nLinks to other websites\n\nGitHub\nAcademia.edu\nFigshare\n ORCID \nResearchGate\n Slideshare \n Google Scholar"
+  },
+  {
+    "objectID": "posts/2019-12-04-r-for-data-science-day-1.html",
+    "href": "posts/2019-12-04-r-for-data-science-day-1.html",
+    "title": "R for Data Science Day 1",
+    "section": "",
+    "text": "I am incredibly excited that RStudio has begun an instructor certification program based on the Carpentries, so of course I signed up as soon as my overcommited nature allowed! This also provides me with the excuse and motivation to finally formally work my way through R for Data Science, a book I have read while waiting for GTT tests during my pregnancy and google-landed upon an umpteen number of times while debugging code, but never taken the time to sit down and do the exercises for - and of course the pedagogue in me knows quite well that THAT is how you actually learn and internalise the principles and concepts in any material, especially if it deals with programming and analysis. So over the next few weeks I plan to work my way through R4DS, and this post is the first in which I dive into the exercises."
+  },
+  {
+    "objectID": "posts/2019-12-04-r-for-data-science-day-1.html#personal-highly-non-exhaustive-notes-on-section-i-explore",
+    "href": "posts/2019-12-04-r-for-data-science-day-1.html#personal-highly-non-exhaustive-notes-on-section-i-explore",
+    "title": "R for Data Science Day 1",
+    "section": "Personal, highly non-exhaustive notes on section I: Explore",
+    "text": "Personal, highly non-exhaustive notes on section I: Explore\nlibrary(tidyverse)\ntheme_set(theme_minimal())\n\nSteps of the data pipeline:\n\n\n\n\n\nhttps://r4ds.had.co.nz/explore-intro.html\n\n\n\nImport: take data stored in a file, database, or web API, and load it into a data frame in R.\n\n\n\nWrangling:\n\nTidying - storing data in a consistent form that matches the semantics of the dataset with the way it is stored. In brief, when your data is tidy, each column is a variable, and each row is an observation.\nTransformation\n\nnarrowing in on observations of interest (like all people in one city, or all data from the last year),\ncreating new variables that are functions of existing variables (like computing speed from distance and time),\ncalculating a set of summary statistics (like counts or means). Together, tidying and transforming are called wrangling"
+  },
+  {
+    "objectID": "posts/2019-12-04-r-for-data-science-day-1.html#small-data-vs-big-data",
+    "href": "posts/2019-12-04-r-for-data-science-day-1.html#small-data-vs-big-data",
+    "title": "R for Data Science Day 1",
+    "section": "Small data vs big data",
+    "text": "Small data vs big data\n\nSmall/medium data: hundreds of megabytes of data, and with a little care up to 1-2 Gb of data.\nIf you’re routinely working with larger data (10-100 Gb, say), you should learn more about data.table."
+  },
+  {
+    "objectID": "posts/2019-12-04-r-for-data-science-day-1.html#is-big-data-really-big-two-ways-of-thinking-small-about-big-data",
+    "href": "posts/2019-12-04-r-for-data-science-day-1.html#is-big-data-really-big-two-ways-of-thinking-small-about-big-data",
+    "title": "R for Data Science Day 1",
+    "section": "Is big data really big? Two ways of thinking small about big data",
+    "text": "Is big data really big? Two ways of thinking small about big data\n\nSampling\nSampling may be enough to answer the question.\n\n\nYour big data problem is actually a large number of small data problems\n\nEach individual problem might fit in memory, but you have millions of them. For example, you might want to fit a model to each person in your dataset. That would be trivial if you had just 10 or 100 people, but instead you have a million.\nSo you need a system (like Hadoop or Spark) that allows you to send different datasets to different computers for processing.\nOnce you’ve figured out how to answer the question for a single subset using the tools described in this book, you can use tools like sparklyr, rhipe, and ddr to solve it for the full dataset."
+  },
+  {
+    "objectID": "posts/2019-12-04-r-for-data-science-day-1.html#key-definitions-for-tidy-data-reference",
+    "href": "posts/2019-12-04-r-for-data-science-day-1.html#key-definitions-for-tidy-data-reference",
+    "title": "R for Data Science Day 1",
+    "section": "Key definitions for tidy data (reference)",
+    "text": "Key definitions for tidy data (reference)\n\nA variable is a quantity, quality, or property that you can measure.\nA value is the state of a variable when you measure it. The value of a variable may change from measurement to measurement.\nAn observation is a set of measurements made under similar conditions (you usually make all of the measurements in an observation at the same time and on the same object). An observation will contain several values, each associated with a different variable. I’ll sometimes refer to an observation as a data point.\nTabular data is a set of values, each associated with a variable and an observation. Tabular data is tidy if each value is placed in its own “cell”, each variable in its own column, and each observation in its own row."
+  },
+  {
+    "objectID": "posts/2019-12-04-r-for-data-science-day-1.html#variable-types",
+    "href": "posts/2019-12-04-r-for-data-science-day-1.html#variable-types",
+    "title": "R for Data Science Day 1",
+    "section": "Variable types",
+    "text": "Variable types\n\nA variable is continuous if it can take any of an infinite set of ordered values.\nA variable is categorical if it can only take one of a small set of values. In R, categorical variables are usually saved as factors or character vectors."
+  },
+  {
+    "objectID": "posts/2019-12-04-r-for-data-science-day-1.html#eda-key-definitions",
+    "href": "posts/2019-12-04-r-for-data-science-day-1.html#eda-key-definitions",
+    "title": "R for Data Science Day 1",
+    "section": "EDA key definitions",
+    "text": "EDA key definitions\n\nVariation is the tendency of the values of a variable to change from measurement to measurement.\nCovariation is the tendency for the values of two or more variables to vary together in a related way. T\nhe residuals give us a view of the price of the diamond, once the effect of carat has been removed.\n\n\nNew (to me) ggplot() aesthetics\n\nstroke - is either the size of the point (for a default geom_point()) OR, if used with shape 21-25, which have both a colour and a fill, is the thickness of the stroke around the plotted shape.\nYou can generally use geoms and stats interchangeably! For example, you can use stat_count() instead of geom_bar() to make the same plot!\n\nggplot(data = diamonds) + \n  geom_bar(aes(x = cut, y = ..count.. / sum(..count..), fill = color))\n\n\n\nGgplot proportion chart\n\n\n# not really new, but I'm sure I'll forget position = \"fill\"\nggplot(data = diamonds) + \n  geom_bar(mapping = aes(x = cut, fill = clarity), position = \"fill\")\n\n\n\nproportion\n\n\n# pie chart from bar\nggplot(data = diamonds) + \n  geom_bar(mapping = aes(x = 1, fill = clarity)) + coord_polar(theta = \"y\")\n\n\n\npie chart\n\n\n\n+ coord_cartesian(xlim = c(1,2), ylim) - retain outlier\n+ xlim() - remove outlier\nOn average, humans are best able to perceive differences in angles relative to 45 degrees. The function ggthemes::bank_slopes() will calculate the optimal aspect ratio to bank slopes to 45-degrees.\nUse the near() function to test for equality of numbers (as it’s better able to handle those pesky computer math issues)\nYou can use matches(\"(.)\\\\1\") with select() to pick variables based on arbitrary regex. num_range(\"x\", 1:3): matches x1, x2 and x3.\nUse select() in conjunction with the everything() helper, when you want to , for example, move a handful of variables to the start of the data frame.\n\nselect(flights, time_hour, air_time, everything())\n# A tibble: 336,776 x 19\n   time_hour           air_time  year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time arr_delay carrier\n   <dttm>                 <dbl> <int> <int> <int>    <int>          <int>     <dbl>    <int>          <int>     <dbl> <chr>  \n 1 2013-01-01 05:00:00      227  2013     1     1      517            515         2      830            819        11 UA     \n 2 2013-01-01 05:00:00      227  2013     1     1      533            529         4      850            830        20 UA     \n 3 2013-01-01 05:00:00      160  2013     1     1      542            540         2      923            850        33 AA     \n 4 2013-01-01 05:00:00      183  2013     1     1      544            545        -1     1004           1022       -18 B6     \n 5 2013-01-01 06:00:00      116  2013     1     1      554            600        -6      812            837       -25 DL     \n 6 2013-01-01 05:00:00      150  2013     1     1      554            558        -4      740            728        12 UA     \n 7 2013-01-01 06:00:00      158  2013     1     1      555            600        -5      913            854        19 B6     \n 8 2013-01-01 06:00:00       53  2013     1     1      557            600        -3      709            723       -14 EV     \n 9 2013-01-01 06:00:00      140  2013     1     1      557            600        -3      838            846        -8 B6     \n10 2013-01-01 06:00:00      138  2013     1     1      558            600        -2      753            745         8 AA     \n# … with 336,766 more rows, and 7 more variables: flight <int>, tailnum <chr>, origin <chr>, dest <chr>, distance <dbl>,\n#   hour <dbl>, minute <dbl>\n\nTo generate rolling aggregates of data: R provides functions for running sums, products, mins and maxes: cumsum(), cumprod(), cummin(), cummax(); and dplyr provides cummean() for cumulative means. If you need rolling aggregates (i.e. a sum computed over a rolling window), try the RcppRoll package.\nRanking functions: min_rank(x) (default gives smallest values the small ranks; use desc(x) to give the largest values the smallest ranks). Otherwise: row_number(), dense_rank(), percent_rank(), cume_dist(), ntile().\nUse %/% and %% for modular division and remainders.\n\n\n\nVery clear table of ggplot mappings (from here)\n\n\n\ngeom\ndefault stat\nshared docs\n\n\n\n\ngeom_abline()\n\n\n\n\ngeom_hline()\n\n\n\n\ngeom_vline()\n\n\n\n\ngeom_bar()\nstat_count()\nx\n\n\ngeom_col()\n\n\n\n\ngeom_bin2d()\nstat_bin_2d()\nx\n\n\ngeom_blank()\n\n\n\n\ngeom_boxplot()\nstat_boxplot()\nx\n\n\ngeom_countour()\nstat_countour()\nx\n\n\ngeom_count()\nstat_sum()\nx\n\n\ngeom_density()\nstat_density()\nx\n\n\ngeom_density_2d()\nstat_density_2d()\nx\n\n\ngeom_dotplot()\n\n\n\n\ngeom_errorbarh()\n\n\n\n\ngeom_hex()\nstat_hex()\nx\n\n\ngeom_freqpoly()\nstat_bin()\nx\n\n\ngeom_histogram()\nstat_bin()\nx\n\n\ngeom_crossbar()\n\n\n\n\ngeom_errorbar()\n\n\n\n\ngeom_linerange()\n\n\n\n\ngeom_pointrange()\n\n\n\n\ngeom_map()\n\n\n\n\ngeom_point()\n\n\n\n\ngeom_map()\n\n\n\n\ngeom_path()\n\n\n\n\ngeom_line()\n\n\n\n\ngeom_step()\n\n\n\n\ngeom_point()\n\n\n\n\ngeom_polygon()\n\n\n\n\ngeom_qq_line()\nstat_qq_line()\nx\n\n\ngeom_qq()\nstat_qq()\nx\n\n\ngeom_quantile()\nstat_quantile()\nx\n\n\ngeom_ribbon()\n\n\n\n\ngeom_area()\n\n\n\n\ngeom_rug()\n\n\n\n\ngeom_smooth()\nstat_smooth()\nx\n\n\ngeom_spoke()\n\n\n\n\ngeom_label()\n\n\n\n\ngeom_text()\n\n\n\n\ngeom_raster()\n\n\n\n\ngeom_rect()\n\n\n\n\ngeom_tile()\n\n\n\n\ngeom_violin()\nstat_ydensity()\nx\n\n\ngeom_sf()\nstat_sf()\nx\n\n\n\n\n\nVery clear table of ggplot stats (from here)\n\n\n\nstat\ndefault geom\nshared docs\n\n\n\n\nstat_ecdf()\ngeom_step()\n\n\n\nstat_ellipse()\ngeom_path()\n\n\n\nstat_function()\ngeom_path()\n\n\n\nstat_identity()\ngeom_point()\n\n\n\nstat_summary_2d()\ngeom_tile()\n\n\n\nstat_summary_hex()\ngeom_hex()\n\n\n\nstat_summary_bin()\ngeom_pointrange()\n\n\n\nstat_summary()\ngeom_pointrange()\n\n\n\nstat_unique()\ngeom_point()\n\n\n\nstat_count()\ngeom_bar()\nx\n\n\nstat_bin_2d()\ngeom_tile()\nx\n\n\nstat_boxplot()\ngeom_boxplot()\nx\n\n\nstat_countour()\ngeom_contour()\nx\n\n\nstat_sum()\ngeom_point()\nx\n\n\nstat_density()\ngeom_area()\nx\n\n\nstat_density_2d()\ngeom_density_2d()\nx\n\n\nstat_bin_hex()\ngeom_hex()\nx\n\n\nstat_bin()\ngeom_bar()\nx\n\n\nstat_qq_line()\ngeom_path()\nx\n\n\nstat_qq()\ngeom_point()\nx\n\n\nstat_quantile()\ngeom_quantile()\nx\n\n\nstat_smooth()\ngeom_smooth()\nx\n\n\nstat_ydensity()\ngeom_violin()\nx\n\n\nstat_sf()\ngeom_rect()\nx"
+  },
+  {
+    "objectID": "posts/2020-05-01-rswitch.html",
+    "href": "posts/2020-05-01-rswitch.html",
+    "title": "Living dangerously: a newbie guide to running multiple version of R on a Mac",
+    "section": "",
+    "text": "TBH I want to be this chicken…\nYou’d have to be living under a rock in the R community to not be aware of the fact that R 4.0 has been released, with some major changes, the biggest of which is probably the new default for read.table(): stringsAsFactors = FALSE, as well as the fact that matrix() now converts character columns to factors and factors to integers.\nIn the past, I’ve always been too “chicken” to try running multiple versions of R on my work laptop, as I’ve usually got a few key analysis projects going that need to be delivered on time and within full feature scope - which means I don’t have time to fix basic version incompatibility bugs. But with this major new release I was sorely tempted, so have gone down the rabbit-hole of installing RSwitch and R4.0 on my Mac (Catalina 10.15.4). Below I document, in what is probably excruciating detail, the steps of how I got this to work. I’ve played with it for all of two days, and it seems to work - so I’ve written this post in the hopes of helping others. Also, I had some funky hiccups with getting the right filepath and not using sudo at the outset, so I’m hoping this helps someone avoid some extra rm -r ...path..."
+  },
+  {
+    "objectID": "posts/2020-05-01-rswitch.html#step-0-critical-close-r-rstudio",
+    "href": "posts/2020-05-01-rswitch.html#step-0-critical-close-r-rstudio",
+    "title": "Living dangerously: a newbie guide to running multiple version of R on a Mac",
+    "section": "Step 0 (CRITICAL): Close R & RStudio",
+    "text": "Step 0 (CRITICAL): Close R & RStudio\nMake sure you have closed R and RStudio prior to embarking on the below. Updating R versions mid-analysis can have … unintended consequences."
+  },
+  {
+    "objectID": "posts/2020-05-01-rswitch.html#step-1-download-rswitch-and-install-it",
+    "href": "posts/2020-05-01-rswitch.html#step-1-download-rswitch-and-install-it",
+    "title": "Living dangerously: a newbie guide to running multiple version of R on a Mac",
+    "section": "Step 1: Download RSwitch and install it",
+    "text": "Step 1: Download RSwitch and install it\n\nDownload RSwitch and install it. Go through all of the hoops of getting it approved by MacOS and able to be run by accepting the risks of running software from an unidentified developer. (Eventually) End up with a nice switch icon in your menubar."
+  },
+  {
+    "objectID": "posts/2020-05-01-rswitch.html#step-2-get-new-r",
+    "href": "posts/2020-05-01-rswitch.html#step-2-get-new-r",
+    "title": "Living dangerously: a newbie guide to running multiple version of R on a Mac",
+    "section": "Step 2: Get new R",
+    "text": "Step 2: Get new R\n[As usual] There is more than one way to get a new version of R onto your machine.\n\nOption 1: GUI (IMHO riskier)\nDownload the graphical installer R-4.0.0.pkg, which is the top link when on CRAN you click on “Download R for (Mac) OS X”. This is NOT the approach I took, because if done wrong this approach can remove your existing R installation, but I will describe how in theory I think it’s meant to be used below.\n\n\nOption 2: Pre-built copy (the approach I took)\nDownload a pre-built .tar.gz copy of the R framework from the developer page. In my case, I downloaded the latest stable branch R-4.0-branch.tar.gz (72 Mb):\n\n\n\nWhich R?"
+  },
+  {
+    "objectID": "posts/2020-05-01-rswitch.html#step-3-apply-funky-magic",
+    "href": "posts/2020-05-01-rswitch.html#step-3-apply-funky-magic",
+    "title": "Living dangerously: a newbie guide to running multiple version of R on a Mac",
+    "section": "Step 3: Apply funky magic",
+    "text": "Step 3: Apply funky magic\n\nOption 1: GUI\nSo the reason I think the GUI is “riskier” is because usually when you run the GUI for a new version of R, it cleanly removes the old version of R from your machine. The workaround to prevent this from happening is to make your system, and hence the R installer, “forget” it has R installed. To do this you need to open a Terminal and type the following command:\nsudo pkgutil --forget org.r-project.R.el-capitan.fw.pkg \\\n             --forget org.r-project.x86_64.tcltk.x11 \\\n             --forget org.r-project.x86_64.texinfo \\\n             --forget org.r-project.R.el-capitan.GUI.pkg\nFor details about why this works see here.\nAfter that completes successfully (note: you’ll need to enter your password to use sudo) you can run the GUI installer.\n\n\nOption 2: Command line\nI’m fairly comfortable with the command line, so was happy to use that option, but did make a few silly mistakes with the paths, so am documenting what worked below, in the hope that it helps others:\n\nUse the Terminal (cd ...) to navigate to where you’ve got the R.***.tar.gz and record its location, or -if you already know it - just copy the path to it to the clipboard.\nNavigate to your root directory: cd /\nRun sudo tar -xvzf path_to_R_tar.gz_file, where path_to_R_tar.gz_file is the path you saved to the clipboard. After you enter your password, R should be installed and you should have the latest version of R active on your machine."
+  },
+  {
+    "objectID": "posts/2020-05-01-rswitch.html#step-4-painfully-battle-the-security-stuff",
+    "href": "posts/2020-05-01-rswitch.html#step-4-painfully-battle-the-security-stuff",
+    "title": "Living dangerously: a newbie guide to running multiple version of R on a Mac",
+    "section": "Step 4: Painfully battle the security stuff",
+    "text": "Step 4: Painfully battle the security stuff\nTry to open Rstudio. This is probably something that happens only with Option 2 above, but I got a bunch of security warnings from MacOS and had to “Allow Anyway” a ton (twice) before RStudio was able to load R 4.0.\n\n\n\nHarm2\n\n\nAccept all the things:\n\n\n\nHarm1"
+  },
+  {
+    "objectID": "posts/2020-05-01-rswitch.html#step-5-switch",
+    "href": "posts/2020-05-01-rswitch.html#step-5-switch",
+    "title": "Living dangerously: a newbie guide to running multiple version of R on a Mac",
+    "section": "Step 5: Switch",
+    "text": "Step 5: Switch\nTo go back to having your existing, “production” version of R active on your machine use RSwitch to select that older version:\n\n\n\npRSwitch\n\n\n\nI hope this post has been helpful, and let me know in a comment if something isn’t working as described or something’s not clear. (Probably) next post: updating libraries…"
+  },
+  {
+    "objectID": "posts/2020-04-07-ardctalk.html",
+    "href": "posts/2020-04-07-ardctalk.html",
+    "title": "Jumping into digital: Lessons learned while moving live-coding workshops online",
+    "section": "",
+    "text": "The abstract of my talk was:\nAt ResBaz 2019, I said (on camera) that it is impossible to run a hands-on, live-coding digital skills training workshop online. In March 2020, I led a team of trainers to do exactly this - move our 2-day, Carpentries-style, hands-on Machine Learning in R and Machine Learning in python workshops fully online - in a week! In this talk, I’ll share how we prepared, what we did, how it went, and what lessons we learned. I’ll discuss which platforms we considered, share some technical tidbits on how to set up your online session and, more critically, what to expect when teaching in this very different format. I’ll also highlight some of the challenges we encountered, and try to explain why - even though it was incredibly hard - I think we’ll try teaching online again.\nMy slides can be found below:\n\n\n\n Jumping into digital: Lessons learned while moving live coding machine learning workshops online  from Darya Vanichkina\n\nAnd, finally, the video is embedded below:\n\n\nPlease enjoy, and I’d love comments and discussion below!"
+  },
+  {
+    "objectID": "posts/2016-11-01-AWSworkshop.html",
+    "href": "posts/2016-11-01-AWSworkshop.html",
+    "title": "Amazon AWS workshop at the University of Sydney",
+    "section": "",
+    "text": "On October 24th I attented a talk by Adrian White about using Amazon AWS for research. Below are my notes, not extensively annotated, in the hope that they’ll be useful for someone. If something is not clear, please ask in the comments, and I’ll try to answer to the best of my knowledge"
+  },
+  {
+    "objectID": "posts/2016-11-01-AWSworkshop.html#overview-of-aws-services",
+    "href": "posts/2016-11-01-AWSworkshop.html#overview-of-aws-services",
+    "title": "Amazon AWS workshop at the University of Sydney",
+    "section": "Overview of AWS services",
+    "text": "Overview of AWS services\n\nIf you need to make your data available you have availability zones. For an ultra-stable website we can make our app accessible in multiple AZs.\nNetworking - pair with AARNet in Australia\nspark to run GATK\nML module - developed for ecommerce based on how people visit websites\nsupervised learning only, basic linear regression"
+  },
+  {
+    "objectID": "posts/2016-11-01-AWSworkshop.html#essential-services",
+    "href": "posts/2016-11-01-AWSworkshop.html#essential-services",
+    "title": "Amazon AWS workshop at the University of Sydney",
+    "section": "Essential services",
+    "text": "Essential services\n\nElastic compute (EC2)\n\nelastic load balance capability interesting for when you’re firing up a shiny analytics environment\n\n\n\nNetworking Services\n\nAmazon VPC (virtual private cloud)\n\nown network isolated, within a region, you control addressing, DNS servers, whether it connects to the internet\n\n\n\nAWS DirectConnect\n\nif you need to transfer data faster\n\n\n\nAmazon Route 53\n\nDomain Name System (DNS) web service. ### Storage #### Amazon S3\nobject storage service (put/get/delete) not a file system (so can’t do byte range retrievals and other subsets of the files)\ndurability with a 10^6 objects you have 1:10k chance of losing it\nFile size - up to 5 Tb.\n\n\n\nAmazon EBS\n\nup to 16 Tb\ndisk that fires up and is mounted to a server on EC2\ncan still use magnetic disk to cut cost (default is SSD) #### Glacier\nfile size up to 50 Tb\ncold storage\ncan take 3-5 hours to retrieve object\nalso 11 9s durability #### AWS Storage Gateway\nstorage on premise ### Databases ### Amazon RDS\nStandard relational database. Maintained/run by amazon so you can just use the data #### Amazon DynamoDB\nManaged NoSQL database service\ntoday need 100 reads/sec, tomorrow 1000k\n\n\n\nAmazon ElastiCache\n\nreddis\nsome there open source libraries\n\n\n\n\nBig Data Services\n\nAmazon EMR (Elastic Map Reduce)\nAWS Data Pipeline Hosted Hadoop framework\n\nMove data among AWS services and on premises data sources\n\nAmazon Redshift\n\nPetabyte-scale data warehouse service\nOLAP style DB environment (massively parallel processing database)\n\n\n\n\nMonitoring services\n\nAmazon CloudWatch (free)\n\nMonitor resources\nyou can make your own monitors such as how many times a function is run and send you notifications or make graphs\n\nAWS IAM (Identity & Access Mgmt)\n\nManage users, groups & permissions\n\nAWS OpsWorks\n\nDev-Ops framework for application lifecycle management\n\nAWS CloudFormation\n\nTemplates to deploy & manage\nThis is useful for us. You build a cluster based on templates = users ,roles, storage, databases, etc\ninfrastructure as a configuration file\n\nAWS Elastic Beanstalk\n\nAutomate resource management\ncan host apps with python or java or docker containers (find out more)\n\n\n\n\nAccessing your resources\n\nEverything you can do through the Console, you can do through the CLI or an SDK\nSDK’s for most programming languages\n\nAndriod, IOS, Java, .Net, Node.js, PHP, Python, Ruby, Go\n\n\n\nCommercial models\n\non-demand\n\nOn-Demand Pay for compute capacity by the hour with no long-term commitments For spiky workloads, or to define needs\n\nspot\n\nBid for unused capacity, charged at a Spot Price which fluctuates based on supply and demand For time-insensitive or transient workloads\n60-70% savings on on demand price when it’s on Spot\nif price goes above that cost, it gets shut down in 2 minutes\nRNA-seq on spot to have disappearing servers on 250 k samples\n\nReserved\n\nMake a low, one-time payment and receive a significant discount on the hourly charge. For committed utilization\n\nDedicated\n\nyou are the only user on a particular physical piece of hardware\nhealth care data compliancy (in the US)\n\n\nAmazon won’t kill jobs for you itself if your bill goes higher than X. You can configure this yourself, specifying what should happen to storage.\n\n\n\nSecurity\n\n\nPopular HPC workloads on AWS\n\nGenome processing\nModeling and Simulation\nGovernment and Educational Research\nMonte Carlo Simulations\nTranscoding and Encoding (video)\nComputational Chemistry\n\n\n\nEducate\n\naws.amazon.com/training/- self-paced-labs\naws.amazon.com/training\naws.amazon.com/certification\n\nCan also be used in class:\n\nAWS blog - best place to get updates on the main stuff that changes\nDeeper into a topic - product page + documentation"
+  },
+  {
+    "objectID": "posts/2016-11-01-AWSworkshop.html#if-you-need-to-use-a-key-on-windows",
+    "href": "posts/2016-11-01-AWSworkshop.html#if-you-need-to-use-a-key-on-windows",
+    "title": "Amazon AWS workshop at the University of Sydney",
+    "section": "If you need to use a key on Windows",
+    "text": "If you need to use a key on Windows\nPuttylink"
+  },
+  {
+    "objectID": "posts/2013-01-01-helloworld.html",
+    "href": "posts/2013-01-01-helloworld.html",
+    "title": "Hello World!",
+    "section": "",
+    "text": "Welcome to my blog!"
+  },
+  {
+    "objectID": "posts/2018-02-20-ANDS.html",
+    "href": "posts/2018-02-20-ANDS.html",
+    "title": "Training the trainer presentation",
+    "section": "",
+    "text": "ANDS_TrainingTheTrainer  from Darya Vanichkina"
+  },
+  {
+    "objectID": "posts/2014-03-24-lorne2012poster.html",
+    "href": "posts/2014-03-24-lorne2012poster.html",
+    "title": "Lorne Genome 2012 poster",
+    "section": "",
+    "text": "Better late than never: my now-published Lorne Genome 2012 poster:"
+  },
+  {
+    "objectID": "posts/2016-08-12-pycon2016.html",
+    "href": "posts/2016-08-12-pycon2016.html",
+    "title": "2016-PyConAU 2016 Presentation",
+    "section": "",
+    "text": "Video\n\n\n\n\nSlides\n\n\n\n Big data biology for pythonistas: getting in on the genomics revolution  from Darya Vanichkina\n\n\n\nAbstract\nIn 2001 Bill Clinton unveiled “the most important, most wondrous map ever produced by humankind” - the human genome. This monumental endeavour cost $3 billion, and took hundreds of scientists from all over the world 13 years. Today, a single person can generate such a map in ~2 days for $1000. This dramatic drop in cost means that we now have data for hundreds of thousands of people - and other species - from all corners of the globe, and cohorts are available for every major disease under the sun. Petabytes of new data are also being generated every week.\nMost of this data is publicly available, so anyone with an internet connection can try in silico biology from the comfort of their own home. In my talk, I’ll walk through what this data looks like, and how it’s analysed - with a special focus on where python fits into the workflow (;tldr the most interesting parts!). I will also highlight some common pitfalls software engineers and developers face when getting into this space.\nFinally, I’ll showcase several other facets of bioinformatics that sorely need contributions from good coders. Genomics is rapidly entering the world of health care in both the public and private hospital sectors, and in direct-to-consumer genetic testing. Understanding this data, the challenges and limitations of its analytics will help us all make better-informed health and medical decisions, affecting our quality of life and those we love.\n\n\nNote:\nIf you are trying to follow up on my talk and carry out an analysis of some data (or are looking for some data, or would like to know where to find the data from paper X), please leave a comment below, and I’ll do my best to answer your question and help! I don’t monitor the comments on youtube or slideshare, but I do get a ping if you leave a comment here."
+  },
+  {
+    "objectID": "posts/2020-04-03-online4instructor2.html",
+    "href": "posts/2020-04-03-online4instructor2.html",
+    "title": "Mapping a live coding workshop for digital delivery (part 2)",
+    "section": "",
+    "text": "With the advent of COVID-19 we’re all having to do the unthinkable, which for an instructor like me means moving hands-on, practical coding workshops online. I’ve already written a post with a student-facing map of the process (and some tips for students), but I wanted to focus on a few instructor-related aspects of the map in this post."
+  },
+  {
+    "objectID": "posts/2020-04-03-online4instructor2.html#my-personal-teaching-setup",
+    "href": "posts/2020-04-03-online4instructor2.html#my-personal-teaching-setup",
+    "title": "Mapping a live coding workshop for digital delivery (part 2)",
+    "section": "My personal teaching setup",
+    "text": "My personal teaching setup\n\n\n\nmysetup\n\n\n\nI’m incredibly lucky to have access to several machines, which I use to work through materials on all of the platforms and also while teaching.\nDuring live teaching, we use two machines: (1) a shared “training” laptop on which we live code or show slides, connected to the projector all day, and (2) our own individual machines, which we use for looking at the notes.\nFor teaching online, I use:\n\nA primary machine, with a good camera, as my teaching machine. This has a vanilla setup of RStudio and/or Jupyter, notifications are turned off and all I can see are the things I need to teach. This laptop has only the one, built-in screen.\nA secondary machine, a.k.a. my command centre. This machine has my back-channel open, Zoom gallery view (I log in twice to the training) so I can see my learners, Zoom chats and Participants all visible. My notes are printed out on paper, as I have enough screens and windows to try to juggle.\nA third machine, which has one (small-ish) screen, and shows me what a learner with only one laptop/desktop screen is seeing. This is not essential, but helps me adjust font sizes and window widths to make sure people can actually live code along with me, without needing to rely on my co-instructors (I still ask students if it’s OK, of course, but this helps me self-adjust faster).\nI use an iPad if I need access to whiteboard (see below)."
+  },
+  {
+    "objectID": "posts/2020-04-03-online4instructor2.html#back-channel-communication-whispering-in-someones-ear",
+    "href": "posts/2020-04-03-online4instructor2.html#back-channel-communication-whispering-in-someones-ear",
+    "title": "Mapping a live coding workshop for digital delivery (part 2)",
+    "section": "Back-channel communication: whispering in someone’s ear",
+    "text": "Back-channel communication: whispering in someone’s ear\n\n\n\nwhisper\n\n\n\nYou need a quick and easy way to communicate between you and your co-instructors. I recommend a different, secondary chat application for this, for example Microsoft Teams or Slack (or Telegram/Whatsapp - whatever), if you’re using Zoom as your primary teaching tool.\nIdeally, you set up two channels in this: one for urgent messages to the instructor who’s teaching (“YOUR SCREEN IS TINY!”), and another for non-teaching instructors to communicate with each other. This allows your helpers to communicate about challenging software installs (“Do you have any experience updating R libraries on Ubuntu?”), delegate responsibilities (“Can you take over host please? I really need a break for 3 minutes!”) and otherwise manage the class - but all of this is not relevant for the instructor who’s teaching and can actually distract them if they keep getting pinged about it."
+  },
+  {
+    "objectID": "posts/2020-04-03-online4instructor2.html#common-problems-learner-with-setup-challenges",
+    "href": "posts/2020-04-03-online4instructor2.html#common-problems-learner-with-setup-challenges",
+    "title": "Mapping a live coding workshop for digital delivery (part 2)",
+    "section": "Common problems: learner with setup challenges",
+    "text": "Common problems: learner with setup challenges\n\n\n\nchallenges\n\n\n\nFirst and foremost, send out detailed setup and installation instructions, complete with screenshots, to your learners several days before the course. Remind them to email you with screenshots of any error messages, or - if you’re teaching a large class - get them to post the screenshots into a shared document, and encourage peers to help.\nSecond, provide the opportunity for learners who have had issues to join the meeting an hour early and try to get help (yes, this means I’m online at 8 am for a 9 am class).\nMy preferred way of helping debug issues is to have learners post a screenshot of the error message into a specific place in the shared document we’re using, and for me to guide them in trying to fix it (via the Zoom chat if at all possible - but note it doesn’t work well with line breaks, so you may need to use the shared doc for pasting code as well).\nTools like Zoom do provide the functionality to share screens and take over someone’s desktop, BUT I’ve found taking screenshots is faster, doesn’t require you to jump out into a breakout room (so the learner doesn’t miss out on core content), and doesn’t cause bandwidth problems (I’ve tried taking over learners’ desktops with suboptimal bandwidth, and it kicked both of us out of the session).\nFinally, it can be helpful to have a backup cloud platform for teaching as well, as the digital equivalent of spare laptops. We’ve been successful using mybinder.org for python, and have tried but not productionised rstudio.cloud for R. I’d love a suggestion for an online terminal for teaching basic Unix!"
+  },
+  {
+    "objectID": "posts/2020-04-03-online4instructor2.html#common-problems-poor-internet-connectivity",
+    "href": "posts/2020-04-03-online4instructor2.html#common-problems-poor-internet-connectivity",
+    "title": "Mapping a live coding workshop for digital delivery (part 2)",
+    "section": "Common problems: poor internet connectivity",
+    "text": "Common problems: poor internet connectivity\n\n\n\nconnectivity\n\n\n\nIf you are having issues with your connection, consider (1) switching to slides/screenshare-only mode, (2) ensuring your device has priority on your home WiFi network, (3) trying to teach via a personal hotspot or (4) swapping to another instructor teaching1. This is something you can communicate about with your team via the back-channel - and a key reason the back-channel needs to use very little bandwidth!\nFor learners, you can try asking them to turn off their video, and possibly also closing other tabs/devices connected to the internet."
+  },
+  {
+    "objectID": "posts/2020-04-03-online4instructor2.html#common-problems-tool-stack-meltdown",
+    "href": "posts/2020-04-03-online4instructor2.html#common-problems-tool-stack-meltdown",
+    "title": "Mapping a live coding workshop for digital delivery (part 2)",
+    "section": "Common problems: Tool stack meltdown",
+    "text": "Common problems: Tool stack meltdown\n\n\n\nvolcano\n\n\n\nEXPECT your primary tool stack to melt down. If you are using Zoom/Teams/GoToMeeting, expect your platform to go down at least once during the training (it’s great if it doesn’t, but you’re prepared if it does!). Have a plan, with your co-instructors, what you’re going to do: switch to another tool? take an off-schedule break? Something else?\nExplicitly tell your students how you’ll communicate with them to let them know where to go in the event of a breakdown. For us, I prefer using the shared doc, but an email would also work (albeit might be slower, as they’re hopefully not checking email while we’re teaching)."
+  },
+  {
+    "objectID": "posts/2020-04-03-online4instructor2.html#shared-documents",
+    "href": "posts/2020-04-03-online4instructor2.html#shared-documents",
+    "title": "Mapping a live coding workshop for digital delivery (part 2)",
+    "section": "Shared documents",
+    "text": "Shared documents\n\n\n\nshareddoc\n\n\n\nA shared, student-editable document is essential for successful delivery of training.\nMy primary criteria for a shared document include:\n\nIt is editable by all students (ideally without logging in),\nIt doesn’t take up too much screen real estate,\nIt allows you to post images by copy-pasting them in,\nIt doesn’t require any cognitive overhead for learners to figure out how to use it.\n\nThe official solution recommended by the University of Sydney is a Microsoft Office Online Word document.\nI have had success using Google Docs. I provide a link to a public doc, so learners don’t have to log in with their Google Account, and ensure that no student data is collected in the doc (i.e. learners can use first names or pseudonyms only on the doc). Most people have used Docs, so there is no overhead in figuring out how to use the tool - we can just dive in and move on.\nThere are tools like the Etherpad, hack.md and an open-source, self-hosted version called CodiMD. The latter two support document creation in markdown, which is great because it’s plain text, but also not so great, because it uses more screen real estate than Google docs (especially with the preview pane open side by side with the markdown itself).\nWhat goes in the Doc? My (non-exhaustive) check-list includes:\n\nThe title of the course\nThe names of all of the instructors who are part of the teaching team\nLinks to the course materials\nLinks to any data downloads\nLinks to the registration page for the course\nLinks to pre and post workshop surveys\nDetails about the zoom meeting, and every possible way learners can log onto it\nLinks to the setup instructions and tests that setup completed successfully\n[Links to the mybinder or Rstudio cloud instance, if using as a backup]"
+  },
+  {
+    "objectID": "posts/2020-04-03-online4instructor2.html#code-transfer",
+    "href": "posts/2020-04-03-online4instructor2.html#code-transfer",
+    "title": "Mapping a live coding workshop for digital delivery (part 2)",
+    "section": "Code transfer",
+    "text": "Code transfer\n\n\n\ncodetransfer\n\n\n\nSometimes you need to share a chunk of code with your learners. While you can paste it into the shared document or Zoom chat, often these tools will do strange things with spaces and quotes.\nInstead, I recommend pasting them into a public GitHub gist, sharing the link with your learners via the chat, and screen sharing how you would access the gist and move it into your R/python session."
+  },
+  {
+    "objectID": "posts/2020-04-03-online4instructor2.html#whiteboard",
+    "href": "posts/2020-04-03-online4instructor2.html#whiteboard",
+    "title": "Mapping a live coding workshop for digital delivery (part 2)",
+    "section": "Whiteboard",
+    "text": "Whiteboard\n\n\n\nwhiteboard\n\n\n\nIn an in-person live coding class, I often use the whiteboard when answering student questions or working through problems.\nDigitally, I’m a lot more hesitant to use one, if only because it takes away screen real estate from the other things I’m doing, which are often more important for the learners to see at the time.\nHowever, I have had success using my iPad and both GoodNotes and Notability when I needed a digital whiteboard, following the instructions here.\n\n\nI hope these two posts are helpful for you as you prepare to jump into teaching online! Please leave a comment below if you found something useful, unclear or would like to add something else I missed!"
+  },
+  {
+    "objectID": "posts/2021-04-12-ggplot2map.html",
+    "href": "posts/2021-04-12-ggplot2map.html",
+    "title": "ggplot batch variable visualisation in Rmd without for loops",
+    "section": "",
+    "text": "In the below snippet, we use ggplot on the built-in mtcars dataset to make a scatterplot of each of the variables against the mpg variable, colouring it by the number of cylinders (on the fly converted to a factor).\nTo do this, I define the makeplots() function, which takes a single argument called myfeature. Within the function, I need to save the plot as a variable (a), and then print it so that it is rendered in the Rmd. I grab the column names I’d like to iterate over and save them into a character vector (In real life, I tend do grab them all using names(mtcars), but I choose a few manually to keep this blog post manageable. Also, I could have used commands like setdiff() to subset the names(mtcars) character vector to remove, for example, mpg itself).\nI also use the as_label(quo(.)) functions to extract the string of the variable name itself, so I can use it to set the title of the plot.\nlibrary(purrr)\nlibrary(dplyr)\nlibrary(ggplot2)\nmakeplots <- function(myfeature){\n  a <- mtcars %>%\n    select(!!myfeature, mpg, cyl) %>%\n    unique() %>%\n    ggplot(aes(x = !!myfeature, y = mpg, colour = as.factor(cyl))) + \n    geom_point() + \n    labs(title = paste0(as_label(quo(!!myfeature)), \" vs mpg\")) +\n    theme_classic()\n  \n  print(a)\n}\n\n# to get all of the column names\n# mycolnames <- names(mtcars)\n# I'm using a shorter vector in the interests of not overwhelming this blog post with ALL the images\nmycolnames <- c(\"disp\", \"hp\", \"drat\")\nwalk(mycolnames, ~makeplots(myfeature = sym(.x))) \n\n\n\nDisp\n\n\n\n\n\nHP\n\n\n\n\n\nDrat"
+  },
+  {
+    "objectID": "posts/2021-10-31-imagemagick3by6.html",
+    "href": "posts/2021-10-31-imagemagick3by6.html",
+    "title": "Printing 4 iPhone photos on 4x6 photo paper",
+    "section": "",
+    "text": "While this blog tends to focus on things I do at work or as part of data-sciency related extracurricular interests, I can’t help but post the solution to an amusing problem being the parent of a preschooler threw my way. My daughter’s daycare has a roaming koala (yes, a koala, because we’re in Australia, y’all), who gets to spend a week with each family in turn, after which we’re meant to contribute photos and some text to the “Koala’s adventures” scrapbook.\nIn the above image, the “Koala in a t-shirt” is the daycare one, visiting one of my daughter’s friends houses, who happen to have many Koala friends…"
+  },
+  {
+    "objectID": "posts/2021-10-31-imagemagick3by6.html#problem-definition",
+    "href": "posts/2021-10-31-imagemagick3by6.html#problem-definition",
+    "title": "Printing 4 iPhone photos on 4x6 photo paper",
+    "section": "Problem definition",
+    "text": "Problem definition\nThe A4 scrapbook we were meant to use was too small to have full-sized 4x6 prints glued in, so I needed to print several images on one 4x6 card and then cut them apart. 4 images per page seemed to be the “sweet spot” in our case.\nInitially, I tried some freely available collage tools for Mac, but found them annoying, cumbersome and very out-of-date - and not really supporting bulk processing 52 images at once - so I ended up with a command-line based solution."
+  },
+  {
+    "objectID": "posts/2021-10-31-imagemagick3by6.html#setup",
+    "href": "posts/2021-10-31-imagemagick3by6.html#setup",
+    "title": "Printing 4 iPhone photos on 4x6 photo paper",
+    "section": "Setup",
+    "text": "Setup\n\nMy photo setup is pretty basic: my iPhone and its default camera app 1. I think the native dimensions of images on the iPhone are 4032 px x 3024 px…\nI have an Epson EcoTank 2750 printer, which I absolutely love because it’s an easily refillable colour inkjet. This makes printing all of the squizillion worksheets and handouts in my life inexpensive and reasonably fast. I recently discovered that this printer can print photos in decent quality (at least as well as you used to be able to get at the corner drugstore back when I was a child + we shot on film…), provided you buy good quality photo paper."
+  },
+  {
+    "objectID": "posts/2021-10-31-imagemagick3by6.html#process",
+    "href": "posts/2021-10-31-imagemagick3by6.html#process",
+    "title": "Printing 4 iPhone photos on 4x6 photo paper",
+    "section": "Process",
+    "text": "Process\nTo solve the “Koala’s adventures” dilemma we took the following steps:\n\nStep 1\nTake hundreds of photos, on some percentage of which my child, the koala and the accompanying background/other subjects would come out well.\n\n\nStep 2\nUse the default Photos app on the computer to delete the photos we didn’t want, and to pick a handful of “Favourites” that we would print out and include in the scrapbook.\nAs a “Pro” tip, which I’ve now learned because my daughter wants to make an ongoing scrapbook of her adventures even without the koala (great for language development apparently) - you can also create a custom folder where you put all of the photos for scrapbooking, and save the ones you haven’t printed only to favourites.\n\n\nStep 3\nUsing the Photos app, rotate all of the images to be either landscape or portrait. I will use landscape for this post.\nYes, you could rotate them later using Preview or ImageMagick, but I prefer doing this in Photos as it allows me to bulk-select images and rotate in one keyboard stroke.\n\n\nStep 4\nExport the photos out to a folder of your choice in jpeg format, with maximum quality.\n\n\n\nKoala export\n\n\n\n\nStep 5\nRename the files in this folder to NOT have spaces in the filenames:\nI’m not sure if there is an easy way to get Photos export to NOT export with spaces in filenames. This is what my Mac did:\n-rw-r--r--@ 1 darya  macmini  8382495 31 Oct 14:48 koalaexport - 1.jpeg\n-rw-r--r--@ 1 darya  macmini  9401795 31 Oct 14:48 koalaexport - 2.jpeg\n-rw-r--r--@ 1 darya  macmini  8078024 31 Oct 14:48 koalaexport - 3.jpeg\n-rw-r--r--@ 1 darya  macmini  8789539 31 Oct 14:48 koalaexport - 4.jpeg\nIn order to get rid of those spaces, open a Terminal session in the same folder you’ve just saved your photos in and run the following command.\nfor file in *; do mv \"$file\" `echo $file | tr ' ' '_'` ; done\nThis will result in the following:\n-rw-r--r--@ 1 darya  macmini  8382495 31 Oct 14:48 koalaexport_-_1.jpeg\n-rw-r--r--@ 1 darya  macmini  9401795 31 Oct 14:48 koalaexport_-_2.jpeg\n-rw-r--r--@ 1 darya  macmini  8078024 31 Oct 14:48 koalaexport_-_3.jpeg\n-rw-r--r--@ 1 darya  macmini  8789539 31 Oct 14:48 koalaexport_-_4.jpeg\n\n\nStep 6\nNext, you’ll need to arrange the photos on a 2x2 card grid. You can do this using ImageMagick’s montage command 2.\nI originally wrote this command to work on 52 images, and it looked like this:\nfor ((i=0;i<=12;i++)); do montage -geometry 1800x1200+0+0 -tile 2x2 koalaexport_-_$(( 4*i + 1 )).jpeg koalaexport_-_$(( 4*i + 2 )).jpeg koalaexport_-_$(( 4*i + 3 )).jpeg koalaexport_-_$(( 4*i + 4 )).jpeg ${i}.tiff;done\nTo break down what’s going on, let’s start with that for loop:\nfor ((i=0;i<=13;i++)); do echo $i;done\nThis prints the numbers 0 to 13 to the console.\nWhat I’m then doing, is using the shell to do math; in every loop iteration, I’m retrieving the following numbers, and using them to access the corresponding filenames - $((4*i + 1)), i.e. 1,5,9… - $((4*i + 2)), i.e. 2,6,10… - $((4*i + 3)), i.e. 3,7,11… - $((4*i + 4)), i.e. 4,8,12…\nThis allows me to access the input files in batches of 4, and the output files in iterations of 1. ***\nThe basic command we have “within” that loop is montage -geometry 1800x1200+0+0 -tile 2x2 image1.jpg image2.jpg image3.jpg image4.jpg 1.tiff, where:\n\n-tile 2x2 is saying that we want to tile the images, with 2 wide and 2 across\nimage1.jpg image2.jpg image3.jpg image4.jpg -> are the four input files\n1.tiff is the output tiff file we’ll use for printing\nThe -geometry flag is saying how we want our final canvas to be:\n\n1800 pixels wide (6 inches at 300 dpi == 1800 pixels minimum) 3\n1200 pixels high (4 inches at 300 dpi == 1200 pixels minimum)\nthe +0+0 is saying that we don’t want any kind of a border around each of the images, i.e. we want the jpegs printed all next to each other.\n\n\n\n\n\nKoala export\n\n\nAnother tip, in case you start getting issues where your images end up having too much white space and look something like this:\n\n\n\nKoala export\n\n\nIs to either: - Use the -rotate 90 flag OR - Change the order of the first two numbers in the geometry command, i.e. if it was -geometry 1800x1200+0+0 change it to -geometry 1200x1800+0+0\nHopefully this posts helps in getting started with using ImageMagick to batch-collage files, for all of your scrapbooking needs. If you have any questions or something ends up unexpected, please leave a comment below."
+  },
+  {
+    "objectID": "posts/2019-03-29-moving-to-hugo.html",
+    "href": "posts/2019-03-29-moving-to-hugo.html",
+    "title": "Moving to Hugo",
+    "section": "",
+    "text": "So far, useful resources for wrapping my head around how to do this:\n\nAlison Presmanes Hill’s documentation\nVery useful gotcha for configuring Netlify\nNon-blogdown specific very detailed outlined (for future reference, when I want to add new page types)\n\nThings that don’t seem to work:\n\nMath! :sob: (but, hey, emoji do! :smile:)\nFontAwesome “social” icons apart from the default (but I think this is something I need to figure out)"
+  },
+  {
+    "objectID": "posts/2020-04-02-online4instructors.html",
+    "href": "posts/2020-04-02-online4instructors.html",
+    "title": "Mapping a live coding workshop for digital delivery",
+    "section": "",
+    "text": "With the advent of COVID-19 we’re all having to do the unthinkable, which for an instructor like me means moving hands-on, practical coding workshops online. In this post, I’ll provide a map that helped me formalise how I broke down our workshops into components, and tried to map each of them to an online tool, platform or approach. I’ve used Zoom for most of the examples below, since that’s what I’ve used for teaching, but I’m sure that most of this functionality is well supported by other online meeting tools."
+  },
+  {
+    "objectID": "posts/2020-04-02-online4instructors.html#preliminaries",
+    "href": "posts/2020-04-02-online4instructors.html#preliminaries",
+    "title": "Mapping a live coding workshop for digital delivery",
+    "section": "Preliminaries",
+    "text": "Preliminaries\nA learners arrives in my training room. They:\n\nSign in on a sign-in sheet\n\nThe “Host” can take a screenshot of all of the participants, in gallery view, and/or a list of the names of Participants, approximately 30 minutes after the session begins1.\n\nMake a name tag for themselves\n\nRename themselves in Zoom to their preferred name, faculty or school (depending on teaching cohort) and preferred pronoun, so I’d become, for example “Darya (SIH, she/her)”.\nThis can sometimes make it tricky to match names to emails, which is what we use as our unique key for registration. That’s why I try to check people in during the day, and clarify with a private chat message asking what someone’s email is if I’m unable to unambiguously match them to their email.\n\nFind a seat\n\nThere are several ways to allocate learners to a breakout room. First, you can use the faculty details in the naming convention above to group people by discipline, school or faculty.\n\nThis can present challenges downstream if a particular aspect of your course is better aligned with one domain’s background knowledge than another’s. For example, I use a problem with cancer patients and controls, which for me (and most people with a biomedical background) obviously indicates that the latter group are healthy, possibly/ideally age/gender matched people without cancer. When I grouped people by Faculty, the life and health sciences team powered through the challenge, whereas the engineers ended up spending a lot of time wrapping their heads around what a control was in this context.\nSo in the future I think I’ll stick to what happens in real life, and mix people by first letter of name or order of popping into the course, similar to how learners tend to randomly sit together in a 3D classroom."
+  },
+  {
+    "objectID": "posts/2020-04-02-online4instructors.html#workshop-start",
+    "href": "posts/2020-04-02-online4instructors.html#workshop-start",
+    "title": "Mapping a live coding workshop for digital delivery",
+    "section": "Workshop start",
+    "text": "Workshop start\n\nChat to their neighbours\n\nIn a 3D workshop this is part of the preliminaries, but you as the instructor have to actively normalise this online.\nIt’s one of the hardest things to replicate: the productive interactions and relationship-building/networking among learners that happens when you work together on a bunch of tasks for 2 days straight.\nA somewhat useful replacement that gets learners talking is an icebreaker task (ideas here), which can either be posted into the shared document OR carried out orally in small groups in breakout rooms. I find it helpful, in addition to asking about something relatable (“What was the most interesting thing you learned working from home last week?”) to ask about learners’ setups and screens (“What does your learning setup look like today?”). That way, I can suggest tweaks, such as logging in from a mobile device as a modification of a two screen setup. Another option is to ask the latter as a poll.\n\nCode of Conduct\n\nAll workshops need a Code of Conduct, which establishes the norms of behaviour you expect to support everyone’s learning. Online, I add information about expectations for private messaging and screen sharing, as well as recording (nope!).\nI also ask people to let me know (via a private chat message, at any point in the workshop) if they’re uncomfortable with me explicitly calling on them, as one of the biggest challenges of teaching online (and off) is extroverts dominating the conversation. To prevent this, I keep a tally of who I’ve called on, but I also want to make sure I don’t make someone who’s wrangling a child or responding to 50 emails about a grant deadline to feel uncomfortable or pressured.\n\nSchedule\n\nJust like a “normal” class, I use a slide to walk learners through the schedule, explain how the course content is linked and when breaks will happen.\n\nSticky notes\n\nIn a Carpentries workshop, we have a very special way of using sticky notes to gauge learner state and assess who needs help - without them having to hold their hand up for hours. Zoom is great because it’s a digital platform that allows us to replicate the same - BUT it’s important to recognise that using this feature in Zoom costs screen real estate (and cognitive load!), so may need to be relied on sparingly during some portions of the class, especially the live coding ones!\nTo replicate stickies in Zoom you can use the Non-verbal Feedback functionality:\n\n\n\n\n\nNonverbalFeedback\n\n\n\nWhile there are a LOT of options, we tended to use only the “Hand up”, “Yes” and “No” options, as (1) you can only use one of these statuses at a time, and (2) we wanted to know whether students were good (“Yes”), needed a helper to reach out (“No”), or wanted to ask a question (“Hand”). The Hand functionality is also quite helpful for the instructor, as it automatically places the person with the hand up at the top left in Gallery view mode.\nI’ll also mention Reactions here, which unlike Non-verbal feedback are a non-persistent way learners can tell you that all is good: they’re displayed on screen for 5 seconds, and are overlaid over a learners picture in Gallery view. You can only show “thumbs up” or “clap”, so they’re not very helpful for getting negative feedback. Our learners used them intuitively, without us providing explicit instructions, to let us know that they didn’t have any questions during the frequent pauses we made to ask “Does anyone have any questions?/Are there any questions?/What’s unclear about what we just did?”.\n\n\n\n\ngalleryviewwithreactions"
+  },
+  {
+    "objectID": "posts/2020-04-02-online4instructors.html#slide-centric-sessions",
+    "href": "posts/2020-04-02-online4instructors.html#slide-centric-sessions",
+    "title": "Mapping a live coding workshop for digital delivery",
+    "section": "Slide-centric sessions",
+    "text": "Slide-centric sessions\nIn some of our intermediate sessions, we then dive into slides, with a small slide deck (20 minutes max) that provides some theory and a few conceptual challenge tasks. With these sessions, I\n\nStart by showing learners how best to set up their screens for learning, including if they want to take notes or ask questions via the chat.\nMake sure I explicitly provide a link to where they can download the slides, so they can annotate a copy as we go, on their own machine.\nSet up the norms of asking questions: use the chat (or the shared doc, but ideally not both), and have my hosting co-instructor interrupt me during short pauses if I miss a question that a learner asked that would be best answered during that particular slide/mini-session vs at the end of the presentation."
+  },
+  {
+    "objectID": "posts/2020-04-02-online4instructors.html#live-coding-sessions",
+    "href": "posts/2020-04-02-online4instructors.html#live-coding-sessions",
+    "title": "Mapping a live coding workshop for digital delivery",
+    "section": "Live coding sessions",
+    "text": "Live coding sessions\nThese form the core of our workshops, with sessions of coding along interspersed with short, formative assessment tasks, including multiple choice questions, faded examples and more complex, unscaffolded challenge tasks. Live coding is the most challenging aspect to “port” to digital. The key things that help make these work (somewhat):\n\nMake sure you use/share/project only 1/2 of your screen, and use an appropriate coding “tool” that encompasses everything in that 1/2 screen. This means jupyter notebooks and the terminal are in, but RStudio/a .R script, in it’s native implementation, is out - they just take up too much screen real estate! The best work-around I’ve found so far is to use an Rmarkdown document, with inline output for figures. This is what you get the settings to look like:\n\n\n\n\ninlinesetup\n\n\nAnd this is what the learners’ screens looked like:\n\n\n\nhowtoo\n\n\n\nDuring the training, start by showing learners how best to set up their screens for learning.\nIf you do decide (or your learners just go) to move to more of a watch me narrate and code, I highly recommend having the challenge tasks commented out in a single code file you distribute throughout the day - so a .py or a .R or (possibly) even a .sh script, although I’m not sure about the latter, as most intro Unix courses don’t necessarily work a lot with shell scripts. Learners can then uncomment the challenges as they go, and work through them at the appropriate times."
+  },
+  {
+    "objectID": "posts/2020-04-02-online4instructors.html#breakout-rooms-and-challenge-tasks",
+    "href": "posts/2020-04-02-online4instructors.html#breakout-rooms-and-challenge-tasks",
+    "title": "Mapping a live coding workshop for digital delivery",
+    "section": "Breakout rooms and challenge tasks",
+    "text": "Breakout rooms and challenge tasks\nPeer learning has been shown in numerous studies to be one of the most effective ways of getting students to learn. In our in-person training sessions, we encourage learners to sit in a group and, for every challenge task, to start working on it themselves, then share their solution or any encountered problems with their neighbour, then their table and - finally - when the group has solves it - with the class. To replicate this in an online environment we used Zoom breakout rooms, with a few caveats:\n\nThe host - who is NOT the person teaching - needs to set up the maximum number of breakout rooms at the beginning of the training session. Note that ONLY the host, and NOT the co-hosts, can set up breakout rooms and allocate people to them!\nWe send groups of 3-5 learners, plus one co-instructor, into each breakout room. Unlike an in-person event, in a digital skills training we found that it took learners a few minutes to adjust to the breakout context and figure out what they were meant to do and where - so the instructor in each room helped guide this process.\nRight before a challenge task we’d paste the text of the task into the chat AND add it into our shared document. This meant that all learners had easy access to the activity. Note that the chat in a breakout room can only happen between people IN that room, so if learners are all in a room and want to message the host, who is NOT in their room, they can’t do this! So if you’ve got more rooms than co-instructors it can be helpful to have them post requests for help into the shared document, after which you can jump into the room; they can also ask for help via the app:\n\n\n\n\nhelp\n\n\n\nThe red/green “No”/“Yes” participant statuses are not visible to the host from outside a breakout room, so using them to replace stickies doesn’t work in this context.\nNote that users joined via the web client, Chromebooks/Chrome OS or Zoom Rooms are unable to join Breakout Rooms! Zoom suggests the main room as an alternative session for these users, but we’d recommend explicitly requesting learners to use an installed version of the app/an individual machine instead of the web client or room.\n\nTo mimic the green sticky system of in-person teaching, the instructors can use the back-channel to communicate about where their group is in the task OR - if you’ve got rooms without instructors - I’d recommend learners use the shared document to update you when they’ve completed each of the components of the challenge task.\n\nWhen everyone’s back together ask for a volunteer early on, then, later in the day, call on people to prevent extroverts from dominating the reporting."
+  },
+  {
+    "objectID": "posts/2020-04-02-online4instructors.html#casual-chats-with-instructors-and-other-learners",
+    "href": "posts/2020-04-02-online4instructors.html#casual-chats-with-instructors-and-other-learners",
+    "title": "Mapping a live coding workshop for digital delivery",
+    "section": "Casual chats with instructors and other learners",
+    "text": "Casual chats with instructors and other learners\nThis is impossible to fully replicate online, BUT as a workaround: plan for at least one of your instructors to be in the meeting during the morning and afternoon “tea” breaks (Labelled “HERE” below). My “standard” workshop schedule looks like this:\n\n09:00 am - 10:30 am - Training\n10:30 am - 11:00 am - “Morning tea” <- HERE\n11:00 am - 12:30 pm - Training\n12:30 pm - 1:30 pm - Lunch\n1:30 pm - 3:00 pm - Training\n3:00 pm - 3:30 pm - “Afternoon tea” <- HERE\n3:30 pm - 5:00 pm - Training\n\nWhat does that instructor do? Small talk at the least, and - usually - after getting to know the learners a bit, they WILL ask you questions about their research, your work or other “stuff” related to the course. It also allows you to reassure them you believe they can learn the content AND that even if their setup is “weird” (according to them) they can still succeed in the course and use the tools and techniques later on.\n\nWhew! That ended up being a long post! In the next post of this series, I’ll explore some common problems and how to deal with them, as well as discuss how to replicate instructor-instructor communication. If you’re a learner, this post is for you!"
+  },
+  {
+    "objectID": "posts/2013-07-13-ciRNApapers.html",
+    "href": "posts/2013-07-13-ciRNApapers.html",
+    "title": "2013 ciRNA papers",
+    "section": "",
+    "text": "Comparing the early ciRNA papers   from Darya Vanichkina"
+  },
+  {
+    "objectID": "posts/210728_renvhpc.html",
+    "href": "posts/210728_renvhpc.html",
+    "title": "Installing packages on a PBS-Pro HPC cluster using renv",
+    "section": "",
+    "text": "Today someone asked about my workflow for using R on an HPC cluster, and - more specifically - about how to install packages when executing a workflow that requires use of HPC. Google wasn’t helpful with providing a link to share - so the onus is on me to write the blog post.\n\n\n\nsuitcase\n\n\n\n\nJust like working on our local machines, when working on an HPC cluster we really want to be able to have a consistent R environment for each of our projects that we snapshot at the time of working on said project. This means code that was written months or even years ago will still work as expected, even if the packages on CRAN have since been updated with breaking changes. The renv package is brilliant at managing this - however, it is not intuitive to figure out how to use it when working on an HPC cluster - which is what I work through in the below post.\n\n\n\nThis post makes a few assumptions:\n\nYou are planning to use R for analysis, and know how to install packages on your local machine.\nYou are working with a PBS-Pro HPC cluster, and know all of the core commands (this is not an introduction to ssh, qsub, module load etc - see here for an intro). I think some of the below should generalise to SLURM or other cluster schedulers, but don’t have access to them so can’t test.\nYou want to use the renv library to manage the packages in your project (You do, you really do - I cannot recommend this highly enough, especially for sanity of future you). You know the basics of using renv on your local machine, as per the renv vignette - that’s probably the best intro to renv.\n\nOof, now that that’s out of the way, let’s dive in :dolphin: …\n\n\n\nAfter you login to your HPC server, I recommend starting up an interactive session so you’re not working on and hence clogging up the login nodes. (You can do this on a login node too, but depending on how much compute prototyping your analysis requires this may crash :fire: - or get you a cranky email from an admin :rage: ).\nqsub -I -l walltime=4:0:0 -l select=1:ncpus=1:mem=10gb\n\n\n\nAfter you’re logged in to the worker node, run the following commands to:\n\nnavigate to the project directory\nget rid of everything that may have inadvertently been preloaded\nlaunch R\ninstall renv\n\ncd myprojectdirectory\nmodule purge\nmodule load R/4.0.4 # <- or whatver version or R is available on your cluster\nR\nThis will open the R command line interface.\ninstall.packages(\"renv\")\nThis will return the details that the installation of renv() will occur into a default location:\nInstalling package into ‘/home/myusername/R/x86_64-pc-linux-gnu-library/4.0’\nAnd ask me to select a CRAN mirror for installation; after choosing the appropriate mirror and pressing return the package will be installed.\n\n\n\nFor this demo, I am going to assume that my project depends on the tidyverse family of libraries, and that I want to install them in one go. (In real life, I actually avoid taking this approach, and instead install each of the tidyverse libraries one by one as I use and need them.)\nlibrary(renv)\n# initialise renv\nrenv::init()\nThis will ask me to restart R, after doing which I can start installing packages.\ninstall.packages(\"tidyverse\")\n# wait... and wait... for packages to successfully install\nlibrary(tidyverse)\nI would next prototype my analysis code, installing as many packages as I need using the normal install.packages() syntax - and eventually wrap the analysis up into a script.\nAfter you have installed all of the libraries you need, in the interactive R session, exectute the following command:\n# this will tell you whether renv has captured versions \n# of all of the packages you need to install\nrenv::status()\n# if the result of renv::status() was not \n# \"The project is already synchronized with the lockfile.\"\n# run the below command to snapshot all currently installed libraries\nrenv::snapshot()\nFor this demo, I’m going to assume I want to run the following command that uses the built-in gss_cat dataset from the forcats package, the pipe and the dplyr::filter() command - so nicely tests a few of the tidyverse libraries in one line:\ngss_cat %>% head() %>% filter(tvhours < 10)\nThe output should be:\n# A tibble: 3 × 9\n   year marital      age race  rincome    partyid     relig     denom    tvhours\n  <int> <fct>      <int> <fct> <fct>      <fct>       <fct>     <fct>      <int>\n1  2000 Widowed       67 White Not appli… Independent Protesta… No deno…       2\n2  2000 Never mar…    39 White Not appli… Ind,near r… Orthodox… Not app…       4\n3  2000 Divorced      25 White Not appli… Not str de… None      Not app…       1\n\n\n\nThe renv.lock file stores details about the R version and all of the packages that are installed in your environment in .json format. So installing the tidyverse packages in one fell swoop like I did above results in quite a long list of libraries (last 5 shown here):\n \"vroom\": {\n      \"Package\": \"vroom\",\n      \"Version\": \"1.5.3\",\n      \"Source\": \"Repository\",\n      \"Repository\": \"CRAN\",\n      \"Hash\": \"aac6012f34348b3ca6bf373fe7172b06\"\n    },\n    \"withr\": {\n      \"Package\": \"withr\",\n      \"Version\": \"2.4.2\",\n      \"Source\": \"Repository\",\n      \"Repository\": \"CRAN\",\n      \"Hash\": \"ad03909b44677f930fa156d47d7a3aeb\"\n    },\n    \"xfun\": {\n      \"Package\": \"xfun\",\n      \"Version\": \"0.24\",\n      \"Source\": \"Repository\",\n      \"Repository\": \"CRAN\",\n      \"Hash\": \"88cdb9779a657ad80ad942245fffba31\"\n    },\n    \"xml2\": {\n      \"Package\": \"xml2\",\n      \"Version\": \"1.3.2\",\n      \"Source\": \"Repository\",\n      \"Repository\": \"CRAN\",\n      \"Hash\": \"d4d71a75dd3ea9eb5fa28cc21f9585e2\"\n    },\n    \"yaml\": {\n      \"Package\": \"yaml\",\n      \"Version\": \"2.2.1\",\n      \"Source\": \"Repository\",\n      \"Repository\": \"CRAN\",\n      \"Hash\": \"2826c5d9efb0a88f657c7a679c7106db\"\n    }\nI sometimes find that renv::status() and renv::snapshot() in step 3 don’t immediately see all of the libraries I have installed in the environment, and - weirdly - I need to restart R and run renv::status() again before it will detect that a bunch of libraries have been installed. So if you’re missing libraries in the renv.lock file you know need to be there - restarting R and re-running renv::status() and renv::snapshot() may be the way to go.\n\n\n\nWrap the above code into myscript.R , with the following contents:\nlibrary(tidyverse)\ngss_cat %>% head() %>% filter(tvhours < 10)\nThen create a shell script (myshellscript.sh) that can be submitted to the PBS queue:\n#! /bin/bash\nmodule purge\nmodule load R/4.0.4\ncd /to/my/projectpath\nRscript myscript.R\nFinally, submit to the queue:\nqsub -l walltime=0:10:0 -l select=1:ncpus=1:mem=1gb -N mytestscript myshellscript.sh\nNote that I’m only asking for 1 Gb of RAM and 10 minutes of walltime. This is probably a lot less than you’d need for any “real” analysis - but it’s perfectly fine for my script above.\nAfter that executes, I get the following output in mytestscript.o123456, where 123456 is the job number that my PBS scheduler automatically assigned to my script run:\n# A tibble: 3 × 9\n   year marital      age race  rincome    partyid     relig     denom    tvhours\n  <int> <fct>      <int> <fct> <fct>      <fct>       <fct>     <fct>      <int>\n1  2000 Widowed       67 White Not appli… Independent Protesta… No deno…       2\n2  2000 Never mar…    39 White Not appli… Ind,near r… Orthodox… Not app…       4\n3  2000 Divorced      25 White Not appli… Not str de… None      Not app…       1\nAnd the package loading messages in mytestscript.e123456:\nWarning message:\nrenv took longer than expected (66 seconds) to activate the sandbox.\n\nThe sandbox can be disabled by setting:\n\n    RENV_CONFIG_SANDBOX_ENABLED = FALSE\n\nwithin an appropriate start-up .Renviron file. See `?renv::config` for more details.\nWarning: program compiled against libxml 209 using older 207\n── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──\n✔ ggplot2 3.3.5     ✔ purrr   0.3.4\n✔ tibble  3.1.3     ✔ dplyr   1.0.7\n✔ tidyr   1.1.3     ✔ stringr 1.4.0\n✔ readr   2.0.0     ✔ forcats 0.5.1\n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nThis includes a warning that the renv sandbox took a while to load, but this doesn’t seem to affect functionality, so I haven’t disabled it.\n\nThat’s it! Hopefully the above helps you use renv() with a PBS-Pro based HPC cluster :blush:, and please do leave a comment if something isn’t clear or doesn’t work as expected.\n\n\n\n\nThis workflow means that your package install information (i.e. the binaries) are stored in the project folder, in the renv folder. So they are not stored on the worker nodes where your job is being executed, but instead in your home or project folder. This is a good thing, as it means you’re not hitting up CRAN to install packages every time you run a job.\nThis workflow also means that while you can rsync your project folder from your local machine to the remove server (or prototype on your local machine), you will need to run renv::restrore() once on the “other” machine prior to being able to execute or deploy the script."
+  },
+  {
+    "objectID": "posts/2021-04-09-redcap-api-crossplatform.html",
+    "href": "posts/2021-04-09-redcap-api-crossplatform.html",
+    "title": "Avoiding 443 errors and RCurl woes with the REDCap API on Windows",
+    "section": "",
+    "text": "What to export\n\n\nLanguages include PHP, Perl, Python, R, Ruby, Java & UNIX’s curl, and output format options include json, csv and XML.\nFurther, when you request to export Records, it will nicely provide you with even more options that allow you to point and click to get the actual, real data you want, without needing to delve into the joys of XPATHs and XML.\n\n\n\nRecords export\n\n\nUnder the hood, this is a POST form, and REDCap will explicitly show you what data you’ve submitted in the “Raw request parameters” tab.\nIt will also provide you with the code you’d use to get the same data programmatically. There’s also a “Click the Execute Request button to execute a real API request, and it will display the API response in a text box below.” so you can preview what you’d get back as an object when loading this into your programming language of choice.\n\n\n\nPost form\n\n\nAs an example, when I try to retrieve the records from our feedback form (which I’ve called myformname in the images/code above), it suggests the following R code for me (this returns the records themselves in a csv, and the errors in json):\n#!/usr/bin/env Rscript\napisecret <- 'myapikey' # you get this when you enable REDCap API access for your project\nlibrary(RCurl)\nresult <- postForm(\n    uri='https://redcap.sydney.edu.au/api/',\n    token=apisecret,\n    content='record',\n    format='csv',\n    type='flat',\n    csvDelimiter='',\n    'forms[0]'='myformname',\n    rawOrLabel='raw',\n    rawOrLabelHeaders='raw',\n    exportCheckboxLabel='false',\n    exportSurveyFields='true',\n    exportDataAccessGroups='false',\n    returnFormat='json'\n)\nprint(result)\nAnd all is well and good … if you’re on a Mac! However, when I recently tried to run this (fully working!) code on a Windows machine (since this particular survey data goes into a PowerBI dashboard I’ve built) - I encountered a 443 error instead! Apparently, this is a known issue, but while it’s suggested to use the httr package instead (or one of the dedicated REDCap R packages), there was no template code available.\nAfter a bit of exploration, the below ended up working, and I’m sharing this template code in the hopes of saving others (at Sydney Uni and elsewhere) the hassle of having to figure this out:\n#!/usr/bin/env Rscript\napisecret <- 'myapikey' # you get this when you enable REDCap API access for your project\nlibrary(curl)\nh1 <- new_handle()\nhandle_setform(h1,\n               'token' = apisecret,\n               'content' = \"record\", \n               'format' = \"csv\",\n               'type' = 'flat',\n               'csvDelimiter'= ',',\n               'forms[0]'= 'myformname',\n               'rawOrLabel'= 'raw',\n               'rawOrLabelHeaders'= 'raw',\n               'exportCheckboxLabel'= 'false',\n               'exportSurveyFields'= 'true',\n               'exportDataAccessGroups'= 'false',\n               'returnFormat'= 'json')\n\nsurveyresults <- read.csv(text = rawToChar(\n  curl_fetch_memory(\"https://redcap.sydney.edu.au/api/\", handle = h1)$content),\n  na.strings = \"\"\n  )\nNow, the curl::handle_setform() command looks pretty similar to the RCurl::postForm() request, but it needs to be combined with the curl::curl_fetch_memory() command1, which has a few quirks:\n\nIt returns the actual data in the content attribute, and not the data frame directly - hence the need for the $content\nIt returns the data in raw format (and, no, setting the rawOrLabel to label does not solve this), so you need to pass it into base::rawToChar().\nread.csv’s defaults are to accept a filepath, so we use an arguement called text to specify that we’re straight feeding in the actual data in instead.\n\nThe other useful thing to “grab” when working with data tends to be the data dictionary, for which the code looks quite similar:\n#!/usr/bin/env Rscript\napisecret <- 'myapikey' # you get this when you enable REDCap API access for your project\nh2 <- new_handle()\nhandle_setform(h2,\n               'token' = apisecret,\n               'content' = \"metadata\", \n               'format' = \"csv\",\n               'forms[0]'= 'myformname',\n               'returnFormat'= 'csv')\n\n\ndatadict <- read.csv(text = rawToChar(\n  curl_fetch_memory(\"https://redcap.sydney.edu.au/api/\", handle = h2)$content)\n)\nI hope this is helpful for others who use REDCap on Windows, or who need to write code that works across all of the major operating system platforms!\n\n\n\n\nFootnotes\n\n\nYes, we could have used the curl::curl_fetch_disk() command to download the file to disk, which seems to work a lot better and actually save the file as a non-binary .csv file. However, for this particular project, I’m doing a lot of data cleaning before I write the output to disk, and I’d rather not store two copies of the same scrape.↩︎"
+  },
+  {
+    "objectID": "posts/2020-04-01-online4students.html",
+    "href": "posts/2020-04-01-online4students.html",
+    "title": "Having a great online learning experience: a guide for students",
+    "section": "",
+    "text": "airplane\n\n\n\n1. Follow your instructor’s instructions\n\nInstall all the things - and test them\nFirst and foremost, triple-check that you have installed everything your instructor has suggested, and tested - as much as you know how to - that it works. There are a plethora of online learning tools and platforms out there, and chances are that your instructor would have told you to install a whole bunch of stuff. For example, we use Zoom, Google Docs, and Microsoft Teams in addition to the “normal” R + packages/python + libraries in our classes! - that’s a lot of stuff to install and set up!\n\n\nVersions matter!\nMake sure you check which versions of particular tools or software packages your instructors need you to have. Note: it’s almost always prudent to update to the latest ones, since this is often what your instructors will test with (unless they have explicitly specified not to!).\n\n\nDon’t panic - let your instructor know ASAP\nIf you have an older machine, can’t update some packages OR are getting errors:\n\nDon’t panic!\nGoogle the error: solve it if you can, or copy the links to the top hits if the proposed solutions make no sense to you.\nLet your instructors/TAs know as soon as possible, for example via email. Attach a screenshot of the error, and a link to any Google stuff you found - this will help them solve the problem faster.\nIf you’re working on an older machine and can’t get the things you need working: if you email them your instructors will know in advance. This means they may be able to provide you with access to Google Colab or RStudio Cloud or another platform, where you are likely to be able to do most if not all of the things - but these require advanced setup, so it’s very helpful to give your instructor a heads up!\n\n\n\n\nsetup\n\n\n\n\n\n2. Setup your setup\n\nUse headphones with a mic (if you can)\nIf at all possible, try to use a pair of USB or Bluetooth headphones, ideally with a built-in mic (less essential), over trying to talk and especially listen over computer audio. Working from home for the past week, I’ve had countless occasions of chatty operators of deafening leaf blowers, friendly neighbours who speak to each other over three fences, and crying toddlers (my contribution to the fray) - all during important meetings where I needed to hear and occasionally speak. My in-ear Apple Airpods were a lifesaver - and my older wired headphones would have worked just as well! Wearing noise cancelling headphones OVER Airpods was my personal lifehack against that leaf-blower - although remember that this affects the mic if you need to speak!\n\n\nUse two screens (if you can)\nIn a workshop that involves live coding you’ll want to have you instructor’s video open as well as some place on your local machine that you’re following along and reproducing their code. In the case of R and python this can be especially challenging, as you’d normally want to use and IDE like RStudio or the Jupyter notebook or VSCode, all of which take a lot of screen real estate. Your instructor may also be using one of these IDEs for teaching, which means if you shrink their video too much you won’t be able to see what you’re typing! So if at all possible - use two screens: one for video, and one for coding.\nIf you don’t have a secondary monitor, there are a few things you can still do. First, you can use a tablet, such as an iPad, or even a mobile phone (if it has a big screen) to show your instructor’s video, as you code along on your primary machine. This will be especially helpful if you’ve got a small-screen laptop. Second, you can tweak some settings in your video conferencing tool of choice, outlined below, to help you make the most of the screen real estate you do have!\n\n\nTweak your Zoom\nNote: These instructions are for Zoom, but from what I’ve seen of Cisco Webex, Microsoft Teams and other tools, most of this applies too:\n\nDon’t enter full-screen by default when joining a meeting. You can configure this in the Zoom Settings tab. This will allow you to have your instructor’s video on 1/2 of your screen, and your own code on the other half.\n\n\n\n\nGeneral Zoom Settings\n\n\n\nMake sure you are always muted by default when you join a meeting, and can selectively unmute!\n\nThis prevents you from accidentally interrupting your instructor - or having your co-learners listen in on a personal conversation!\n\nUse a virtual background\n\nIf you’d like (and can - this feature requires some processing power), zoom can hide the room behind you with a virtual background. This can conceal partners, kids, pets and piles of laundry - although it’s not magic, so you will have to fold it eventually.\n\n\n\ntesting\n\n\n\n\n\n3. Test your setup!\n\nMost online meeting tools will allow you to have a meeting with yourself, or to join a test meeting. It’s great to try this the night before the workshop, at the latest, as you set up your workspace. Here is a link for how to do this in zoom.\nFor the programming tools, try opening them and seeing what start-up messages are printed. If there’s a warning or something doesn’t look right or hangs it might be helpful to reach out to your instructor.\n\n\n\n\nnotes\n\n\n\n\n4. Set up for notes\nThink about how you plan to take notes. In a face to face class, it’s usually easy to have a note-taking app open on your computer, but with the extra windows that you’ll have open with digital teaching, it might be a bit much to try to switch windows all the time. Consider whether you’d prefer to take paper notes, or use a tablet or other secondary device for note-taking instead.\n\n\n\nnorms\n\n\n\n\n5. Make sure to note the norms\nAt the beginning of class your instructor will most likely introduce the norms of behaviour:\n\nHow do you ask questions?\nRaise your hand to volunteer to answer?\nAsk for and get help?\nCommunicate with other learners?\n\nMake sure to pay attention to this bit, since - just like an airplane - different instructors will use the same tools differently sometimes, and you don’t want to use the “Hand up” feature for 2 hours waiting for someone to help you if you were supposed to paste into the chat instead.\n\nI hope the above check-list is helpful for you as you prepare to jump into learning online! Please leave a comment below if I’ve missed something or something is not clear."
+  },
+  {
+    "objectID": "projects/omia.html",
+    "href": "projects/omia.html",
+    "title": "OMIA/EVA integration",
+    "section": "",
+    "text": "Photo by Tobias Fischer on Unsplash"
+  },
+  {
+    "objectID": "projects/omia.html#clients",
+    "href": "projects/omia.html#clients",
+    "title": "OMIA/EVA integration",
+    "section": "Clients",
+    "text": "Clients\n\nProf Frank Nicholas, Faculty of Science, University of Sydney\nA/Prof Imke Tammen, Faculty of Science, University of Sydney"
+  },
+  {
+    "objectID": "projects/omia.html#purpose",
+    "href": "projects/omia.html#purpose",
+    "title": "OMIA/EVA integration",
+    "section": "Purpose",
+    "text": "Purpose\n\nTo integrate 30+ years of records from the manually curated OMIA database into the international European Variation Archive (EVA), including resolving issues resulting from manual data entry."
+  },
+  {
+    "objectID": "projects/omia.html#approach",
+    "href": "projects/omia.html#approach",
+    "title": "OMIA/EVA integration",
+    "section": "Approach",
+    "text": "Approach\n\nMy role was project management.\nI was the only person with both software and biology experience on the team, so I had to provide substantial communication “translation”.\nRegular check-ins via email and Zoom, with both local and international partners, facilitated the progress of this project."
+  },
+  {
+    "objectID": "projects/omia.html#outcome",
+    "href": "projects/omia.html#outcome",
+    "title": "OMIA/EVA integration",
+    "section": "Outcome",
+    "text": "Outcome\n\nRecords have been standardised (last bugfixes happening now) and will be part of the next EVA release."
+  },
+  {
+    "objectID": "projects/omia.html#links",
+    "href": "projects/omia.html#links",
+    "title": "OMIA/EVA integration",
+    "section": "Links",
+    "text": "Links\n\nOMIA\nEVA"
+  },
+  {
+    "objectID": "projects/omia.html#key-tools",
+    "href": "projects/omia.html#key-tools",
+    "title": "OMIA/EVA integration",
+    "section": "Key tools",
+    "text": "Key tools\n\ngit & GitHub; GitHub projects; Jira; Trello; email/Zoom.."
+  },
+  {
+    "objectID": "projects/gambling.html#clients",
+    "href": "projects/gambling.html#clients",
+    "title": "Use of consumer protection tools by Australian sports wagerers",
+    "section": "Clients",
+    "text": "Clients\n\nA/Prof Sally Gainsbury, Brain & Mind Centre, University of Sydney\nDr Robert Heirene, Brain & Mind Centre, University of Sydney"
+  },
+  {
+    "objectID": "projects/gambling.html#purpose",
+    "href": "projects/gambling.html#purpose",
+    "title": "Use of consumer protection tools by Australian sports wagerers",
+    "section": "Purpose",
+    "text": "Purpose\n\nThe clients have a partnership with Responsible Wagering Australia to provide experimental data for research.\nFor this project, the questions were:\n\nWhat proportion of online sports wagerers use consumer protection tools (deposit limits, timeouts & self-exclusions)?\nWhat are the differences between wagerers who use each of the tool types?"
+  },
+  {
+    "objectID": "projects/gambling.html#approach",
+    "href": "projects/gambling.html#approach",
+    "title": "Use of consumer protection tools by Australian sports wagerers",
+    "section": "Approach",
+    "text": "Approach\n\nIntegrated 12+ million online wagering transactions from 50 000 clients of 6 major online wagering operators. Engineered over 200 features for analysis.\nThis revealed that mandatory vs opt-in deposit limits are likely to reduce the risk of harms.\nCreated a visualisation for the tool use trajectory for ~3000 clients to enable data understanding and hypothesis generation, for the next work around understanding tool use patterns among users of multiple tools."
+  },
+  {
+    "objectID": "projects/gambling.html#outcome",
+    "href": "projects/gambling.html#outcome",
+    "title": "Use of consumer protection tools by Australian sports wagerers",
+    "section": "Outcome",
+    "text": "Outcome\n\nCo-authored the first academic publication regarding consumer protection tool use among sports wagerers in Australia.\nContributed to a report for Responsible Wagering Australia.\nStudy results were covered by multiple media outlets (see below links)."
+  },
+  {
+    "objectID": "projects/gambling.html#links",
+    "href": "projects/gambling.html#links",
+    "title": "Use of consumer protection tools by Australian sports wagerers",
+    "section": "Links",
+    "text": "Links\n\nAcademic manuscript: Heirene, R. M., Vanichkina, D. P., & Gainsbury, S. M. (2021). Patterns and correlates of consumer protection tool use by Australian online gambling customers. Psychology of Addictive Behaviors. Advance online publication. https://doi.org/10.1037/adb0000761\nFeature in Asia Gaming Brief\nFeature in GREO Evidence Centre (Canada)\nUniversity of Sydney Publicity brief\nCode repository/website with results (Sydney Uni access only) ## Key tools\nR: data.table, tidyverse, Rmarkdown, lubridate, gtsummary, tidyquant, lmertest, broom; Git + GitHub.\n\nNote: cover photo credit Mathew Schwartz on Unsplash"
+  },
+  {
+    "objectID": "projects/predictflu.html",
+    "href": "projects/predictflu.html",
+    "title": "Flu prediction",
+    "section": "",
+    "text": "Photo by Chris Liverani on Unsplash"
+  },
+  {
+    "objectID": "projects/predictflu.html#purpose",
+    "href": "projects/predictflu.html#purpose",
+    "title": "Flu prediction",
+    "section": "Purpose",
+    "text": "Purpose\n\nTo use genetic markers and demographics to predict the need for oxygen among flu patients."
+  },
+  {
+    "objectID": "projects/predictflu.html#approach",
+    "href": "projects/predictflu.html#approach",
+    "title": "Flu prediction",
+    "section": "Approach",
+    "text": "Approach\n\nMy role was project management.\nThe analyst used PCA & logistic regression + random forest models to explore the data and provide a prediction. ## Outcome\nGenetic markers & demographics could not predict the need for oxygen therapy among flu patients.\nMy role was to communicate and resolve this negative result with the client."
+  },
+  {
+    "objectID": "projects/predictflu.html#key-tools",
+    "href": "projects/predictflu.html#key-tools",
+    "title": "Flu prediction",
+    "section": "Key tools",
+    "text": "Key tools\n\ngit & GitHub; GitHub projects; Jira; Trello; Powerpoint."
+  },
+  {
+    "objectID": "projects/corpus.html",
+    "href": "projects/corpus.html",
+    "title": "Australian obesity corpus preparation, analysis and comparison with the UK",
+    "section": "",
+    "text": "Photo by Ugur Akdemir on Unsplash"
+  },
+  {
+    "objectID": "projects/corpus.html#client",
+    "href": "projects/corpus.html#client",
+    "title": "Australian obesity corpus preparation, analysis and comparison with the UK",
+    "section": "Client",
+    "text": "Client\n\nProf Monika Bednarek, Faculty of Arts & Social Sciences, University of Sydney"
+  },
+  {
+    "objectID": "projects/corpus.html#purpose",
+    "href": "projects/corpus.html#purpose",
+    "title": "Australian obesity corpus preparation, analysis and comparison with the UK",
+    "section": "Purpose",
+    "text": "Purpose\n\nThe client prepared a corpus of media articles that focused on obesity by manually downloading articles from LexisNexis on Windows.\nThe client then reached out to SIH, as multiple character encoding issues were encountered as a result of the manual download, so the first aim was to generate a “clean” corpus that could be used for data analysis.\nThe second aim was to compare usage of specific language features between Australian tabloids and broadsheets, and across publications, to see whether journalists were adhering to the Obesity Collective’s guidelines on reporting.\nThe final aim was to compare these features between Australian and UK publications. ## Approach\nResolved encoding issues in the 27 000+ articles from 12 Australian newspapers.\nImplemented near-duplicate detection, visualisation and removal using minhash and locality-sensitive hashing (“reimplemented Turnitin in Python”) to ensure subsequent statistical analyses were not invalid due to duplicates.\nUsed topic modelling to create sub-corpora for further analysis.\nTranslated analytics spreadsheets used by researchers to a standalone Python script, automating and scaling one-vs-all and one-vs-one sub-corpus analysis.\nProvided comprehensive client-interpretable documentation.\nGenerated parametric and non-parametric statistical analyses within the Australian corpus and between the Australian/UK corpora, including fixed and mixed effects linear modelling, in line with expectations for such analyses in statistical linguistics.\nCode from the above became part of a larger national project in computational linguistics."
+  },
+  {
+    "objectID": "projects/corpus.html#key-tools",
+    "href": "projects/corpus.html#key-tools",
+    "title": "Australian obesity corpus preparation, analysis and comparison with the UK",
+    "section": "Key tools",
+    "text": "Key tools\n\nCorpus cleaning/topic modelling: Python: pandas, chardet, spacy, seaborn, gensim, datasketch; Git + GitHub; Jira; fdupes.\nCorpus comparison and modelling: R: tidyverse, coin; Git + GitHub; Jira."
+  },
+  {
+    "objectID": "projects/corpus.html#outcomes",
+    "href": "projects/corpus.html#outcomes",
+    "title": "Australian obesity corpus preparation, analysis and comparison with the UK",
+    "section": "Outcomes",
+    "text": "Outcomes\n\nMultiple variants of the clean corpus were prepared for use by the client, who carried out their own investigation using a series of GUI tools.\nThe corpus manual has been published here.\nThe Australian corpus comparison has been submitted for publication code here.\nThe Australian vs UK corpus comparison has been submitted for publication as a book chapter code here.\nThe code for carrying out topic modelling, duplicate/near-duplicate detection, spreadsheet generalisation, parametric and non-parametric analyses has been generalised and incorporated into the Australian Text Analytics Platform (ATAP), a multi-centre, ARDC-funded initiative to provide linguists with GUI interfaces for carrying out common tasks."
+  },
+  {
+    "objectID": "projects/protehome.html",
+    "href": "projects/protehome.html",
+    "title": "Protehome software",
+    "section": "",
+    "text": "A large 50+ person laboratory from the University of Sydney’s Faculty of Medicine & Health."
+  },
+  {
+    "objectID": "projects/protehome.html#purpose",
+    "href": "projects/protehome.html#purpose",
+    "title": "Protehome software",
+    "section": "Purpose",
+    "text": "Purpose\n\nTo develop a software tool to store their mass spectrometry data."
+  },
+  {
+    "objectID": "projects/protehome.html#challenges",
+    "href": "projects/protehome.html#challenges",
+    "title": "Protehome software",
+    "section": "Challenges",
+    "text": "Challenges\n\nData exists in spreadsheets on users laptops, with columns organised in various ad-hoc, manual ways\nData can come from several distinct experiment types, with different “columns” being appropriate for each\nData has been processed with different versions of the same software, and this needs to be recorded/captured\nData has been processed to different versions of reference annotations, so old data needs to be automatically updated to reflect the changes that have happened in the annotation"
+  },
+  {
+    "objectID": "projects/protehome.html#approach",
+    "href": "projects/protehome.html#approach",
+    "title": "Protehome software",
+    "section": "Approach",
+    "text": "Approach\n\nMy role was project management & user requirements elucidation.\nThe tool ended up consisting of:\n\nAn interface to upload data and validate its integrity\nInternal functionality to update the database records when UniProt (a publically available annotation database) was updated\nA search interface"
+  },
+  {
+    "objectID": "projects/protehome.html#outcome",
+    "href": "projects/protehome.html#outcome",
+    "title": "Protehome software",
+    "section": "Outcome",
+    "text": "Outcome\n\nAs project manager, I ensured client needs were met within a reasonable time frame and the software was able to do what they wanted.\nAs domain matter expert, I served as a “translator” between the clients (biologists) and the two software engineers, as the ways/langauge of describing functionality and user needs was very different between the two. For example, a “UI” demonstration was confusing for the client, as much core functionality was still not operational, so it was unclear what they were being asked to provide feedback for."
+  },
+  {
+    "objectID": "projects/protehome.html#links",
+    "href": "projects/protehome.html#links",
+    "title": "Protehome software",
+    "section": "Links",
+    "text": "Links\n\nOnline Instance (Sydney Uni only)\nGitHub (Sydney Uni only)"
+  },
+  {
+    "objectID": "projects/protehome.html#key-tools",
+    "href": "projects/protehome.html#key-tools",
+    "title": "Protehome software",
+    "section": "Key tools",
+    "text": "Key tools\n\ngit & GitHub; GitHub projects; Jira; Trello."
+  },
+  {
+    "objectID": "projects/nowcasting.html#clients",
+    "href": "projects/nowcasting.html#clients",
+    "title": "Visualising 20 years of plant-available water in the Murray-Darling basin",
+    "section": "Clients",
+    "text": "Clients\n\nProf Thomas Bishop, Sydney Institute of Agriculture, University of Sydney"
+  },
+  {
+    "objectID": "projects/nowcasting.html#purpose",
+    "href": "projects/nowcasting.html#purpose",
+    "title": "Visualising 20 years of plant-available water in the Murray-Darling basin",
+    "section": "Purpose",
+    "text": "Purpose\n\nThe client had a hindcast of plant available water (PAW) for the top 1 m of soil for the Murray-Darling Basin at 500 m for the period 2000-2020.\nThe Grains Research and Development Corporation (GRDC) funded a project to visualise this modelling data for farmers and stakeholders."
+  },
+  {
+    "objectID": "projects/nowcasting.html#approach",
+    "href": "projects/nowcasting.html#approach",
+    "title": "Visualising 20 years of plant-available water in the Murray-Darling basin",
+    "section": "Approach",
+    "text": "Approach\n\nBuilt an R-Shiny dashboard to present this geospatial data, including creating custom scaling functionality that supports increasing image resolution as a user zooms in to an area of interest.\nData is hosted on AWS Cloud infrastrucure (S3) - so optimised data structure to support rapid serving of results.\nApp is deployed to shinyapps.io."
+  },
+  {
+    "objectID": "projects/nowcasting.html#outcome",
+    "href": "projects/nowcasting.html#outcome",
+    "title": "Visualising 20 years of plant-available water in the Murray-Darling basin",
+    "section": "Outcome",
+    "text": "Outcome\n\nProject was funded by GRDC, bring in $35000 to SIH.\nSuccess of project resulted in acquiring competitive funding for an additional 18 month position at SIH, to create real-time modelling infrastructure and deployment of the results to cloud infrastructure. Value of this additional funding is over $250 000."
+  },
+  {
+    "objectID": "projects/nowcasting.html#links",
+    "href": "projects/nowcasting.html#links",
+    "title": "Visualising 20 years of plant-available water in the Murray-Darling basin",
+    "section": "Links",
+    "text": "Links\n\nShiny Dashboard"
+  },
+  {
+    "objectID": "projects/nowcasting.html#key-tools",
+    "href": "projects/nowcasting.html#key-tools",
+    "title": "Visualising 20 years of plant-available water in the Murray-Darling basin",
+    "section": "Key tools",
+    "text": "Key tools\n\nR: R-Shiny terra, sf, ncdf4, stars, raster, leaflet, leafem, tidyverse, rgdal; Git + GitHub."
+  },
+  {
+    "objectID": "projects/testanalysis.html",
+    "href": "projects/testanalysis.html",
+    "title": "Test comparisons",
+    "section": "",
+    "text": "Photo by Chris Liverani on Unsplash"
+  },
+  {
+    "objectID": "projects/testanalysis.html#purpose",
+    "href": "projects/testanalysis.html#purpose",
+    "title": "Test comparisons",
+    "section": "Purpose",
+    "text": "Purpose\nComparing two tests of proficiency to identify whether they are interchangeable."
+  },
+  {
+    "objectID": "projects/testanalysis.html#approach",
+    "href": "projects/testanalysis.html#approach",
+    "title": "Test comparisons",
+    "section": "Approach",
+    "text": "Approach\nI used a range of methods from quantitative educational metrics analysis to identify whether the outcomes on two measures of English proficiency could be mapped to each other to obtain a concordance.\nThey key outcome was a report, profiling whether the tests appeared to be:\n\nMeasuring the same construct\nAble to conform to the principle of equity, i.e. once two test forms were equated, it should not matter to the test-taker which form of the test is administered.\nSymmetrical, i.e. equating of X to Y must be the inverse of equating Y to X.\nInvariant by subpopulation, i.e. there would be no differences when equating by subpopulations of takers\nProviding the same inferences, i.e. designed for use to reach the same kinds of conclusions\nApplied to the same target population"
+  },
+  {
+    "objectID": "projects/testanalysis.html#outcome",
+    "href": "projects/testanalysis.html#outcome",
+    "title": "Test comparisons",
+    "section": "Outcome",
+    "text": "Outcome\n\nI provided advice to the client as to why “traditional” statistical tests, as suggested in a previous consultation by someone else, were not appropriate for this task, and practical actionable steps forward based on the analysis."
+  },
+  {
+    "objectID": "projects/testanalysis.html#key-tools",
+    "href": "projects/testanalysis.html#key-tools",
+    "title": "Test comparisons",
+    "section": "Key tools",
+    "text": "Key tools\n\nR: Rmarkdown, tidyverse; Git + GitHub."
+  },
+  {
+    "objectID": "projects/socialnetworks.html",
+    "href": "projects/socialnetworks.html",
+    "title": "Social network analysis",
+    "section": "",
+    "text": "Photo by JJ Ying on Unsplash"
+  },
+  {
+    "objectID": "projects/socialnetworks.html#clients",
+    "href": "projects/socialnetworks.html#clients",
+    "title": "Social network analysis",
+    "section": "Clients",
+    "text": "Clients\n\nA team of ~8 university researchers (University of Sydney and others). ## Purpose\nTo understand the relationship between student belonging and academic performance."
+  },
+  {
+    "objectID": "projects/socialnetworks.html#approach",
+    "href": "projects/socialnetworks.html#approach",
+    "title": "Social network analysis",
+    "section": "Approach",
+    "text": "Approach\n\nMy role was project management.\nChallenges included liaising with multiple data owners, clients & defining the scope/outcomes of the project, as well as data size & techinical problems."
+  },
+  {
+    "objectID": "projects/socialnetworks.html#outcome",
+    "href": "projects/socialnetworks.html#outcome",
+    "title": "Social network analysis",
+    "section": "Outcome",
+    "text": "Outcome\n\nPilot results showed we could use the data to query the questions of interest."
+  },
+  {
+    "objectID": "projects/socialnetworks.html#key-tools",
+    "href": "projects/socialnetworks.html#key-tools",
+    "title": "Social network analysis",
+    "section": "Key tools",
+    "text": "Key tools\n\ngit & GitHub; GitHub projects; Jira; Trello; email/Zoom; Google Docs."
+  },
+  {
+    "objectID": "projects/trainingdashboard.html",
+    "href": "projects/trainingdashboard.html",
+    "title": "Training dashboard",
+    "section": "",
+    "text": "Photo by Jason Goodman on Unsplash"
+  },
+  {
+    "objectID": "projects/trainingdashboard.html#clients",
+    "href": "projects/trainingdashboard.html#clients",
+    "title": "Training dashboard",
+    "section": "Clients",
+    "text": "Clients\n\nUniversity of Sydney/Sydney Informatics Hub management\nOther Sydney Informatics Hub trainers\nSydney Informatics Hub Team Leads"
+  },
+  {
+    "objectID": "projects/trainingdashboard.html#purpose",
+    "href": "projects/trainingdashboard.html#purpose",
+    "title": "Training dashboard",
+    "section": "Purpose",
+    "text": "Purpose\n\nTo showcase Sydney Informatics Hub training numbers & highlight the team’s achievements.\nTo allow trainers to conveniently access & reflect on learner feedback."
+  },
+  {
+    "objectID": "projects/trainingdashboard.html#approach",
+    "href": "projects/trainingdashboard.html#approach",
+    "title": "Training dashboard",
+    "section": "Approach",
+    "text": "Approach\n\nDeveloped a PowerBI dashboard.\nRaw data was scraped from Eventbrite and REDCap, extensively cleaned and validated prior to being ingested into PowerBI.\nTraining partners were supplied with validation scripts so they could test their data on their end and ensure its consitency."
+  },
+  {
+    "objectID": "projects/trainingdashboard.html#outcome",
+    "href": "projects/trainingdashboard.html#outcome",
+    "title": "Training dashboard",
+    "section": "Outcome",
+    "text": "Outcome\n\nDashboard is used to make key training decisions.\nDashboard is used by management when engaging with specific faculties to show level of SIH services provided."
+  },
+  {
+    "objectID": "projects/trainingdashboard.html#key-tools",
+    "href": "projects/trainingdashboard.html#key-tools",
+    "title": "Training dashboard",
+    "section": "Key tools",
+    "text": "Key tools\n\nR: tidyverse, lubridate; REDCap, Eventbrite; PowerBI; git & GitHub"
+  },
+  {
+    "objectID": "projects/railways.html#clients",
+    "href": "projects/railways.html#clients",
+    "title": "Does the rail corridor provide an important ecological niche for wildlife in the Greater Sydney region?",
+    "section": "Clients",
+    "text": "Clients\n\nProfessor Dieter Hochuli, Sydney Environment Institute, University of Sydney\nAssociate Professor Kurt Iveson, Sydney Environment Institute & Sydney Southeast Asia Centre, University of Sydney"
+  },
+  {
+    "objectID": "projects/railways.html#purpose",
+    "href": "projects/railways.html#purpose",
+    "title": "Does the rail corridor provide an important ecological niche for wildlife in the Greater Sydney region?",
+    "section": "Purpose",
+    "text": "Purpose\n\nClients had observed that in some parts of Sydney the rail corridor provides pockets of valuable habitat for native wildlife.\nThey were interested in finding out whether we could quantify the overall proportion of such possible habitats in the rail corridor in the Sydney Basin."
+  },
+  {
+    "objectID": "projects/railways.html#approach",
+    "href": "projects/railways.html#approach",
+    "title": "Does the rail corridor provide an important ecological niche for wildlife in the Greater Sydney region?",
+    "section": "Approach",
+    "text": "Approach\n\nIdentified and retrieved optimal geospatial datasets for carrying out this analysis, including government and open street map railway annotations and two models of land cover.\nOverlapped railways with lot annotations, and carried out substantial data cleaning to remove artifacts such as tunnels, bridges, model railways etc.\nReplicated ArcGIS approach to polygon overlaps in R (a surprisingly non-trivial task).\nBuilt a dynamic website so clients could browse and share results with stakeholders, as well as view what had been filtered."
+  },
+  {
+    "objectID": "projects/railways.html#outcome",
+    "href": "projects/railways.html#outcome",
+    "title": "Does the rail corridor provide an important ecological niche for wildlife in the Greater Sydney region?",
+    "section": "Outcome",
+    "text": "Outcome\n\nProject was funded by clients.\nOther results still under embargo."
+  },
+  {
+    "objectID": "projects/railways.html#links",
+    "href": "projects/railways.html#links",
+    "title": "Does the rail corridor provide an important ecological niche for wildlife in the Greater Sydney region?",
+    "section": "Links",
+    "text": "Links\n\nStill under embargo."
+  },
+  {
+    "objectID": "projects/railways.html#key-tools",
+    "href": "projects/railways.html#key-tools",
+    "title": "Does the rail corridor provide an important ecological niche for wildlife in the Greater Sydney region?",
+    "section": "Key tools",
+    "text": "Key tools\n\nR: terra, sf, exactextractr, rgdal, leaflet, tidyverse, janitor, skimr, htmlwidgets, plotly; Git + GitHub."
+  },
+  {
+    "objectID": "projects/vegmachine.html#client",
+    "href": "projects/vegmachine.html#client",
+    "title": "Vegmachine API",
+    "section": "Client",
+    "text": "Client\n\nEcology researcher at the University of Sydney"
+  },
+  {
+    "objectID": "projects/vegmachine.html#purpose",
+    "href": "projects/vegmachine.html#purpose",
+    "title": "Vegmachine API",
+    "section": "Purpose",
+    "text": "Purpose\n\nTo provide researcher with 30+ years worth of clean data for modeling."
+  },
+  {
+    "objectID": "projects/vegmachine.html#approach",
+    "href": "projects/vegmachine.html#approach",
+    "title": "Vegmachine API",
+    "section": "Approach",
+    "text": "Approach\n\nScraped 30 years of vegetation data , comparing discrepancies between scrapes & identifying correct data by overlapping with BOM records.\nUsed a high-performance computing cluster to download, crop and process 30 years worth of satellite imagery as input for machine learning.\nProvided client with documentation, instructions for rerunning the scrapes if needed & data. ## Outcome\nClient has subsequently engaged SIH for a comissioned project."
+  },
+  {
+    "objectID": "projects/vegmachine.html#key-tools",
+    "href": "projects/vegmachine.html#key-tools",
+    "title": "Vegmachine API",
+    "section": "Key tools",
+    "text": "Key tools\n\nR: Rmarkdown, tidyverse, sf, raster, tmap, jsonlite, data.table; Git + GitHub"
+  },
+  {
+    "objectID": "projects.html",
+    "href": "projects.html",
+    "title": "Darya Vanichkina",
+    "section": "",
+    "text": "No matching items"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Darya Vanichkina",
+    "section": "",
+    "text": "Data Scientist & Professional Educator"
+  },
+  {
+    "objectID": "Readme.html",
+    "href": "Readme.html",
+    "title": "Darya Vanichkina",
+    "section": "",
+    "text": "This is the landing page for my Quatro-created website at daryavanichkina.com"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About me",
+    "section": "",
+    "text": "I’m passionate about using data to understand the world, and love solving real problems using data science, machine learning, statistics and high-performance/cloud computing. I’ve had a lot of amazing opportunities in my life, and my way of giving back to the universe for them is to train and teach.\nI’m proud to be a Carpentries Instructor and Trainer and have been a maintainer and mentor in the past. I’m also an RStudio certified trainer; reach out to me here if you’re interested in custom corporate training.\nI spent over a decade as a biomedical scientist before joining the “dark side”. I hold a PhD in Genomics and Bioinformatics from the University of Queensland, where I investigated novel ncRNA transcription in human and mouse stem cell and nervous system development. I’ve also done a PostDoc at the Centenary Institute, investigating alternative splicing dynamics and regulation. You can have a look at my papers here."
+  },
+  {
+    "objectID": "training.html",
+    "href": "training.html",
+    "title": "Training",
+    "section": "",
+    "text": "I am a Senior Fellow of the UK Higher Education Academy (SFHEA) & a Carpentries Instructor trainer."
+  },
+  {
+    "objectID": "training.html#rstudio-certified-training",
+    "href": "training.html#rstudio-certified-training",
+    "title": "Training",
+    "section": "RStudio Certified training",
+    "text": "RStudio Certified training\nI am an RStudio Certified Instructor with 6+ experience in developing and delivering training commercially and at Go8 Universities in Australia. If you are interested in commercial data science training using R or Python, please reach out via email at d.vanichkina at gmail dot com. My ABN is 14 264 195 525."
+  },
+  {
+    "objectID": "training.html#professional-experience",
+    "href": "training.html#professional-experience",
+    "title": "Training",
+    "section": "Professional experience",
+    "text": "Professional experience\nI have developed and delivered a wide range of training:\n\n\n\n\n\n\n\n\nDate\nOrganisation\nDetails\n\n\n\n\n2021\nPetroleum Exploration Society of Australia\nPython for Geosciences (online, attendees from Santos, BHP, Origin, Beach Energy etc)\n\n\n2021\neHealth@Sydney\nPython for analysing disease spread & electronic health records (online)\n\n\n2020\nSydney Informatics Hub\nMachine learning in R (online and in-person); Machine learning in python (online); Publication-quality tables in R (online); Profiling R code (online); Teaching at the Informatics Hub\n\n\n2020\nUniversity of Sydney Business School\nBusiness School Data Science Summer School\n\n\n2020\nCarpentries\nCarpentries Instructor Training (online)\n\n\n2019\nMonash University\nCarpentries Instructor Training\n\n\n2019\nUniversity of Sydney Business School\nBusiness School Data Science Summer School\n\n\n2019\nSydney Informatics Hub\nMachine learning in R (in-person x 4); Machine learning in python (in-person x 4)\n\n\n2019\nUNSW\nGeospatial data analysis\n\n\n2019\nSIH\nRNA-seq data analysis course using R + HPC\n\n\n2018\nWomen Who Code Sydney\nR for Data Analysis (https://github.com/dvanic/wwc2018)\n\n\n2018\nUniversity of Sydney Brain and Mind Centre\nR for Biomedical Researchers\n\n\n2018\nSydney Informatics Hub\nGeospatial data analysis\n\n\n2018\nCSIRO\nIntroduction to SQL for the CSIRO Data School\n\n\n2018\nMacquarie University\nIntroduction to R for reproducible scientific analysis\n\n\n2017\nUniversity of Technology, Sydney\nIntroduction to R, Unix and version control\n\n\n2016\nUniversity of Sydney\nIntroduction to python, Unix and version control\n\n\n2016\npyconAU\nIntroduction to data management, python for data analysis and version control\n\n\n2015\nUniversity of Queensland\nLead tutor for courses in microbiology, cell biology and bioinformatics\n\n\n2014\nUniversity of Queensland\nAwarded competitive grant to develop flipped learning materials for bioinformatics course. Subsequent feedback indicated that “these materials were a lifesaver for the course when the COVID pandemic and associated pivot to online learning occurred”.\n\n\n2014\nUniversity of Queensland\nLead tutor for courses in bioinformatics and cell biology\n\n\n2013\nUniversity of Queensland\nLead tutor for courses in bioinformatics, cell biology and microbiology\n\n\n2012\nUniversity of Queensland\nTutor/lead tutor for courses in microbiology and cell biology\n\n\n2011\nUniversity of Queensland\nTutor/lead tutor for courses in microbiology and genetics"
+  },
+  {
+    "objectID": "posts.html",
+    "href": "posts.html",
+    "title": "Darya Vanichkina",
+    "section": "",
+    "text": "Date\n\n\nTitle\n\n\n\n\n\n\n\n\n\nOct 31, 2021\n\n\nPrinting 4 iPhone photos on 4x6 photo paper\n\n\n\n\n\n\n\nJul 28, 2021\n\n\nInstalling packages on a PBS-Pro HPC cluster using renv\n\n\n\n\n\n\n\nApr 12, 2021\n\n\nggplot batch variable visualisation in Rmd without for loops\n\n\n\n\n\n\n\nApr 9, 2021\n\n\nAvoiding 443 errors and RCurl woes with the REDCap API on Windows\n\n\n\n\n\n\n\nMay 1, 2020\n\n\nLiving dangerously: a newbie guide to running multiple version of R on a Mac\n\n\n\n\n\n \n\n\n\nApr 7, 2020\n\n\nJumping into digital: Lessons learned while moving live-coding workshops online\n\n\n\n\n\n\n\nApr 3, 2020\n\n\nMapping a live coding workshop for digital delivery (part 2)\n\n\n\n\n\n\n\nApr 2, 2020\n\n\nMapping a live coding workshop for digital delivery\n\n\n\n\n\n\n\nApr 1, 2020\n\n\nHaving a great online learning experience: a guide for students\n\n\n\n\n\n\n\nDec 4, 2019\n\n\nR for Data Science Day 1\n\n\n\n\n\n \n\n\n\nMar 29, 2019\n\n\nMoving to Hugo\n\n\n\n\n\n \n\n\n\nFeb 20, 2018\n\n\nTraining the trainer presentation\n\n\n\n\n\n \n\n\n\nNov 1, 2016\n\n\nAmazon AWS workshop at the University of Sydney\n\n\n\n\n\n \n\n\n\nAug 12, 2016\n\n\n2016-PyConAU 2016 Presentation\n\n\n\n\n\n \n\n\n\nMar 24, 2014\n\n\nLorne Genome 2012 poster\n\n\n\n\n\n \n\n\n\nJul 13, 2013\n\n\nHello World!\n\n\n\n\n\n \n\n\n\nJul 13, 2013\n\n\n2013 ciRNA papers\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "cv.html",
+    "href": "cv.html",
+    "title": "Curriculum vitae",
+    "section": "",
+    "text": "Please find a 2-page version of my CV here, or a much longer academic-style multipager here."
+  },
+  {
+    "objectID": "talks.html",
+    "href": "talks.html",
+    "title": "Talks & presentations",
+    "section": "",
+    "text": "2020 - Carpentries Conference (online): Lesson co-development using reverse design: a worked example (slides, repo)\n2020 - ARDC Skills online seminar: Jumping into digital: Lessons learned while moving live-coding workshops online (slides/notes/links)\n\n\n\n\n2018 - ANDS-NECTAR-RDS Workshop: Training the trainer: Software Carpentry Instructor Training: Powering up your data skills training (slides)\n2016 - PyConAu: Big Data Biology for Pythonistas: Getting in on the Genomics Revolution"
+  },
+  {
+    "objectID": "talks.html#bioinformatics",
+    "href": "talks.html#bioinformatics",
+    "title": "Talks & presentations",
+    "section": "Bioinformatics",
+    "text": "Bioinformatics\n\n2016 - Sydney Bioinformatics Research Symposium: Temporal and developmental dynamics of the oligodendrocyte precursor transcriptome\n2016 - 37th Lorne Genome Conference: Temporal and developmental dynamics of the oligodendrocyte precursor transcriptome\n2014 - 35th Lorne Genome Conference: Ataxia-telangiectasia iPS-derived neuronal transcriptome (poster prize winner)\n2012 - 33rd Lorne Genome Conference: Activity-dependent transcriptional dynamics in mouse cortical and human iPS - derived neurons"
+  },
+  {
+    "objectID": "talks.html#molecular-biology",
+    "href": "talks.html#molecular-biology",
+    "title": "Talks & presentations",
+    "section": "Molecular Biology",
+    "text": "Molecular Biology\n\n2010 - 14th International Pushchino School-Conference for Young Scientists: A Novel Non-coding Human Transcript from Locus ATP4A-HAUS5 (Chr19)\n2010 - XVII “Lomonosov” conference: A Novel Non-coding Human Transcript from Locus ATP4A-HAUS5 (Chr19)\n2010 - XXII Winter School for Young Scientists “Promising Areas of Physico-chemical Biology and Biotechnology”: Characterization of a Novel Transcript from Human Locus ATP4A-KIAA0841 (Chr19)"
+  }
+]

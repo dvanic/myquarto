@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.251">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Darya Vanichkina">
+<meta name="dcterms.date" content="2019-12-04">
+<meta name="description" content="Working through the R for Data Science Exercises">
+
+<title>Darya Vanichkina - R for Data Science Day 1</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<script type="text/javascript">
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-54373354-1', 'auto');
+
+ga('send', {
+  hitType: 'pageview',
+  'anonymizeIp': true,
+});
+</script>
+
+
+<meta property="og:title" content="Darya Vanichkina - R for Data Science Day 1">
+<meta property="og:description" content="Working through the R for Data Science Exercises">
+<meta property="og:site-name" content="Darya Vanichkina">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Darya Vanichkina</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">About</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../projects.html">Projects</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../training.html">Training</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../talks.html">Talks</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cv.html">CV</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../contact.html">Contact</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../posts.html">Blog</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../posts.xml"><i class="bi bi-rss" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/dvanic"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">R for Data Science Day 1</h1>
+                  <div>
+        <div class="description">
+          Working through the R for Data Science Exercises
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">tidyverse</div>
+                <div class="quarto-category">R</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Darya Vanichkina </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">December 4, 2019</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>I am incredibly excited that RStudio has begun an <a href="https://education.rstudio.com/trainers/">instructor certification program</a> based on the Carpentries, so of course I signed up as soon as my overcommited nature allowed! This also provides me with the excuse and motivation to finally formally work my way through <a href="https://r4ds.had.co.nz/">R for Data Science</a>, a book I have read while waiting for GTT tests during my pregnancy and google-landed upon an umpteen number of times while debugging code, but never taken the time to sit down and do the exercises for - and of course the pedagogue in me knows quite well that THAT is how you actually learn and internalise the principles and concepts in any material, especially if it deals with programming and analysis. So over the next few weeks I plan to work my way through R4DS, and this post is the first in which I dive into the exercises.</p>
+<hr>
+<section id="personal-highly-non-exhaustive-notes-on-section-i-explore" class="level2">
+<h2 class="anchored" data-anchor-id="personal-highly-non-exhaustive-notes-on-section-i-explore">Personal, highly non-exhaustive notes on section I: Explore</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_minimal</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="steps-of-the-data-pipeline" class="level3">
+<h3 class="anchored" data-anchor-id="steps-of-the-data-pipeline">Steps of the data pipeline:</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<figure class="figure">
+<img src="https://d33wubrfki0l68.cloudfront.net/795c039ba2520455d833b4034befc8cf360a70ba/558a5/diagrams/data-science-explore.png" title="Tidy Data Pipeline" class="img-fluid figure-img">
+</figure>
+<p></p><figcaption class="figure-caption">https://r4ds.had.co.nz/explore-intro.html</figcaption><p></p>
+</figure>
+</div>
+<ul>
+<li><strong>Import</strong>: take data stored in a file, database, or web API, and load it into a data frame in R.</li>
+</ul>
+</section>
+<section id="wrangling" class="level3">
+<h3 class="anchored" data-anchor-id="wrangling">Wrangling:</h3>
+<ul>
+<li><p><strong>Tidying</strong> - storing data in a consistent form that matches the semantics of the dataset with the way it is stored. In brief, when your data is tidy, each column is a variable, and each row is an observation.</p></li>
+<li><p><strong>Transformation</strong></p>
+<ul>
+<li>narrowing in on observations of interest (like all people in one city, or all data from the last year),</li>
+<li>creating new variables that are functions of existing variables (like computing speed from distance and time),</li>
+<li>calculating a set of summary statistics (like counts or means). Together, tidying and transforming are called wrangling</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="small-data-vs-big-data" class="level2">
+<h2 class="anchored" data-anchor-id="small-data-vs-big-data">Small data vs big data</h2>
+<ul>
+<li>Small/medium data: hundreds of megabytes of data, and with a little care up to 1-2 Gb of data.</li>
+<li>If you’re routinely working with larger data (10-100 Gb, say), you should learn more about data.table.</li>
+</ul>
+</section>
+<section id="is-big-data-really-big-two-ways-of-thinking-small-about-big-data" class="level2">
+<h2 class="anchored" data-anchor-id="is-big-data-really-big-two-ways-of-thinking-small-about-big-data">Is big data really big? Two ways of thinking small about big data</h2>
+<section id="sampling" class="level3">
+<h3 class="anchored" data-anchor-id="sampling">Sampling</h3>
+<p>Sampling may be enough to answer the question.</p>
+</section>
+<section id="your-big-data-problem-is-actually-a-large-number-of-small-data-problems" class="level3">
+<h3 class="anchored" data-anchor-id="your-big-data-problem-is-actually-a-large-number-of-small-data-problems">Your big data problem is actually a large number of small data problems</h3>
+<ul>
+<li>Each individual problem might fit in memory, but you have millions of them. For example, you might want to fit a model to each person in your dataset. That would be trivial if you had just 10 or 100 people, but instead you have a million.</li>
+<li>So you need a system (like Hadoop or Spark) that allows you to send different datasets to different computers for processing.</li>
+<li>Once you’ve figured out how to answer the question for a single subset using the tools described in this book, you can use tools like sparklyr, rhipe, and ddr to solve it for the full dataset.</li>
+</ul>
+</section>
+</section>
+<section id="key-definitions-for-tidy-data-reference" class="level2">
+<h2 class="anchored" data-anchor-id="key-definitions-for-tidy-data-reference">Key definitions for tidy data (reference)</h2>
+<ul>
+<li>A <strong>variable</strong> is a quantity, quality, or property that you can measure.</li>
+<li>A <strong>value</strong> is the state of a variable when you measure it. The value of a variable may change from measurement to measurement.</li>
+<li>An <strong>observation</strong> is a set of measurements made under similar conditions (you usually make all of the measurements in an observation at the same time and on the same object). An observation will contain several values, each associated with a different variable. I’ll sometimes refer to an observation as a data point.</li>
+<li><strong>Tabular data</strong> is a set of values, each associated with a variable and an observation. Tabular data is tidy if each value is placed in its own “cell”, each variable in its own column, and each observation in its own row.</li>
+</ul>
+</section>
+<section id="variable-types" class="level2">
+<h2 class="anchored" data-anchor-id="variable-types">Variable types</h2>
+<ul>
+<li>A variable is continuous if it can take any of an infinite set of ordered values.</li>
+<li>A variable is categorical if it can only take one of a small set of values. In R, categorical variables are usually saved as factors or character vectors.</li>
+</ul>
+</section>
+<section id="eda-key-definitions" class="level2">
+<h2 class="anchored" data-anchor-id="eda-key-definitions">EDA key definitions</h2>
+<ul>
+<li><strong>Variation</strong> is the tendency of the values of a variable to change from measurement to measurement.</li>
+<li>Covariation is the tendency for the values of two or more variables to vary together in a related way. T</li>
+<li>he residuals give us a view of the price of the diamond, once the effect of carat has been removed.</li>
+</ul>
+<section id="new-to-me-ggplot-aesthetics" class="level3">
+<h3 class="anchored" data-anchor-id="new-to-me-ggplot-aesthetics">New (to me) <code>ggplot()</code> aesthetics</h3>
+<ul>
+<li><p><code>stroke</code> - is either the size of the point (for a default <code>geom_point()</code>) OR, if used with shape 21-25, which have both a colour and a fill, is the thickness of the stroke around the plotted shape.</p></li>
+<li><p>You can generally use geoms and stats interchangeably! For example, you can use stat_count() instead of geom_bar() to make the same plot!</p></li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds) <span class="sc">+</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> ..count.. <span class="sc">/</span> <span class="fu">sum</span>(..count..), <span class="at">fill =</span> color))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../images/1912_ggplotproportion.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Ggplot proportion chart</figcaption><p></p>
+</figure>
+</div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># not really new, but I'm sure I'll forget position = "fill"</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds) <span class="sc">+</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">fill =</span> clarity), <span class="at">position =</span> <span class="st">"fill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../images/1912_proportionchart.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">proportion</figcaption><p></p>
+</figure>
+</div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pie chart from bar</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds) <span class="sc">+</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span>, <span class="at">fill =</span> clarity)) <span class="sc">+</span> <span class="fu">coord_polar</span>(<span class="at">theta =</span> <span class="st">"y"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../images/1912_piechart.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">pie chart</figcaption><p></p>
+</figure>
+</div>
+<ul>
+<li><p><code>+ coord_cartesian(xlim = c(1,2), ylim)</code> - retain outlier</p></li>
+<li><p><code>+ xlim()</code> - remove outlier</p></li>
+<li><p>On average, humans are best able to perceive differences in angles relative to 45 degrees. The function ggthemes::bank_slopes() will calculate the optimal aspect ratio to bank slopes to 45-degrees.</p></li>
+<li><p>Use the <code>near()</code> function to test for equality of numbers (as it’s better able to handle those pesky computer math issues)</p></li>
+<li><p>You can use <code>matches("(.)\\1")</code> with <code>select()</code> to pick variables based on arbitrary regex. <code>num_range("x", 1:3)</code>: matches x1, x2 and x3.</p></li>
+<li><p>Use <code>select()</code> in conjunction with the <code>everything()</code> helper, when you want to , for example, move a handful of variables to the start of the data frame.</p></li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(flights, time_hour, air_time, <span class="fu">everything</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code># A tibble: 336,776 x 19
+   time_hour           air_time  year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time arr_delay carrier
+   &lt;dttm&gt;                 &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt; &lt;chr&gt;  
+ 1 2013-01-01 05:00:00      227  2013     1     1      517            515         2      830            819        11 UA     
+ 2 2013-01-01 05:00:00      227  2013     1     1      533            529         4      850            830        20 UA     
+ 3 2013-01-01 05:00:00      160  2013     1     1      542            540         2      923            850        33 AA     
+ 4 2013-01-01 05:00:00      183  2013     1     1      544            545        -1     1004           1022       -18 B6     
+ 5 2013-01-01 06:00:00      116  2013     1     1      554            600        -6      812            837       -25 DL     
+ 6 2013-01-01 05:00:00      150  2013     1     1      554            558        -4      740            728        12 UA     
+ 7 2013-01-01 06:00:00      158  2013     1     1      555            600        -5      913            854        19 B6     
+ 8 2013-01-01 06:00:00       53  2013     1     1      557            600        -3      709            723       -14 EV     
+ 9 2013-01-01 06:00:00      140  2013     1     1      557            600        -3      838            846        -8 B6     
+10 2013-01-01 06:00:00      138  2013     1     1      558            600        -2      753            745         8 AA     
+# … with 336,766 more rows, and 7 more variables: flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, distance &lt;dbl&gt;,
+#   hour &lt;dbl&gt;, minute &lt;dbl&gt;</code></pre>
+<ul>
+<li><p>To generate rolling aggregates of data: R provides functions for running sums, products, mins and maxes: <code>cumsum()</code>, <code>cumprod()</code>, <code>cummin()</code>, <code>cummax()</code>; and dplyr provides <code>cummean()</code> for cumulative means. If you need rolling aggregates (i.e.&nbsp;a sum computed over a rolling window), try the RcppRoll package.</p></li>
+<li><p>Ranking functions: <code>min_rank(x)</code> (default gives smallest values the small ranks; use <code>desc(x)</code> to give the largest values the smallest ranks). Otherwise: <code>row_number()</code>, <code>dense_rank()</code>, <code>percent_rank()</code>, <code>cume_dist()</code>, <code>ntile()</code>.</p></li>
+<li><p>Use <code>%/%</code> and <code>%%</code> for modular division and remainders.</p></li>
+</ul>
+</section>
+<section id="very-clear-table-of-ggplot-mappings-from-here" class="level3">
+<h3 class="anchored" data-anchor-id="very-clear-table-of-ggplot-mappings-from-here">Very clear table of ggplot mappings (from <a href="https://jrnold.github.io/r4ds-exercise-solutions/data-visualisation.html">here</a>)</h3>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">geom</th>
+<th style="text-align: left;">default stat</th>
+<th style="text-align: left;">shared docs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">geom_abline()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_hline()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geom_vline()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_bar()</td>
+<td style="text-align: left;">stat_count()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geom_col()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_bin2d()</td>
+<td style="text-align: left;">stat_bin_2d()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geom_blank()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_boxplot()</td>
+<td style="text-align: left;">stat_boxplot()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geom_countour()</td>
+<td style="text-align: left;">stat_countour()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_count()</td>
+<td style="text-align: left;">stat_sum()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geom_density()</td>
+<td style="text-align: left;">stat_density()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_density_2d()</td>
+<td style="text-align: left;">stat_density_2d()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geom_dotplot()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_errorbarh()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geom_hex()</td>
+<td style="text-align: left;">stat_hex()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_freqpoly()</td>
+<td style="text-align: left;">stat_bin()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geom_histogram()</td>
+<td style="text-align: left;">stat_bin()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_crossbar()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geom_errorbar()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_linerange()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geom_pointrange()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_map()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geom_point()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_map()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geom_path()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_line()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geom_step()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_point()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geom_polygon()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_qq_line()</td>
+<td style="text-align: left;">stat_qq_line()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geom_qq()</td>
+<td style="text-align: left;">stat_qq()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_quantile()</td>
+<td style="text-align: left;">stat_quantile()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geom_ribbon()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_area()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geom_rug()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_smooth()</td>
+<td style="text-align: left;">stat_smooth()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geom_spoke()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_label()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geom_text()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_raster()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geom_rect()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_tile()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geom_violin()</td>
+<td style="text-align: left;">stat_ydensity()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_sf()</td>
+<td style="text-align: left;">stat_sf()</td>
+<td style="text-align: left;">x</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="very-clear-table-of-ggplot-stats-from-here" class="level3">
+<h3 class="anchored" data-anchor-id="very-clear-table-of-ggplot-stats-from-here">Very clear table of ggplot stats (from <a href="https://jrnold.github.io/r4ds-exercise-solutions/data-visualisation.html">here</a>)</h3>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">stat</th>
+<th style="text-align: left;">default geom</th>
+<th style="text-align: left;">shared docs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">stat_ecdf()</td>
+<td style="text-align: left;">geom_step()</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">stat_ellipse()</td>
+<td style="text-align: left;">geom_path()</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">stat_function()</td>
+<td style="text-align: left;">geom_path()</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">stat_identity()</td>
+<td style="text-align: left;">geom_point()</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">stat_summary_2d()</td>
+<td style="text-align: left;">geom_tile()</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">stat_summary_hex()</td>
+<td style="text-align: left;">geom_hex()</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">stat_summary_bin()</td>
+<td style="text-align: left;">geom_pointrange()</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">stat_summary()</td>
+<td style="text-align: left;">geom_pointrange()</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">stat_unique()</td>
+<td style="text-align: left;">geom_point()</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">stat_count()</td>
+<td style="text-align: left;">geom_bar()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">stat_bin_2d()</td>
+<td style="text-align: left;">geom_tile()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">stat_boxplot()</td>
+<td style="text-align: left;">geom_boxplot()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">stat_countour()</td>
+<td style="text-align: left;">geom_contour()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">stat_sum()</td>
+<td style="text-align: left;">geom_point()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">stat_density()</td>
+<td style="text-align: left;">geom_area()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">stat_density_2d()</td>
+<td style="text-align: left;">geom_density_2d()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">stat_bin_hex()</td>
+<td style="text-align: left;">geom_hex()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">stat_bin()</td>
+<td style="text-align: left;">geom_bar()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">stat_qq_line()</td>
+<td style="text-align: left;">geom_path()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">stat_qq()</td>
+<td style="text-align: left;">geom_point()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">stat_quantile()</td>
+<td style="text-align: left;">geom_quantile()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">stat_smooth()</td>
+<td style="text-align: left;">geom_smooth()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">stat_ydensity()</td>
+<td style="text-align: left;">geom_violin()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">stat_sf()</td>
+<td style="text-align: left;">geom_rect()</td>
+<td style="text-align: left;">x</td>
+</tr>
+</tbody>
+</table>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

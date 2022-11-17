@@ -1,0 +1,2135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Darya Vanichkina</title>
+<link>https://daryavanichkina.com/posts.html</link>
+<atom:link href="https://daryavanichkina.com/posts.xml" rel="self" type="application/rss+xml"/>
+<description>Darya Vanichkina's blog</description>
+<generator>quarto-1.1.251</generator>
+<lastBuildDate>Sat, 30 Oct 2021 13:00:00 GMT</lastBuildDate>
+<item>
+  <title>Printing 4 iPhone photos on 4x6 photo paper</title>
+  <dc:creator>Darya Vanichkina</dc:creator>
+  <link>https://daryavanichkina.com/posts/2021-10-31-imagemagick3by6.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>While this blog tends to focus on things I do at work or as part of data-sciency related extracurricular interests, I can’t help but post the solution to an amusing problem being the parent of a preschooler threw my way. My daughter’s daycare has a roaming koala (yes, a koala, because we’re in Australia, y’all), who gets to spend a week with each family in turn, after which we’re meant to contribute photos and some text to the “Koala’s adventures” scrapbook.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://daryavanichkina.com/fig/211031_koalafamily.jpeg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Koala family</figcaption><p></p>
+</figure>
+</div>
+<p><em>In the above image, the “Koala in a t-shirt” is the daycare one, visiting one of my daughter’s friends houses, who happen to have many Koala friends…</em></p>
+<section id="problem-definition" class="level2">
+<h2 class="anchored" data-anchor-id="problem-definition">Problem definition</h2>
+<p>The A4 scrapbook we were meant to use was too small to have full-sized 4x6 prints glued in, so I needed to print several images on one 4x6 card and then cut them apart. 4 images per page seemed to be the “sweet spot” in our case.</p>
+<p>Initially, I tried some freely available collage tools for Mac, but found them annoying, cumbersome and very out-of-date - and not really supporting bulk processing 52 images at once - so I ended up with a command-line based solution.</p>
+</section>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<ul>
+<li><p>My photo setup is pretty basic: my iPhone and its default camera app <sup>1</sup>. I <em>think</em> the native dimensions of images on the iPhone are <a href="https://apple.stackexchange.com/questions/298606/what-are-the-dimensions-in-pixels-of-a-picture-taken-with-iphone-8-and-x/298608">4032 px x 3024 px</a>…</p></li>
+<li><p>I have an Epson EcoTank 2750 printer, which I absolutely love because it’s an easily refillable colour inkjet. This makes printing all of the squizillion worksheets and handouts in my life inexpensive and reasonably fast. I recently discovered that this printer can print photos in decent quality (at least as well as you used to be able to get at the corner drugstore back when I was a child + we shot on film…), provided you buy good quality photo paper.</p></li>
+</ul>
+</section>
+<section id="process" class="level2">
+<h2 class="anchored" data-anchor-id="process">Process</h2>
+<p>To solve the “Koala’s adventures” dilemma we took the following steps:</p>
+<section id="step-1" class="level3">
+<h3 class="anchored" data-anchor-id="step-1">Step 1</h3>
+<p>Take hundreds of photos, on some percentage of which my child, the koala and the accompanying background/other subjects would come out well.</p>
+</section>
+<section id="step-2" class="level3">
+<h3 class="anchored" data-anchor-id="step-2">Step 2</h3>
+<p>Use the default Photos app on the computer to delete the photos we didn’t want, and to pick a handful of “Favourites” that we would print out and include in the scrapbook.</p>
+<p><em>As a “Pro” tip, which I’ve now learned because my daughter wants to make an ongoing scrapbook of her adventures even without the koala (great for language development apparently) - you can also create a custom folder where you put all of the photos for scrapbooking, and save the ones you haven’t printed only to favourites.</em></p>
+</section>
+<section id="step-3" class="level3">
+<h3 class="anchored" data-anchor-id="step-3">Step 3</h3>
+<p>Using the Photos app, rotate all of the images to be either landscape or portrait. I will use landscape for this post.</p>
+<p><em>Yes, you could rotate them later using Preview or ImageMagick, but I prefer doing this in Photos as it allows me to bulk-select images and rotate in one keyboard stroke.</em></p>
+</section>
+<section id="step-4" class="level3">
+<h3 class="anchored" data-anchor-id="step-4">Step 4</h3>
+<p>Export the photos out to a folder of your choice in jpeg format, with maximum quality.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://daryavanichkina.com/fig/211031_koalaexport1.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Koala export</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="step-5" class="level3">
+<h3 class="anchored" data-anchor-id="step-5">Step 5</h3>
+<p>Rename the files in this folder to NOT have spaces in the filenames:</p>
+<p>I’m not sure if there is an easy way to get Photos export to NOT export with spaces in filenames. This is what my Mac did:</p>
+<pre><code>-rw-r--r--@ 1 darya  macmini  8382495 31 Oct 14:48 koalaexport - 1.jpeg
+-rw-r--r--@ 1 darya  macmini  9401795 31 Oct 14:48 koalaexport - 2.jpeg
+-rw-r--r--@ 1 darya  macmini  8078024 31 Oct 14:48 koalaexport - 3.jpeg
+-rw-r--r--@ 1 darya  macmini  8789539 31 Oct 14:48 koalaexport - 4.jpeg</code></pre>
+<p>In order to get rid of those spaces, open a <code>Terminal</code> session in the same folder you’ve just saved your photos in and run the following command.</p>
+<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><span class="cf" style="color: #003B4F;">for</span> file <span class="kw" style="color: #003B4F;">in</span> <span class="pp" style="color: #AD0000;">*</span><span class="kw" style="color: #003B4F;">;</span> <span class="cf" style="color: #003B4F;">do</span> <span class="fu" style="color: #4758AB;">mv</span> <span class="st" style="color: #20794D;">"</span><span class="va" style="color: #111111;">$file</span><span class="st" style="color: #20794D;">"</span> <span class="kw" style="color: #003B4F;">`</span><span class="bu" style="color: null;">echo</span> <span class="va" style="color: #111111;">$file</span> <span class="kw" style="color: #003B4F;">|</span> <span class="fu" style="color: #4758AB;">tr</span> <span class="st" style="color: #20794D;">' '</span> <span class="st" style="color: #20794D;">'_'</span><span class="kw" style="color: #003B4F;">`</span> <span class="kw" style="color: #003B4F;">;</span> <span class="cf" style="color: #003B4F;">done</span></span></code></pre></div>
+<p>This will result in the following:</p>
+<pre><code>-rw-r--r--@ 1 darya  macmini  8382495 31 Oct 14:48 koalaexport_-_1.jpeg
+-rw-r--r--@ 1 darya  macmini  9401795 31 Oct 14:48 koalaexport_-_2.jpeg
+-rw-r--r--@ 1 darya  macmini  8078024 31 Oct 14:48 koalaexport_-_3.jpeg
+-rw-r--r--@ 1 darya  macmini  8789539 31 Oct 14:48 koalaexport_-_4.jpeg</code></pre>
+</section>
+<section id="step-6" class="level3">
+<h3 class="anchored" data-anchor-id="step-6">Step 6</h3>
+<p>Next, you’ll need to arrange the photos on a 2x2 card grid. You can do this using <a href="https://imagemagick.org/index.php">ImageMagick</a>’s <a href="https://imagemagick.org/script/montage.php">montage</a> command <sup>2</sup>.</p>
+<p>I originally wrote this command to work on 52 images, and it looked like this:</p>
+<div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><span class="cf" style="color: #003B4F;">for</span> <span class="kw" style="color: #003B4F;">((</span><span class="va" style="color: #111111;">i</span><span class="op" style="color: #5E5E5E;">=</span><span class="dv" style="color: #AD0000;">0</span><span class="kw" style="color: #003B4F;">;</span><span class="va" style="color: #111111;">i</span><span class="op" style="color: #5E5E5E;">&lt;=</span><span class="dv" style="color: #AD0000;">12</span><span class="kw" style="color: #003B4F;">;</span><span class="va" style="color: #111111;">i</span><span class="op" style="color: #5E5E5E;">++</span><span class="kw" style="color: #003B4F;">));</span> <span class="cf" style="color: #003B4F;">do</span> <span class="ex" style="color: null;">montage</span> <span class="at" style="color: #657422;">-geometry</span> 1800x1200+0+0 <span class="at" style="color: #657422;">-tile</span> 2x2 koalaexport_-_<span class="va" style="color: #111111;">$((</span> <span class="dv" style="color: #AD0000;">4</span><span class="op" style="color: #5E5E5E;">*</span><span class="va" style="color: #111111;">i</span> <span class="op" style="color: #5E5E5E;">+</span> <span class="dv" style="color: #AD0000;">1</span> <span class="va" style="color: #111111;">))</span>.jpeg koalaexport_-_<span class="va" style="color: #111111;">$((</span> <span class="dv" style="color: #AD0000;">4</span><span class="op" style="color: #5E5E5E;">*</span><span class="va" style="color: #111111;">i</span> <span class="op" style="color: #5E5E5E;">+</span> <span class="dv" style="color: #AD0000;">2</span> <span class="va" style="color: #111111;">))</span>.jpeg koalaexport_-_<span class="va" style="color: #111111;">$((</span> <span class="dv" style="color: #AD0000;">4</span><span class="op" style="color: #5E5E5E;">*</span><span class="va" style="color: #111111;">i</span> <span class="op" style="color: #5E5E5E;">+</span> <span class="dv" style="color: #AD0000;">3</span> <span class="va" style="color: #111111;">))</span>.jpeg koalaexport_-_<span class="va" style="color: #111111;">$((</span> <span class="dv" style="color: #AD0000;">4</span><span class="op" style="color: #5E5E5E;">*</span><span class="va" style="color: #111111;">i</span> <span class="op" style="color: #5E5E5E;">+</span> <span class="dv" style="color: #AD0000;">4</span> <span class="va" style="color: #111111;">))</span>.jpeg <span class="va" style="color: #111111;">${i}</span>.tiff<span class="kw" style="color: #003B4F;">;</span><span class="cf" style="color: #003B4F;">done</span></span></code></pre></div>
+<p>To break down what’s going on, let’s start with that <code>for</code> loop:</p>
+<pre><code>for ((i=0;i&lt;=13;i++)); do echo $i;done</code></pre>
+<p>This prints the numbers 0 to 13 to the console.</p>
+<p>What I’m then doing, is using the shell to do math; in every loop iteration, I’m retrieving the following numbers, and using them to access the corresponding filenames - <code>$((4*i + 1))</code>, i.e.&nbsp;<code>1</code>,<code>5</code>,<code>9</code>… - <code>$((4*i + 2))</code>, i.e.&nbsp;<code>2</code>,<code>6</code>,<code>10</code>… - <code>$((4*i + 3))</code>, i.e.&nbsp;<code>3</code>,<code>7</code>,<code>11</code>… - <code>$((4*i + 4))</code>, i.e.&nbsp;<code>4</code>,<code>8</code>,<code>12</code>…</p>
+<p>This allows me to access the input files in batches of 4, and the output files in iterations of 1. ***</p>
+<p>The basic command we have “within” that loop is <code>montage -geometry 1800x1200+0+0 -tile 2x2 image1.jpg image2.jpg image3.jpg image4.jpg 1.tiff</code>, where:</p>
+<ul>
+<li><code>-tile 2x2</code> is saying that we want to tile the images, with 2 wide and 2 across</li>
+<li><code>image1.jpg image2.jpg image3.jpg image4.jpg</code> -&gt; are the four input files</li>
+<li><code>1.tiff</code> is the output tiff file we’ll use for printing</li>
+<li>The <code>-geometry</code> flag is saying how we want our final canvas to be:
+<ul>
+<li>1800 pixels wide (6 inches at 300 dpi == 1800 pixels minimum) <sup>3</sup></li>
+<li>1200 pixels high (4 inches at 300 dpi == 1200 pixels minimum)</li>
+<li>the <code>+0+0</code> is saying that we don’t want any kind of a border around each of the images, i.e.&nbsp;we want the jpegs printed all next to each other.</li>
+</ul></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://daryavanichkina.com/fig/211031_koalaexport4.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Koala export</figcaption><p></p>
+</figure>
+</div>
+<p>Another tip, in case you start getting issues where your images end up having too much white space and look something like this:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://daryavanichkina.com/fig/211031_koalaexport4b.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Koala export</figcaption><p></p>
+</figure>
+</div>
+<p>Is to either: - Use the <code>-rotate 90</code> flag OR - Change the order of the first two numbers in the geometry command, i.e.&nbsp;if it was <code>-geometry 1800x1200+0+0</code> change it to <code>-geometry 1200x1800+0+0</code></p>
+<p>Hopefully this posts helps in getting started with using ImageMagick to batch-collage files, for all of your scrapbooking needs. If you have any questions or something ends up unexpected, please leave a comment below.</p>
+
+
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Yes, I will occasionally use <a href="https://camera.plus/">Camera+ 2</a> when I’m feeling fancy or want to do some macro photography, but this usually occurs when my daughter is not in tow.↩︎</p></li>
+<li id="fn2"><p>If you don’t have ImageMagick installed on your Mac, I <em>highly</em> recommend using <a href="https://brew.sh/">homebrew</a> to install it: <code>brew install imagemagick</code>↩︎</p></li>
+<li id="fn3"><p>I have read online that you are meant to have 300 dpi (dots per inch) to get good quality for printing, which is why I’ve set the resolution to be this, BUT there are also articles such as <a href="http://www.rideau-info.com/photos/whatisdpi.html">this</a> one which suggest that my mental model is probably simplistic. However, this resolution worked to get good quality images for me for printing.↩︎</p></li>
+</ol>
+</section></div> ]]></description>
+  <category>Data science</category>
+  <category>Family</category>
+  <category>ImageMagick</category>
+  <category>Shell</category>
+  <guid>https://daryavanichkina.com/posts/2021-10-31-imagemagick3by6.html</guid>
+  <pubDate>Sat, 30 Oct 2021 13:00:00 GMT</pubDate>
+  <media:content url="https://daryavanichkina.com/fig/211031_koalafamily.jpeg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Installing packages on a PBS-Pro HPC cluster using renv</title>
+  <dc:creator>Darya Vanichkina</dc:creator>
+  <link>https://daryavanichkina.com/posts/210728_renvhpc.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="using-renv-on-a-pbs-pro-hpc-cluster" class="level2">
+<h2 class="anchored" data-anchor-id="using-renv-on-a-pbs-pro-hpc-cluster">Using renv on a PBS-Pro HPC cluster</h2>
+<p>Today someone asked about my workflow for using R on an HPC cluster, and - more specifically - about how to install packages when executing a workflow that requires use of HPC. Google wasn’t helpful with providing a link to share - so the onus is on me to write <em>the</em> blog post.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://daryavanichkina.com/posts/https:/source.unsplash.com/E2qx9Ed2qIQ/800x600.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">suitcase</figcaption><p></p>
+</figure>
+</div>
+<section id="the-why" class="level3">
+<h3 class="anchored" data-anchor-id="the-why">The “why”</h3>
+<p>Just like working on our local machines, when working on an HPC cluster we really want to be able to have a consistent R environment for each of our projects that we snapshot at the time of working on said project. This means code that was written months or even years ago will still work as expected, even if the packages on CRAN have since been updated with breaking changes. The <a href="https://rstudio.github.io/renv/index.html"><code>renv</code></a> package is brilliant at managing this - however, it is not intuitive to figure out how to use it when working on an HPC cluster - which is what I work through in the below post.</p>
+</section>
+<section id="assumptions" class="level3">
+<h3 class="anchored" data-anchor-id="assumptions">Assumptions</h3>
+<p>This post makes a few assumptions:</p>
+<ol type="1">
+<li>You are planning to use R for analysis, and know how to install packages on your local machine.</li>
+<li>You are working with a PBS-Pro HPC cluster, and know all of the core commands (this is not an introduction to <code>ssh</code>, <code>qsub</code>, <code>module load</code> etc - see <a href="https://sydney-informatics-hub.github.io/training.artemis.introhpc/">here</a> for an intro). I <em>think</em> some of the below should generalise to SLURM or other cluster schedulers, but don’t have access to them so can’t test.</li>
+<li>You want to use the <a href="https://rstudio.github.io/renv/articles/renv.html"><code>renv</code></a> library to manage the packages in your project (You do, you really do - I cannot recommend this highly enough, especially for sanity of future you). You know the basics of using <code>renv</code> on your local machine, as per <a href="https://rstudio.github.io/renv/articles/renv.html">the <code>renv</code> vignette</a> - that’s probably the best intro to <code>renv</code>.</li>
+</ol>
+<p>Oof, now that that’s out of the way, let’s dive in :dolphin: …</p>
+</section>
+<section id="step-1-ssh-into-your-cluster-and-fire-up-an-interactive-session" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-ssh-into-your-cluster-and-fire-up-an-interactive-session">Step 1: <code>ssh</code> into your cluster and fire up an interactive session</h3>
+<p>After you login to your HPC server, I recommend starting up an interactive session so you’re not working on and hence clogging up the login nodes. (You can do this on a login node too, but depending on how much compute prototyping your analysis requires this may crash :fire: - or get you a cranky email from an admin :rage: ).</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="ex" style="color: null;">qsub</span> <span class="at" style="color: #657422;">-I</span> <span class="at" style="color: #657422;">-l</span> walltime=4:0:0 <span class="at" style="color: #657422;">-l</span> select=1:ncpus=1:mem=10gb</span></code></pre></div>
+</section>
+<section id="step-2-launch-r-and-install-renv" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-launch-r-and-install-renv">Step 2: Launch R and install renv</h3>
+<p>After you’re logged in to the worker node, run the following commands to:</p>
+<ul>
+<li>navigate to the project directory</li>
+<li>get rid of everything that may have inadvertently been preloaded</li>
+<li>launch R</li>
+<li>install <code>renv</code></li>
+</ul>
+<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><span class="bu" style="color: null;">cd</span> myprojectdirectory</span>
+<span id="cb2-2"><span class="ex" style="color: null;">module</span> purge</span>
+<span id="cb2-3"><span class="ex" style="color: null;">module</span> load R/4.0.4 <span class="co" style="color: #5E5E5E;"># &lt;- or whatver version or R is available on your cluster</span></span>
+<span id="cb2-4"><span class="ex" style="color: null;">R</span></span></code></pre></div>
+<p>This will open the R command line interface.</p>
+<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="fu" style="color: #4758AB;">install.packages</span>(<span class="st" style="color: #20794D;">"renv"</span>)</span></code></pre></div>
+<p>This will return the details that the installation of <code>renv()</code> will occur into a default location:</p>
+<div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><span class="ex" style="color: null;">Installing</span> package into ‘/home/myusername/R/x86_64-pc-linux-gnu-library/4.0’</span></code></pre></div>
+<p>And ask me to select a CRAN mirror for installation; after choosing the appropriate mirror and pressing return the package will be installed.</p>
+</section>
+<section id="step-3-install-the-packages-you-need-ideally-prototype-your-analysis-and-snapshot-the-installs-using-renv" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-install-the-packages-you-need-ideally-prototype-your-analysis-and-snapshot-the-installs-using-renv">Step 3: Install the packages you need, (ideally) prototype your analysis and snapshot the installs using <code>renv</code></h3>
+<p>For this demo, I am going to assume that my project depends on the <code>tidyverse</code> family of libraries, and that I want to install them in one go. (<em>In real life, I actually avoid taking this approach, and instead install each of the tidyverse libraries one by one as I use and need them.</em>)</p>
+<div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;">library</span>(renv)</span>
+<span id="cb5-2"><span class="co" style="color: #5E5E5E;"># initialise renv</span></span>
+<span id="cb5-3">renv<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">init</span>()</span></code></pre></div>
+<p>This will ask me to restart R, after doing which I can start installing packages.</p>
+<div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><span class="fu" style="color: #4758AB;">install.packages</span>(<span class="st" style="color: #20794D;">"tidyverse"</span>)</span>
+<span id="cb6-2"><span class="co" style="color: #5E5E5E;"># wait... and wait... for packages to successfully install</span></span>
+<span id="cb6-3"><span class="fu" style="color: #4758AB;">library</span>(tidyverse)</span></code></pre></div>
+<p>I would next prototype my analysis code, installing as many packages as I need using the normal <code>install.packages()</code> syntax - and eventually wrap the analysis up into a script.</p>
+<p>After you have installed all of the libraries you need, in the interactive R session, exectute the following command:</p>
+<div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="co" style="color: #5E5E5E;"># this will tell you whether renv has captured versions </span></span>
+<span id="cb7-2"><span class="co" style="color: #5E5E5E;"># of all of the packages you need to install</span></span>
+<span id="cb7-3">renv<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">status</span>()</span>
+<span id="cb7-4"><span class="co" style="color: #5E5E5E;"># if the result of renv::status() was not </span></span>
+<span id="cb7-5"><span class="co" style="color: #5E5E5E;"># "The project is already synchronized with the lockfile."</span></span>
+<span id="cb7-6"><span class="co" style="color: #5E5E5E;"># run the below command to snapshot all currently installed libraries</span></span>
+<span id="cb7-7">renv<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">snapshot</span>()</span></code></pre></div>
+<p>For this demo, I’m going to assume I want to run the following command that uses the built-in <code>gss_cat</code> dataset from the <code>forcats</code> package, the pipe and the <code>dplyr::filter()</code> command - so nicely tests a few of the <code>tidyverse</code> libraries in one line:</p>
+<div class="sourceCode" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1">gss_cat <span class="sc" style="color: #5E5E5E;">%&gt;%</span> <span class="fu" style="color: #4758AB;">head</span>() <span class="sc" style="color: #5E5E5E;">%&gt;%</span> <span class="fu" style="color: #4758AB;">filter</span>(tvhours <span class="sc" style="color: #5E5E5E;">&lt;</span> <span class="dv" style="color: #AD0000;">10</span>)</span></code></pre></div>
+<p>The output should be:</p>
+<div class="sourceCode" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb9-1"># A tibble: 3 × 9</span>
+<span id="cb9-2">   year marital      age race  rincome    partyid     relig     denom    tvhours</span>
+<span id="cb9-3">  &lt;int&gt; &lt;fct&gt;      &lt;int&gt; &lt;fct&gt; &lt;fct&gt;      &lt;fct&gt;       &lt;fct&gt;     &lt;fct&gt;      &lt;int&gt;</span>
+<span id="cb9-4">1  2000 Widowed       67 White Not appli… Independent Protesta… No deno…       2</span>
+<span id="cb9-5">2  2000 Never mar…    39 White Not appli… Ind,near r… Orthodox… Not app…       4</span>
+<span id="cb9-6">3  2000 Divorced      25 White Not appli… Not str de… None      Not app…       1</span></code></pre></div>
+</section>
+<section id="optional-step-3a-look-at-the-renv.lock-file-to-see-all-of-the-packages-you-have-installed-into-the-project" class="level3">
+<h3 class="anchored" data-anchor-id="optional-step-3a-look-at-the-renv.lock-file-to-see-all-of-the-packages-you-have-installed-into-the-project">(Optional) Step 3a: Look at the <code>renv.lock</code> file to see all of the packages you have installed into the project</h3>
+<p>The <code>renv.lock</code> file stores details about the R version and all of the packages that are installed in your environment in <code>.json</code> format. So installing the <code>tidyverse</code> packages in one fell swoop like I did above results in quite a long list of libraries (last 5 shown here):</p>
+<div class="sourceCode" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb10-1"> <span class="er" style="color: #AD0000;">"vroom":</span> <span class="fu" style="color: #4758AB;">{</span></span>
+<span id="cb10-2">      <span class="dt" style="color: #AD0000;">"Package"</span><span class="fu" style="color: #4758AB;">:</span> <span class="st" style="color: #20794D;">"vroom"</span><span class="fu" style="color: #4758AB;">,</span></span>
+<span id="cb10-3">      <span class="dt" style="color: #AD0000;">"Version"</span><span class="fu" style="color: #4758AB;">:</span> <span class="st" style="color: #20794D;">"1.5.3"</span><span class="fu" style="color: #4758AB;">,</span></span>
+<span id="cb10-4">      <span class="dt" style="color: #AD0000;">"Source"</span><span class="fu" style="color: #4758AB;">:</span> <span class="st" style="color: #20794D;">"Repository"</span><span class="fu" style="color: #4758AB;">,</span></span>
+<span id="cb10-5">      <span class="dt" style="color: #AD0000;">"Repository"</span><span class="fu" style="color: #4758AB;">:</span> <span class="st" style="color: #20794D;">"CRAN"</span><span class="fu" style="color: #4758AB;">,</span></span>
+<span id="cb10-6">      <span class="dt" style="color: #AD0000;">"Hash"</span><span class="fu" style="color: #4758AB;">:</span> <span class="st" style="color: #20794D;">"aac6012f34348b3ca6bf373fe7172b06"</span></span>
+<span id="cb10-7">    <span class="fu" style="color: #4758AB;">}</span><span class="er" style="color: #AD0000;">,</span></span>
+<span id="cb10-8">    <span class="er" style="color: #AD0000;">"withr":</span> <span class="fu" style="color: #4758AB;">{</span></span>
+<span id="cb10-9">      <span class="dt" style="color: #AD0000;">"Package"</span><span class="fu" style="color: #4758AB;">:</span> <span class="st" style="color: #20794D;">"withr"</span><span class="fu" style="color: #4758AB;">,</span></span>
+<span id="cb10-10">      <span class="dt" style="color: #AD0000;">"Version"</span><span class="fu" style="color: #4758AB;">:</span> <span class="st" style="color: #20794D;">"2.4.2"</span><span class="fu" style="color: #4758AB;">,</span></span>
+<span id="cb10-11">      <span class="dt" style="color: #AD0000;">"Source"</span><span class="fu" style="color: #4758AB;">:</span> <span class="st" style="color: #20794D;">"Repository"</span><span class="fu" style="color: #4758AB;">,</span></span>
+<span id="cb10-12">      <span class="dt" style="color: #AD0000;">"Repository"</span><span class="fu" style="color: #4758AB;">:</span> <span class="st" style="color: #20794D;">"CRAN"</span><span class="fu" style="color: #4758AB;">,</span></span>
+<span id="cb10-13">      <span class="dt" style="color: #AD0000;">"Hash"</span><span class="fu" style="color: #4758AB;">:</span> <span class="st" style="color: #20794D;">"ad03909b44677f930fa156d47d7a3aeb"</span></span>
+<span id="cb10-14">    <span class="fu" style="color: #4758AB;">}</span><span class="er" style="color: #AD0000;">,</span></span>
+<span id="cb10-15">    <span class="er" style="color: #AD0000;">"xfun":</span> <span class="fu" style="color: #4758AB;">{</span></span>
+<span id="cb10-16">      <span class="dt" style="color: #AD0000;">"Package"</span><span class="fu" style="color: #4758AB;">:</span> <span class="st" style="color: #20794D;">"xfun"</span><span class="fu" style="color: #4758AB;">,</span></span>
+<span id="cb10-17">      <span class="dt" style="color: #AD0000;">"Version"</span><span class="fu" style="color: #4758AB;">:</span> <span class="st" style="color: #20794D;">"0.24"</span><span class="fu" style="color: #4758AB;">,</span></span>
+<span id="cb10-18">      <span class="dt" style="color: #AD0000;">"Source"</span><span class="fu" style="color: #4758AB;">:</span> <span class="st" style="color: #20794D;">"Repository"</span><span class="fu" style="color: #4758AB;">,</span></span>
+<span id="cb10-19">      <span class="dt" style="color: #AD0000;">"Repository"</span><span class="fu" style="color: #4758AB;">:</span> <span class="st" style="color: #20794D;">"CRAN"</span><span class="fu" style="color: #4758AB;">,</span></span>
+<span id="cb10-20">      <span class="dt" style="color: #AD0000;">"Hash"</span><span class="fu" style="color: #4758AB;">:</span> <span class="st" style="color: #20794D;">"88cdb9779a657ad80ad942245fffba31"</span></span>
+<span id="cb10-21">    <span class="fu" style="color: #4758AB;">}</span><span class="er" style="color: #AD0000;">,</span></span>
+<span id="cb10-22">    <span class="er" style="color: #AD0000;">"xml2":</span> <span class="fu" style="color: #4758AB;">{</span></span>
+<span id="cb10-23">      <span class="dt" style="color: #AD0000;">"Package"</span><span class="fu" style="color: #4758AB;">:</span> <span class="st" style="color: #20794D;">"xml2"</span><span class="fu" style="color: #4758AB;">,</span></span>
+<span id="cb10-24">      <span class="dt" style="color: #AD0000;">"Version"</span><span class="fu" style="color: #4758AB;">:</span> <span class="st" style="color: #20794D;">"1.3.2"</span><span class="fu" style="color: #4758AB;">,</span></span>
+<span id="cb10-25">      <span class="dt" style="color: #AD0000;">"Source"</span><span class="fu" style="color: #4758AB;">:</span> <span class="st" style="color: #20794D;">"Repository"</span><span class="fu" style="color: #4758AB;">,</span></span>
+<span id="cb10-26">      <span class="dt" style="color: #AD0000;">"Repository"</span><span class="fu" style="color: #4758AB;">:</span> <span class="st" style="color: #20794D;">"CRAN"</span><span class="fu" style="color: #4758AB;">,</span></span>
+<span id="cb10-27">      <span class="dt" style="color: #AD0000;">"Hash"</span><span class="fu" style="color: #4758AB;">:</span> <span class="st" style="color: #20794D;">"d4d71a75dd3ea9eb5fa28cc21f9585e2"</span></span>
+<span id="cb10-28">    <span class="fu" style="color: #4758AB;">}</span><span class="er" style="color: #AD0000;">,</span></span>
+<span id="cb10-29">    <span class="er" style="color: #AD0000;">"yaml":</span> <span class="fu" style="color: #4758AB;">{</span></span>
+<span id="cb10-30">      <span class="dt" style="color: #AD0000;">"Package"</span><span class="fu" style="color: #4758AB;">:</span> <span class="st" style="color: #20794D;">"yaml"</span><span class="fu" style="color: #4758AB;">,</span></span>
+<span id="cb10-31">      <span class="dt" style="color: #AD0000;">"Version"</span><span class="fu" style="color: #4758AB;">:</span> <span class="st" style="color: #20794D;">"2.2.1"</span><span class="fu" style="color: #4758AB;">,</span></span>
+<span id="cb10-32">      <span class="dt" style="color: #AD0000;">"Source"</span><span class="fu" style="color: #4758AB;">:</span> <span class="st" style="color: #20794D;">"Repository"</span><span class="fu" style="color: #4758AB;">,</span></span>
+<span id="cb10-33">      <span class="dt" style="color: #AD0000;">"Repository"</span><span class="fu" style="color: #4758AB;">:</span> <span class="st" style="color: #20794D;">"CRAN"</span><span class="fu" style="color: #4758AB;">,</span></span>
+<span id="cb10-34">      <span class="dt" style="color: #AD0000;">"Hash"</span><span class="fu" style="color: #4758AB;">:</span> <span class="st" style="color: #20794D;">"2826c5d9efb0a88f657c7a679c7106db"</span></span>
+<span id="cb10-35">    <span class="fu" style="color: #4758AB;">}</span></span></code></pre></div>
+<p>I sometimes find that <code>renv::status()</code> and <code>renv::snapshot()</code> in step 3 don’t immediately see all of the libraries I have installed in the environment, and - weirdly - I need to restart R and run <code>renv::status()</code> again before it will detect that a bunch of libraries have been installed. So if you’re missing libraries in the <code>renv.lock</code> file you know need to be there - restarting R and re-running <code>renv::status()</code> and <code>renv::snapshot()</code> may be the way to go.</p>
+</section>
+<section id="step-4-save-your-script-and-submit-it-via-pbs" class="level3">
+<h3 class="anchored" data-anchor-id="step-4-save-your-script-and-submit-it-via-pbs">Step 4: Save your script and submit it via PBS</h3>
+<p>Wrap the above code into <code>myscript.R</code> , with the following contents:</p>
+<div class="sourceCode" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><span class="fu" style="color: #4758AB;">library</span>(tidyverse)</span>
+<span id="cb11-2">gss_cat <span class="sc" style="color: #5E5E5E;">%&gt;%</span> <span class="fu" style="color: #4758AB;">head</span>() <span class="sc" style="color: #5E5E5E;">%&gt;%</span> <span class="fu" style="color: #4758AB;">filter</span>(tvhours <span class="sc" style="color: #5E5E5E;">&lt;</span> <span class="dv" style="color: #AD0000;">10</span>)</span></code></pre></div>
+<p>Then create a shell script (<code>myshellscript.sh</code>) that can be submitted to the PBS queue:</p>
+<div class="sourceCode" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><span class="co" style="color: #5E5E5E;">#! /bin/bash</span></span>
+<span id="cb12-2"><span class="ex" style="color: null;">module</span> purge</span>
+<span id="cb12-3"><span class="ex" style="color: null;">module</span> load R/4.0.4</span>
+<span id="cb12-4"><span class="bu" style="color: null;">cd</span> /to/my/projectpath</span>
+<span id="cb12-5"><span class="ex" style="color: null;">Rscript</span> myscript.R</span></code></pre></div>
+<p>Finally, submit to the queue:</p>
+<div class="sourceCode" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><span class="ex" style="color: null;">qsub</span> <span class="at" style="color: #657422;">-l</span> walltime=0:10:0 <span class="at" style="color: #657422;">-l</span> select=1:ncpus=1:mem=1gb <span class="at" style="color: #657422;">-N</span> mytestscript myshellscript.sh</span></code></pre></div>
+<p>Note that I’m only asking for 1 Gb of RAM and 10 minutes of walltime. This is probably a lot less than you’d need for any “real” analysis - but it’s perfectly fine for my script above.</p>
+<p>After that executes, I get the following output in <code>mytestscript.o123456</code>, where 123456 is the job number that my PBS scheduler automatically assigned to my script run:</p>
+<div class="sourceCode" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><span class="co" style="color: #5E5E5E;"># A tibble: 3 × 9</span></span>
+<span id="cb14-2">   year marital      age race  rincome    partyid     relig     denom    tvhours</span>
+<span id="cb14-3">  <span class="sc" style="color: #5E5E5E;">&lt;</span>int<span class="sc" style="color: #5E5E5E;">&gt;</span> <span class="er" style="color: #AD0000;">&lt;</span>fct<span class="sc" style="color: #5E5E5E;">&gt;</span>      <span class="er" style="color: #AD0000;">&lt;</span>int<span class="sc" style="color: #5E5E5E;">&gt;</span> <span class="er" style="color: #AD0000;">&lt;</span>fct<span class="sc" style="color: #5E5E5E;">&gt;</span> <span class="er" style="color: #AD0000;">&lt;</span>fct<span class="sc" style="color: #5E5E5E;">&gt;</span>      <span class="er" style="color: #AD0000;">&lt;</span>fct<span class="sc" style="color: #5E5E5E;">&gt;</span>       <span class="er" style="color: #AD0000;">&lt;</span>fct<span class="sc" style="color: #5E5E5E;">&gt;</span>     <span class="er" style="color: #AD0000;">&lt;</span>fct<span class="sc" style="color: #5E5E5E;">&gt;</span>      <span class="er" style="color: #AD0000;">&lt;</span>int<span class="sc" style="color: #5E5E5E;">&gt;</span></span>
+<span id="cb14-4"><span class="dv" style="color: #AD0000;">1</span>  <span class="dv" style="color: #AD0000;">2000</span> Widowed       <span class="dv" style="color: #AD0000;">67</span> White Not appli… Independent Protesta… No deno…       <span class="dv" style="color: #AD0000;">2</span></span>
+<span id="cb14-5"><span class="dv" style="color: #AD0000;">2</span>  <span class="dv" style="color: #AD0000;">2000</span> Never mar…    <span class="dv" style="color: #AD0000;">39</span> White Not appli… Ind,near r… Orthodox… Not app…       <span class="dv" style="color: #AD0000;">4</span></span>
+<span id="cb14-6"><span class="dv" style="color: #AD0000;">3</span>  <span class="dv" style="color: #AD0000;">2000</span> Divorced      <span class="dv" style="color: #AD0000;">25</span> White Not appli… Not str de… None      Not app…       <span class="dv" style="color: #AD0000;">1</span></span></code></pre></div>
+<p>And the package loading messages in <code>mytestscript.e123456</code>:</p>
+<div class="sourceCode" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1">Warning message<span class="sc" style="color: #5E5E5E;">:</span></span>
+<span id="cb15-2">renv took longer than <span class="fu" style="color: #4758AB;">expected</span> (<span class="dv" style="color: #AD0000;">66</span> seconds) to activate the sandbox.</span>
+<span id="cb15-3"></span>
+<span id="cb15-4">The sandbox can be disabled by setting<span class="sc" style="color: #5E5E5E;">:</span></span>
+<span id="cb15-5"></span>
+<span id="cb15-6">    RENV_CONFIG_SANDBOX_ENABLED <span class="ot" style="color: #003B4F;">=</span> <span class="cn" style="color: #8f5902;">FALSE</span></span>
+<span id="cb15-7"></span>
+<span id="cb15-8">within an appropriate start<span class="sc" style="color: #5E5E5E;">-</span>up .Renviron file. See <span class="st" style="color: #20794D;">`</span><span class="at" style="color: #657422;">?renv::config</span><span class="st" style="color: #20794D;">`</span> <span class="cf" style="color: #003B4F;">for</span> more details.</span>
+<span id="cb15-9">Warning<span class="sc" style="color: #5E5E5E;">:</span> program compiled against libxml <span class="dv" style="color: #AD0000;">209</span> using older <span class="dv" style="color: #AD0000;">207</span></span>
+<span id="cb15-10">── Attaching packages ─────────────────────────────────────── tidyverse <span class="dv" style="color: #AD0000;">1</span>.<span class="fl" style="color: #AD0000;">3.1</span> ──</span>
+<span id="cb15-11">✔ ggplot2 <span class="dv" style="color: #AD0000;">3</span>.<span class="fl" style="color: #AD0000;">3.5</span>     ✔ purrr   <span class="dv" style="color: #AD0000;">0</span>.<span class="fl" style="color: #AD0000;">3.4</span></span>
+<span id="cb15-12">✔ tibble  <span class="dv" style="color: #AD0000;">3</span>.<span class="fl" style="color: #AD0000;">1.3</span>     ✔ dplyr   <span class="dv" style="color: #AD0000;">1</span>.<span class="fl" style="color: #AD0000;">0.7</span></span>
+<span id="cb15-13">✔ tidyr   <span class="dv" style="color: #AD0000;">1</span>.<span class="fl" style="color: #AD0000;">1.3</span>     ✔ stringr <span class="dv" style="color: #AD0000;">1</span>.<span class="fl" style="color: #AD0000;">4.0</span></span>
+<span id="cb15-14">✔ readr   <span class="dv" style="color: #AD0000;">2</span>.<span class="fl" style="color: #AD0000;">0.0</span>     ✔ forcats <span class="dv" style="color: #AD0000;">0</span>.<span class="fl" style="color: #AD0000;">5.1</span></span>
+<span id="cb15-15">── Conflicts ────────────────────────────────────────── <span class="fu" style="color: #4758AB;">tidyverse_conflicts</span>() ──</span>
+<span id="cb15-16">✖ dplyr<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">filter</span>() masks stats<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">filter</span>()</span>
+<span id="cb15-17">✖ dplyr<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">lag</span>()    masks stats<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">lag</span>()</span></code></pre></div>
+<p>This includes a warning that the <code>renv</code> sandbox took a while to load, but this doesn’t seem to affect functionality, so I haven’t disabled it.</p>
+<hr>
+<p>That’s it! Hopefully the above helps you use <code>renv()</code> with a PBS-Pro based HPC cluster :blush:, and please do leave a comment if something isn’t clear or doesn’t work as expected.</p>
+</section>
+<section id="even-more-notes" class="level3">
+<h3 class="anchored" data-anchor-id="even-more-notes">(Even more) notes</h3>
+<ol type="1">
+<li>This workflow means that your package install information (i.e.&nbsp;the binaries) are stored in the project folder, in the <code>renv</code> folder. So they are <em>not</em> stored on the worker nodes where your job is being executed, but instead in your home or project folder. This is a <em>good</em> thing, as it means you’re not hitting up CRAN to install packages every time you run a job.</li>
+<li>This workflow also means that while you can <code>rsync</code> your project folder from your local machine to the remove server (or prototype on your local machine), you will need to run <code>renv::restrore()</code> once on the “other” machine prior to being able to execute or deploy the script.</li>
+</ol>
+
+
+</section>
+</section>
+
+ ]]></description>
+  <category>Data science</category>
+  <category>R</category>
+  <category>WorkJournal</category>
+  <category>compute</category>
+  <guid>https://daryavanichkina.com/posts/210728_renvhpc.html</guid>
+  <pubDate>Tue, 27 Jul 2021 14:00:00 GMT</pubDate>
+  <media:content url="https://source.unsplash.com/E2qx9Ed2qIQ/800x600" medium="image"/>
+</item>
+<item>
+  <title>ggplot batch variable visualisation in Rmd without for loops</title>
+  <dc:creator>Darya Vanichkina</dc:creator>
+  <link>https://daryavanichkina.com/posts/2021-04-12-ggplot2map.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>When working with data, often you want to make a specific type of plot across a bunch of variables at once. The R/tidyverse way of doing this involves some (basic) non-standard evaluation, but - because I know I’ll forget how to do this in the future - I thought I’d write up this short blog post with code that works.</p>
+<p>In the below snippet, we use ggplot on the built-in mtcars dataset to make a scatterplot of each of the variables against the <code>mpg</code> variable, colouring it by the number of cylinders (on the fly converted to a factor).</p>
+<p>To do this, I define the <code>makeplots()</code> function, which takes a single argument called <code>myfeature</code>. Within the function, I need to save the plot as a variable (<code>a</code>), and then print it so that it is rendered in the Rmd. I grab the column names I’d like to iterate over and save them into a character vector (In real life, I tend do grab them all using <code>names(mtcars)</code>, but I choose a few manually to keep this blog post manageable. Also, I could have used commands like <code>setdiff()</code> to subset the <code>names(mtcars)</code> character vector to remove, for example, mpg itself).</p>
+<p>I also use the <code>as_label(quo(.))</code> functions to extract the string of the variable name itself, so I can use it to set the title of the plot.</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;">library</span>(purrr)</span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;">library</span>(dplyr)</span>
+<span id="cb1-3"><span class="fu" style="color: #4758AB;">library</span>(ggplot2)</span>
+<span id="cb1-4">makeplots <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cf" style="color: #003B4F;">function</span>(myfeature){</span>
+<span id="cb1-5">  a <span class="ot" style="color: #003B4F;">&lt;-</span> mtcars <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
+<span id="cb1-6">    <span class="fu" style="color: #4758AB;">select</span>(<span class="sc" style="color: #5E5E5E;">!!</span>myfeature, mpg, cyl) <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
+<span id="cb1-7">    <span class="fu" style="color: #4758AB;">unique</span>() <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
+<span id="cb1-8">    <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> <span class="sc" style="color: #5E5E5E;">!!</span>myfeature, <span class="at" style="color: #657422;">y =</span> mpg, <span class="at" style="color: #657422;">colour =</span> <span class="fu" style="color: #4758AB;">as.factor</span>(cyl))) <span class="sc" style="color: #5E5E5E;">+</span> </span>
+<span id="cb1-9">    <span class="fu" style="color: #4758AB;">geom_point</span>() <span class="sc" style="color: #5E5E5E;">+</span> </span>
+<span id="cb1-10">    <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">title =</span> <span class="fu" style="color: #4758AB;">paste0</span>(<span class="fu" style="color: #4758AB;">as_label</span>(<span class="fu" style="color: #4758AB;">quo</span>(<span class="sc" style="color: #5E5E5E;">!!</span>myfeature)), <span class="st" style="color: #20794D;">" vs mpg"</span>)) <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb1-11">    <span class="fu" style="color: #4758AB;">theme_classic</span>()</span>
+<span id="cb1-12">  </span>
+<span id="cb1-13">  <span class="fu" style="color: #4758AB;">print</span>(a)</span>
+<span id="cb1-14">}</span>
+<span id="cb1-15"></span>
+<span id="cb1-16"><span class="co" style="color: #5E5E5E;"># to get all of the column names</span></span>
+<span id="cb1-17"><span class="co" style="color: #5E5E5E;"># mycolnames &lt;- names(mtcars)</span></span>
+<span id="cb1-18"><span class="co" style="color: #5E5E5E;"># I'm using a shorter vector in the interests of not overwhelming this blog post with ALL the images</span></span>
+<span id="cb1-19">mycolnames <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">"disp"</span>, <span class="st" style="color: #20794D;">"hp"</span>, <span class="st" style="color: #20794D;">"drat"</span>)</span>
+<span id="cb1-20"><span class="fu" style="color: #4758AB;">walk</span>(mycolnames, <span class="sc" style="color: #5E5E5E;">~</span><span class="fu" style="color: #4758AB;">makeplots</span>(<span class="at" style="color: #657422;">myfeature =</span> <span class="fu" style="color: #4758AB;">sym</span>(.x))) </span></code></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://daryavanichkina.com/fig/2104_disp.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Disp</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://daryavanichkina.com/fig/2104_hp.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">HP</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://daryavanichkina.com/fig/2104_drat.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Drat</figcaption><p></p>
+</figure>
+</div>
+
+
+
+ ]]></description>
+  <category>Data science</category>
+  <category>R</category>
+  <category>WorkJournal</category>
+  <category>Rmd</category>
+  <guid>https://daryavanichkina.com/posts/2021-04-12-ggplot2map.html</guid>
+  <pubDate>Sun, 11 Apr 2021 14:00:00 GMT</pubDate>
+  <media:content url="https://daryavanichkina.com/fig/2104_disp.png" medium="image" type="image/png" height="115" width="144"/>
+</item>
+<item>
+  <title>Avoiding 443 errors and RCurl woes with the REDCap API on Windows</title>
+  <dc:creator>Darya Vanichkina</dc:creator>
+  <link>https://daryavanichkina.com/posts/2021-04-09-redcap-api-crossplatform.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Like many other educational and research institutions, the University of Sydney (where I currently work) supports the use of REDCap as a survey platform. I also use it, in part because one of the most attractive features of the REDCap API over other survey tools like Qualtrics, Google Forms and SurveyMonkey is the fact that the API playground supports GUI-style selection of what you want, with REDCap providing template code in a wide variety of languages.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://daryavanichkina.com/fig/2104_what2exportREDCap.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">What to export</figcaption><p></p>
+</figure>
+</div>
+<p>Languages include PHP, Perl, Python, R, Ruby, Java &amp; UNIX’s curl, and output format options include json, csv and XML.</p>
+<p>Further, when you request to export Records, it will nicely provide you with even more options that allow you to point and click to get the actual, real data you want, without needing to delve into the joys of XPATHs and XML.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://daryavanichkina.com/fig/2104_RecordsExport.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Records export</figcaption><p></p>
+</figure>
+</div>
+<p>Under the hood, this is a POST form, and REDCap will explicitly show you what data you’ve submitted in the “Raw request parameters” tab.</p>
+<p>It will also provide you with the code you’d use to get the same data programmatically. There’s also a “Click the Execute Request button to execute a real API request, and it will display the API response in a text box below.” so you can preview what you’d get back as an object when loading this into your programming language of choice.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://daryavanichkina.com/fig/2104_PostForm.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Post form</figcaption><p></p>
+</figure>
+</div>
+<p>As an example, when I try to retrieve the records from our feedback form (which I’ve called <code>myformname</code> in the images/code above), it suggests the following R code for me (this returns the records themselves in a csv, and the errors in json):</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;">#!/usr/bin/env Rscript</span></span>
+<span id="cb1-2">apisecret <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="st" style="color: #20794D;">'myapikey'</span> <span class="co" style="color: #5E5E5E;"># you get this when you enable REDCap API access for your project</span></span>
+<span id="cb1-3"><span class="fu" style="color: #4758AB;">library</span>(RCurl)</span>
+<span id="cb1-4">result <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">postForm</span>(</span>
+<span id="cb1-5">    <span class="at" style="color: #657422;">uri=</span><span class="st" style="color: #20794D;">'https://redcap.sydney.edu.au/api/'</span>,</span>
+<span id="cb1-6">    <span class="at" style="color: #657422;">token=</span>apisecret,</span>
+<span id="cb1-7">    <span class="at" style="color: #657422;">content=</span><span class="st" style="color: #20794D;">'record'</span>,</span>
+<span id="cb1-8">    <span class="at" style="color: #657422;">format=</span><span class="st" style="color: #20794D;">'csv'</span>,</span>
+<span id="cb1-9">    <span class="at" style="color: #657422;">type=</span><span class="st" style="color: #20794D;">'flat'</span>,</span>
+<span id="cb1-10">    <span class="at" style="color: #657422;">csvDelimiter=</span><span class="st" style="color: #20794D;">''</span>,</span>
+<span id="cb1-11">    <span class="st" style="color: #20794D;">'forms[0]'</span><span class="ot" style="color: #003B4F;">=</span><span class="st" style="color: #20794D;">'myformname'</span>,</span>
+<span id="cb1-12">    <span class="at" style="color: #657422;">rawOrLabel=</span><span class="st" style="color: #20794D;">'raw'</span>,</span>
+<span id="cb1-13">    <span class="at" style="color: #657422;">rawOrLabelHeaders=</span><span class="st" style="color: #20794D;">'raw'</span>,</span>
+<span id="cb1-14">    <span class="at" style="color: #657422;">exportCheckboxLabel=</span><span class="st" style="color: #20794D;">'false'</span>,</span>
+<span id="cb1-15">    <span class="at" style="color: #657422;">exportSurveyFields=</span><span class="st" style="color: #20794D;">'true'</span>,</span>
+<span id="cb1-16">    <span class="at" style="color: #657422;">exportDataAccessGroups=</span><span class="st" style="color: #20794D;">'false'</span>,</span>
+<span id="cb1-17">    <span class="at" style="color: #657422;">returnFormat=</span><span class="st" style="color: #20794D;">'json'</span></span>
+<span id="cb1-18">)</span>
+<span id="cb1-19"><span class="fu" style="color: #4758AB;">print</span>(result)</span></code></pre></div>
+<p>And all is well and good … if you’re on a Mac! However, when I recently tried to run this (fully working!) code on a Windows machine (since this particular survey data goes into a PowerBI dashboard I’ve built) - I encountered a 443 error instead! Apparently, this is a <a href="https://github.com/dewittpe/REDCapExporter/issues/16">known issue</a>, but while it’s suggested to use the <code>httr</code> package instead (or one of the dedicated REDCap R packages), there was no template code available.</p>
+<p>After a bit of exploration, the below ended up working, and I’m sharing this template code in the hopes of saving others (at Sydney Uni and elsewhere) the hassle of having to figure this out:</p>
+<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="co" style="color: #5E5E5E;">#!/usr/bin/env Rscript</span></span>
+<span id="cb2-2">apisecret <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="st" style="color: #20794D;">'myapikey'</span> <span class="co" style="color: #5E5E5E;"># you get this when you enable REDCap API access for your project</span></span>
+<span id="cb2-3"><span class="fu" style="color: #4758AB;">library</span>(curl)</span>
+<span id="cb2-4">h1 <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">new_handle</span>()</span>
+<span id="cb2-5"><span class="fu" style="color: #4758AB;">handle_setform</span>(h1,</span>
+<span id="cb2-6">               <span class="st" style="color: #20794D;">'token'</span> <span class="ot" style="color: #003B4F;">=</span> apisecret,</span>
+<span id="cb2-7">               <span class="st" style="color: #20794D;">'content'</span> <span class="ot" style="color: #003B4F;">=</span> <span class="st" style="color: #20794D;">"record"</span>, </span>
+<span id="cb2-8">               <span class="st" style="color: #20794D;">'format'</span> <span class="ot" style="color: #003B4F;">=</span> <span class="st" style="color: #20794D;">"csv"</span>,</span>
+<span id="cb2-9">               <span class="st" style="color: #20794D;">'type'</span> <span class="ot" style="color: #003B4F;">=</span> <span class="st" style="color: #20794D;">'flat'</span>,</span>
+<span id="cb2-10">               <span class="st" style="color: #20794D;">'csvDelimiter'</span><span class="ot" style="color: #003B4F;">=</span> <span class="st" style="color: #20794D;">','</span>,</span>
+<span id="cb2-11">               <span class="st" style="color: #20794D;">'forms[0]'</span><span class="ot" style="color: #003B4F;">=</span> <span class="st" style="color: #20794D;">'myformname'</span>,</span>
+<span id="cb2-12">               <span class="st" style="color: #20794D;">'rawOrLabel'</span><span class="ot" style="color: #003B4F;">=</span> <span class="st" style="color: #20794D;">'raw'</span>,</span>
+<span id="cb2-13">               <span class="st" style="color: #20794D;">'rawOrLabelHeaders'</span><span class="ot" style="color: #003B4F;">=</span> <span class="st" style="color: #20794D;">'raw'</span>,</span>
+<span id="cb2-14">               <span class="st" style="color: #20794D;">'exportCheckboxLabel'</span><span class="ot" style="color: #003B4F;">=</span> <span class="st" style="color: #20794D;">'false'</span>,</span>
+<span id="cb2-15">               <span class="st" style="color: #20794D;">'exportSurveyFields'</span><span class="ot" style="color: #003B4F;">=</span> <span class="st" style="color: #20794D;">'true'</span>,</span>
+<span id="cb2-16">               <span class="st" style="color: #20794D;">'exportDataAccessGroups'</span><span class="ot" style="color: #003B4F;">=</span> <span class="st" style="color: #20794D;">'false'</span>,</span>
+<span id="cb2-17">               <span class="st" style="color: #20794D;">'returnFormat'</span><span class="ot" style="color: #003B4F;">=</span> <span class="st" style="color: #20794D;">'json'</span>)</span>
+<span id="cb2-18"></span>
+<span id="cb2-19">surveyresults <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">read.csv</span>(<span class="at" style="color: #657422;">text =</span> <span class="fu" style="color: #4758AB;">rawToChar</span>(</span>
+<span id="cb2-20">  <span class="fu" style="color: #4758AB;">curl_fetch_memory</span>(<span class="st" style="color: #20794D;">"https://redcap.sydney.edu.au/api/"</span>, <span class="at" style="color: #657422;">handle =</span> h1)<span class="sc" style="color: #5E5E5E;">$</span>content),</span>
+<span id="cb2-21">  <span class="at" style="color: #657422;">na.strings =</span> <span class="st" style="color: #20794D;">""</span></span>
+<span id="cb2-22">  )</span></code></pre></div>
+<p>Now, the <code>curl::handle_setform()</code> command looks pretty similar to the <code>RCurl::postForm()</code> request, but it needs to be combined with the <code>curl::curl_fetch_memory()</code> command<sup>1</sup>, which has a few quirks:</p>
+<ol type="1">
+<li>It returns the actual data in the <code>content</code> attribute, and not the data frame directly - hence the need for the <code>$content</code></li>
+<li>It returns the data in raw format (and, no, setting the <code>rawOrLabel</code> to label does not solve this), so you need to pass it into <code>base::rawToChar()</code>.</li>
+<li><code>read.csv</code>’s defaults are to accept a filepath, so we use an arguement called <code>text</code> to specify that we’re straight feeding in the actual data in instead.</li>
+</ol>
+<p>The other useful thing to “grab” when working with data tends to be the data dictionary, for which the code looks quite similar:</p>
+<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;">#!/usr/bin/env Rscript</span></span>
+<span id="cb3-2">apisecret <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="st" style="color: #20794D;">'myapikey'</span> <span class="co" style="color: #5E5E5E;"># you get this when you enable REDCap API access for your project</span></span>
+<span id="cb3-3">h2 <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">new_handle</span>()</span>
+<span id="cb3-4"><span class="fu" style="color: #4758AB;">handle_setform</span>(h2,</span>
+<span id="cb3-5">               <span class="st" style="color: #20794D;">'token'</span> <span class="ot" style="color: #003B4F;">=</span> apisecret,</span>
+<span id="cb3-6">               <span class="st" style="color: #20794D;">'content'</span> <span class="ot" style="color: #003B4F;">=</span> <span class="st" style="color: #20794D;">"metadata"</span>, </span>
+<span id="cb3-7">               <span class="st" style="color: #20794D;">'format'</span> <span class="ot" style="color: #003B4F;">=</span> <span class="st" style="color: #20794D;">"csv"</span>,</span>
+<span id="cb3-8">               <span class="st" style="color: #20794D;">'forms[0]'</span><span class="ot" style="color: #003B4F;">=</span> <span class="st" style="color: #20794D;">'myformname'</span>,</span>
+<span id="cb3-9">               <span class="st" style="color: #20794D;">'returnFormat'</span><span class="ot" style="color: #003B4F;">=</span> <span class="st" style="color: #20794D;">'csv'</span>)</span>
+<span id="cb3-10"></span>
+<span id="cb3-11"></span>
+<span id="cb3-12">datadict <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">read.csv</span>(<span class="at" style="color: #657422;">text =</span> <span class="fu" style="color: #4758AB;">rawToChar</span>(</span>
+<span id="cb3-13">  <span class="fu" style="color: #4758AB;">curl_fetch_memory</span>(<span class="st" style="color: #20794D;">"https://redcap.sydney.edu.au/api/"</span>, <span class="at" style="color: #657422;">handle =</span> h2)<span class="sc" style="color: #5E5E5E;">$</span>content)</span>
+<span id="cb3-14">)</span></code></pre></div>
+<p>I hope this is helpful for others who use REDCap on Windows, or who need to write code that works across all of the major operating system platforms!</p>
+
+
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Yes, we could have used the <code>curl::curl_fetch_disk()</code> command to download the file to disk, which seems to work a lot better and actually save the file as a non-binary .csv file. However, for this particular project, I’m doing a lot of data cleaning <em>before</em> I write the output to disk, and I’d rather not store two copies of the same scrape.↩︎</p></li>
+</ol>
+</section></div> ]]></description>
+  <category>Data science</category>
+  <category>R</category>
+  <category>WorkJournal</category>
+  <category>REDCap</category>
+  <guid>https://daryavanichkina.com/posts/2021-04-09-redcap-api-crossplatform.html</guid>
+  <pubDate>Thu, 08 Apr 2021 14:00:00 GMT</pubDate>
+  <media:content url="https://daryavanichkina.com/fig/2104_what2exportREDCap.png" medium="image" type="image/png" height="155" width="144"/>
+</item>
+<item>
+  <title>Living dangerously: a newbie guide to running multiple version of R on a Mac</title>
+  <dc:creator>Darya Vanichkina</dc:creator>
+  <link>https://daryavanichkina.com/posts/2020-05-01-rswitch.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://daryavanichkina.com/posts/https:/unsplash.com/photos/3uunq0n1WRY.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">TBH I want to be this chicken…</figcaption><p></p>
+</figure>
+</div>
+<p>You’d have to be living under a rock in the R community to not be aware of the fact that R 4.0 has been released, with some major changes, the biggest of which is probably the new default for <code>read.table()</code>: <code>stringsAsFactors = FALSE</code>, as well as the fact that <code>matrix()</code> now converts character columns to factors and factors to integers.</p>
+<p>In the past, I’ve always been too “chicken” to try running multiple versions of R on my work laptop, as I’ve usually got a few key analysis projects going that need to be delivered on time and within full feature scope - which means I don’t have time to fix basic version incompatibility bugs. But with this major new release I was sorely tempted, so have gone down the rabbit-hole of installing <a href="https://rud.is/rswitch/guide/">RSwitch</a> and R4.0 on my Mac (Catalina 10.15.4). Below I document, in what is probably excruciating detail, the steps of how I got this to work. I’ve played with it for all of two days, and it seems to work - so I’ve written this post in the hopes of helping others. Also, I had some funky hiccups with getting the right filepath and not using sudo at the outset, so I’m hoping this helps someone avoid some extra <code>rm -r ...path...</code></p>
+<section id="step-0-critical-close-r-rstudio" class="level2">
+<h2 class="anchored" data-anchor-id="step-0-critical-close-r-rstudio">Step 0 (CRITICAL): Close R &amp; RStudio</h2>
+<p>Make sure you have closed R and RStudio prior to embarking on the below. Updating R versions mid-analysis can have … unintended consequences.</p>
+</section>
+<section id="step-1-download-rswitch-and-install-it" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-download-rswitch-and-install-it">Step 1: Download RSwitch and install it</h2>
+<ol type="1">
+<li><a href="https://rud.is/rswitch/">Download RSwitch</a> and install it. Go through all of the hoops of getting it approved by MacOS and able to be run by accepting the risks of running software from an unidentified developer. (Eventually) End up with a nice switch icon in your menubar.</li>
+</ol>
+</section>
+<section id="step-2-get-new-r" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-get-new-r">Step 2: Get new R</h2>
+<p>[As usual] There is more than one way to get a new version of R onto your machine.</p>
+<section id="option-1-gui-imho-riskier" class="level4">
+<h4 class="anchored" data-anchor-id="option-1-gui-imho-riskier">Option 1: GUI (IMHO riskier)</h4>
+<p>Download the graphical installer <code>R-4.0.0.pkg</code>, which is the top link when on <a href="https://cran.r-project.org/">CRAN</a> you click on “Download R for (Mac) OS X”. This is NOT the approach I took, because if done wrong this approach can remove your existing R installation, but I will describe how in theory I think it’s meant to be used below.</p>
+</section>
+<section id="option-2-pre-built-copy-the-approach-i-took" class="level4">
+<h4 class="anchored" data-anchor-id="option-2-pre-built-copy-the-approach-i-took">Option 2: Pre-built copy (the approach I took)</h4>
+<p>Download a pre-built <code>.tar.gz</code> copy of the R framework from the <a href="https://mac.r-project.org/">developer page</a>. In my case, I downloaded the latest stable branch <code>R-4.0-branch.tar.gz (72 Mb)</code>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://daryavanichkina.com/fig/200501_RBuilds.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Which R?</figcaption><p></p>
+</figure>
+</div>
+</section>
+</section>
+<section id="step-3-apply-funky-magic" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-apply-funky-magic">Step 3: Apply funky magic</h2>
+<section id="option-1-gui" class="level4">
+<h4 class="anchored" data-anchor-id="option-1-gui">Option 1: GUI</h4>
+<p>So the reason I think the GUI is “riskier” is because usually when you run the GUI for a new version of R, it cleanly removes the old version of R from your machine. The workaround to prevent this from happening is to make your system, and hence the R installer, “forget” it has R installed. To do this you need to open a Terminal and type the following command:</p>
+<pre><code>sudo pkgutil --forget org.r-project.R.el-capitan.fw.pkg \
+             --forget org.r-project.x86_64.tcltk.x11 \
+             --forget org.r-project.x86_64.texinfo \
+             --forget org.r-project.R.el-capitan.GUI.pkg</code></pre>
+<p>For details about <strong>why</strong> this works see <a href="https://cran.rstudio.org/doc/manuals/R-admin.html#Multiple-versions">here</a>.</p>
+<p>After that completes successfully (note: you’ll need to enter your password to use sudo) you can run the GUI installer.</p>
+</section>
+<section id="option-2-command-line" class="level4">
+<h4 class="anchored" data-anchor-id="option-2-command-line">Option 2: Command line</h4>
+<p>I’m fairly comfortable with the command line, so was happy to use that option, but did make a few silly mistakes with the paths, so am documenting what worked below, in the hope that it helps others:</p>
+<ol type="1">
+<li><p>Use the Terminal (<code>cd ...</code>) to navigate to where you’ve got the <code>R.***.tar.gz</code> and record its location, or -if you already know it - just copy the path to it to the clipboard.</p></li>
+<li><p>Navigate to your root directory: <code>cd /</code></p></li>
+<li><p>Run <code>sudo tar -xvzf path_to_R_tar.gz_file</code>, where <code>path_to_R_tar.gz_file</code> is the path you saved to the clipboard. After you enter your password, R should be installed and you should have the latest version of R active on your machine.</p></li>
+</ol>
+</section>
+</section>
+<section id="step-4-painfully-battle-the-security-stuff" class="level2">
+<h2 class="anchored" data-anchor-id="step-4-painfully-battle-the-security-stuff">Step 4: Painfully battle the security stuff</h2>
+<p>Try to open Rstudio. This is probably something that happens only with Option 2 above, but I got a bunch of security warnings from MacOS and had to “Allow Anyway” a ton (twice) before RStudio was able to load R 4.0.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://daryavanichkina.com/fig/200501_Harm2.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Harm2</figcaption><p></p>
+</figure>
+</div>
+<p>Accept all the things:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://daryavanichkina.com/fig/200501_Harm1.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Harm1</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="step-5-switch" class="level2">
+<h2 class="anchored" data-anchor-id="step-5-switch">Step 5: Switch</h2>
+<p>To go back to having your existing, “production” version of R active on your machine use RSwitch to select that older version:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://daryavanichkina.com/fig/200501_Rswitch.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">pRSwitch</figcaption><p></p>
+</figure>
+</div>
+<hr>
+<p>I hope this post has been helpful, and let me know in a comment if something isn’t working as described or something’s not clear. (Probably) next post: updating libraries…</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Data science</category>
+  <category>R</category>
+  <category>WorkJournal</category>
+  <guid>https://daryavanichkina.com/posts/2020-05-01-rswitch.html</guid>
+  <pubDate>Thu, 30 Apr 2020 14:00:00 GMT</pubDate>
+  <media:content url="https://unsplash.com/photos/3uunq0n1WRY" medium="image"/>
+</item>
+<item>
+  <title>Jumping into digital: Lessons learned while moving live-coding workshops online</title>
+  <dc:creator>Darya Vanichkina</dc:creator>
+  <link>https://daryavanichkina.com/posts/2020-04-07-ardctalk.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>I presented a talk about “Jumping into digital: Lessons learned while moving live-coding workshops online” at the ARDC community webinar series in April 2020.</p>
+<p>The abstract of my talk was:</p>
+<p><em>At ResBaz 2019, I said (on camera) that it is impossible to run a hands-on, live-coding digital skills training workshop online. In March 2020, I led a team of trainers to do exactly this - move our 2-day, Carpentries-style, hands-on Machine Learning in R and Machine Learning in python workshops fully online - in a week! In this talk, I’ll share how we prepared, what we did, how it went, and what lessons we learned. I’ll discuss which platforms we considered, share some technical tidbits on how to set up your online session and, more critically, what to expect when teaching in this very different format. I’ll also highlight some of the challenges we encountered, and try to explain why - even though it was incredibly hard - I think we’ll try teaching online again.</em></p>
+<p>My slides can be found below:</p>
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/hhJbHFBL457YhI" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen="">
+</iframe>
+<div style="margin-bottom:5px">
+<strong> <a href="//www.slideshare.net/DaryaVanichkina1/jumping-into-digital-lessons-learned-while-moving-live-coding-machine-learning-workshops-online" title="Jumping into digital: Lessons learned while moving live coding machine learning workshops online" target="_blank">Jumping into digital: Lessons learned while moving live coding machine learning workshops online</a> </strong> from <strong><a href="https://www.slideshare.net/DaryaVanichkina1" target="_blank">Darya Vanichkina</a></strong>
+</div>
+<p>And, finally, the video is embedded below:</p>
+<iframe width="595" height="335" src="https://www.youtube.com/embed/w0DHye2M1IM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+</iframe>
+<p>Please enjoy, and I’d love comments and discussion below!</p>
+
+
+
+ ]]></description>
+  <category>training</category>
+  <guid>https://daryavanichkina.com/posts/2020-04-07-ardctalk.html</guid>
+  <pubDate>Mon, 06 Apr 2020 14:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Mapping a live coding workshop for digital delivery (part 2)</title>
+  <dc:creator>Darya Vanichkina</dc:creator>
+  <link>https://daryavanichkina.com/posts/2020-04-03-online4instructor2.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>With the advent of COVID-19 we’re all having to do the unthinkable, which for an instructor like me means moving hands-on, practical coding workshops online. I’ve already written a post with a student-facing map of the process (and some tips for students), but I wanted to focus on a few instructor-related aspects of the map in this post.</p>
+<section id="my-personal-teaching-setup" class="level2">
+<h2 class="anchored" data-anchor-id="my-personal-teaching-setup">My personal teaching setup</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://daryavanichkina.com/fig/mysetup2.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">mysetup</figcaption><p></p>
+</figure>
+</div>
+<ul>
+<li><p>I’m incredibly lucky to have access to several machines, which I use to work through materials on all of the platforms and also while teaching.</p></li>
+<li><p>During live teaching, we use two machines: (1) a shared “training” laptop on which we live code or show slides, connected to the projector all day, and (2) our own individual machines, which we use for looking at the notes.</p></li>
+<li><p>For teaching online, I use:</p>
+<ol type="1">
+<li>A primary machine, with a good camera, as my teaching machine. This has a vanilla setup of RStudio and/or Jupyter, notifications are turned off and all I can see are the things I need to teach. This laptop has only the one, built-in screen.</li>
+<li>A secondary machine, a.k.a. my command centre. This machine has my back-channel open, Zoom gallery view (I log in twice to the training) so I can see my learners, Zoom chats and Participants all visible. My notes are <em>printed out</em> on paper, as I have enough screens and windows to try to juggle.</li>
+<li>A third machine, which has one (small-ish) screen, and shows me what a learner with only one laptop/desktop screen is seeing. This is not essential, but helps me adjust font sizes and window widths to make sure people can actually live code along with me, without needing to rely on my co-instructors (I still ask students if it’s OK, of course, but this helps me self-adjust faster).</li>
+<li>I use an iPad if I need access to whiteboard (see below).</li>
+</ol></li>
+</ul>
+</section>
+<section id="back-channel-communication-whispering-in-someones-ear" class="level2">
+<h2 class="anchored" data-anchor-id="back-channel-communication-whispering-in-someones-ear">Back-channel communication: whispering in someone’s ear</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://daryavanichkina.com/posts/https:/images.unsplash.com/photo-1482356432770-3a99f07aba35?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=80" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">whisper</figcaption><p></p>
+</figure>
+</div>
+<ul>
+<li><p>You need a quick and easy way to communicate between you and your co-instructors. I recommend a different, secondary chat application for this, for example Microsoft Teams or Slack (or Telegram/Whatsapp - whatever), if you’re using Zoom as your primary teaching tool.</p></li>
+<li><p>Ideally, you set up two channels in this: one for urgent messages to the instructor who’s teaching (“YOUR SCREEN IS TINY!”), and another for non-teaching instructors to communicate with each other. This allows your helpers to communicate about challenging software installs (“Do you have any experience updating R libraries on Ubuntu?”), delegate responsibilities (“Can you take over host please? I really need a break for 3 minutes!”) and otherwise manage the class - but all of this is not relevant for the instructor who’s teaching and can actually distract them if they keep getting pinged about it.</p></li>
+</ul>
+</section>
+<section id="common-problems-learner-with-setup-challenges" class="level2">
+<h2 class="anchored" data-anchor-id="common-problems-learner-with-setup-challenges">Common problems: learner with setup challenges</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://daryavanichkina.com/posts/https:/images.unsplash.com/photo-1495821697794-a40e5fca2830?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">challenges</figcaption><p></p>
+</figure>
+</div>
+<ul>
+<li><p>First and foremost, send out detailed setup and installation instructions, complete with screenshots, to your learners several days before the course. Remind them to email you with screenshots of any error messages, or - if you’re teaching a large class - get them to post the screenshots into a shared document, and encourage peers to help.</p></li>
+<li><p>Second, provide the opportunity for learners who have had issues to join the meeting an hour early and try to get help (yes, this means I’m online at 8 am for a 9 am class).</p></li>
+<li><p>My preferred way of helping debug issues is to have learners post a screenshot of the error message into a specific place in the shared document we’re using, and for me to guide them in trying to fix it (via the Zoom chat if at all possible - but note it doesn’t work well with line breaks, so you may need to use the shared doc for pasting code as well).</p></li>
+<li><p>Tools like Zoom do provide the functionality to share screens and take over someone’s desktop, BUT I’ve found taking screenshots is faster, doesn’t require you to jump out into a breakout room (so the learner doesn’t miss out on core content), and doesn’t cause bandwidth problems (I’ve tried taking over learners’ desktops with suboptimal bandwidth, and it kicked both of us out of the session).</p></li>
+<li><p>Finally, it can be helpful to have a backup cloud platform for teaching as well, as the digital equivalent of spare laptops. We’ve been successful using <a href="https://mybinder.org/">mybinder.org</a> for python, and have tried but not productionised <a href="https://rstudio.cloud">rstudio.cloud</a> for R. I’d love a suggestion for an online terminal for teaching basic Unix!</p></li>
+</ul>
+</section>
+<section id="common-problems-poor-internet-connectivity" class="level2">
+<h2 class="anchored" data-anchor-id="common-problems-poor-internet-connectivity">Common problems: poor internet connectivity</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://daryavanichkina.com/posts/https:/images.unsplash.com/photo-1518016491499-75f85ea4c86d?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">connectivity</figcaption><p></p>
+</figure>
+</div>
+<ul>
+<li><p>If you are having issues with your connection, consider (1) switching to slides/screenshare-only mode, (2) ensuring your device has priority on your home WiFi network, (3) trying to teach via a personal hotspot or (4) swapping to another instructor teaching<sup>1</sup>. This is something you can communicate about with your team via the back-channel - and a key reason the back-channel needs to use very little bandwidth!</p></li>
+<li><p>For learners, you can try asking them to turn off their video, and possibly also closing other tabs/devices connected to the internet.</p></li>
+</ul>
+</section>
+<section id="common-problems-tool-stack-meltdown" class="level2">
+<h2 class="anchored" data-anchor-id="common-problems-tool-stack-meltdown">Common problems: Tool stack meltdown</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://daryavanichkina.com/posts/https:/images.unsplash.com/photo-1516537219851-920e2670c6e3?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=80" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">volcano</figcaption><p></p>
+</figure>
+</div>
+<ul>
+<li><p><strong>EXPECT</strong> your primary tool stack to melt down. If you are using Zoom/Teams/GoToMeeting, expect your platform to go down at least once during the training (it’s great if it doesn’t, but you’re prepared if it does!). Have a plan, with your co-instructors, what you’re going to do: switch to another tool? take an off-schedule break? Something else?</p></li>
+<li><p>Explicitly tell your students how you’ll communicate with them to let them know where to go in the event of a breakdown. For us, I prefer using the shared doc, but an email would also work (albeit might be slower, as they’re hopefully not checking email while we’re teaching).</p></li>
+</ul>
+</section>
+<section id="shared-documents" class="level2">
+<h2 class="anchored" data-anchor-id="shared-documents">Shared documents</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://daryavanichkina.com/posts/https:/images.unsplash.com/photo-1545377079-08d414f11a5f?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">shareddoc</figcaption><p></p>
+</figure>
+</div>
+<ul>
+<li><p>A shared, student-editable document is essential for successful delivery of training.</p></li>
+<li><p>My primary criteria for a shared document include:</p>
+<ol type="1">
+<li>It is editable by all students (ideally without logging in),</li>
+<li>It doesn’t take up too much screen real estate,</li>
+<li>It allows you to post images by copy-pasting them in,</li>
+<li>It doesn’t require any cognitive overhead for learners to figure out how to use it.</li>
+</ol></li>
+<li><p>The official solution recommended by the University of Sydney is a Microsoft Office Online Word document.</p></li>
+<li><p>I have had success using Google Docs. I provide a link to a public doc, so learners don’t have to log in with their Google Account, and ensure that no student data is collected in the doc (i.e.&nbsp;learners can use first names or pseudonyms only on the doc). Most people have used Docs, so there is no overhead in figuring out how to use the tool - we can just dive in and move on.</p></li>
+<li><p>There are tools like the <a href="https://etherpad.org/">Etherpad</a>, <a href="https://hackmd.io">hack.md</a> and an open-source, self-hosted version called <a href="https://demo.codimd.org/">CodiMD</a>. The latter two support document creation in markdown, which is great because it’s plain text, but also not so great, because it uses more screen real estate than Google docs (especially with the preview pane open side by side with the markdown itself).</p></li>
+<li><p>What goes in the Doc? My (non-exhaustive) check-list includes:</p>
+<ul>
+<li>The title of the course</li>
+<li>The names of all of the instructors who are part of the teaching team</li>
+<li>Links to the course materials</li>
+<li>Links to any data downloads</li>
+<li>Links to the registration page for the course</li>
+<li>Links to pre and post workshop surveys</li>
+<li>Details about the zoom meeting, and every possible way learners can log onto it</li>
+<li>Links to the setup instructions and tests that setup completed successfully</li>
+<li>[Links to the mybinder or Rstudio cloud instance, if using as a backup]</li>
+</ul></li>
+</ul>
+</section>
+<section id="code-transfer" class="level2">
+<h2 class="anchored" data-anchor-id="code-transfer">Code transfer</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://daryavanichkina.com/posts/https:/images.unsplash.com/photo-1542903660-eedba2cda473?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">codetransfer</figcaption><p></p>
+</figure>
+</div>
+<ul>
+<li><p>Sometimes you need to share a chunk of code with your learners. While you can paste it into the shared document or Zoom chat, often these tools will do strange things with spaces and quotes.</p></li>
+<li><p>Instead, I recommend pasting them into a public <a href="https://gist.github.com/">GitHub gist</a>, sharing the link with your learners via the chat, and screen sharing how you would access the gist and move it into your R/python session.</p></li>
+</ul>
+</section>
+<section id="whiteboard" class="level2">
+<h2 class="anchored" data-anchor-id="whiteboard">Whiteboard</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://daryavanichkina.com/posts/https:/images.unsplash.com/photo-1532619675605-1ede6c2ed2b0?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=80" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">whiteboard</figcaption><p></p>
+</figure>
+</div>
+<ul>
+<li><p>In an in-person live coding class, I often use the whiteboard when answering student questions or working through problems.</p></li>
+<li><p>Digitally, I’m a lot more hesitant to use one, if only because it takes away screen real estate from the other things I’m doing, which are often more important for the learners to see at the time.</p></li>
+<li><p>However, I have had success using my iPad and both GoodNotes and Notability when I needed a digital whiteboard, following the instructions <a href="https://www.youtube.com/watch?v=8TI43FzHd6Q">here</a>.</p></li>
+</ul>
+<hr>
+<p>I hope these two posts are helpful for you as you prepare to jump into teaching online! Please leave a comment below if you found something useful, unclear or would like to add something else I missed!</p>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>This is why we say all instructors have to be able to teach all content! If you think it’s different in-person, ask me about the time I had a massive, I-can’t-stop-even-if-I-try-really-hard coughing fit in the middle of teaching. I literally walked out of the classroom to try not to die in public, waving vaguely to my co-instructor to go on without me (which she very successfully did). That’s also when I discovered, after 20 minutes of searching, that there is no student-accessible hot water tap in the Sydney Uni Quadrangle (!), and was able to soothe my throat only after some kind caterers who were wrapping up for the day shared a pot of hot honey lemon tea.↩︎</p></li>
+</ol>
+</section></div> ]]></description>
+  <category>training</category>
+  <guid>https://daryavanichkina.com/posts/2020-04-03-online4instructor2.html</guid>
+  <pubDate>Thu, 02 Apr 2020 13:00:00 GMT</pubDate>
+  <media:content url="https://daryavanichkina.com/fig/mysetup2.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Mapping a live coding workshop for digital delivery</title>
+  <dc:creator>Darya Vanichkina</dc:creator>
+  <link>https://daryavanichkina.com/posts/2020-04-02-online4instructors.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>With the advent of COVID-19 we’re all having to do the unthinkable, which for an instructor like me means moving hands-on, practical coding workshops online. In this post, I’ll provide a map that helped me formalise how I broke down our workshops into components, and tried to map each of them to an online tool, platform or approach. I’ve used Zoom for most of the examples below, since that’s what I’ve used for teaching, but I’m sure that most of this functionality is well supported by other online meeting tools.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://daryavanichkina.com/posts/https:/images.unsplash.com/photo-1581043144435-ebcd25885809?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=80" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">NameTag</figcaption><p></p>
+</figure>
+</div>
+<section id="preliminaries" class="level2">
+<h2 class="anchored" data-anchor-id="preliminaries">Preliminaries</h2>
+<p>A learners arrives in my training room. They:</p>
+<ol type="1">
+<li><strong>Sign in on a sign-in sheet</strong>
+<ul>
+<li>The “Host” can take a screenshot of all of the participants, in gallery view, and/or a list of the names of Participants, approximately 30 minutes after the session begins<sup>1</sup>.</li>
+</ul></li>
+<li><strong>Make a name tag for themselves</strong>
+<ul>
+<li>Rename themselves in Zoom to their preferred name, faculty or school (depending on teaching cohort) and preferred pronoun, so I’d become, for example “Darya (SIH, she/her)”.</li>
+<li>This can sometimes make it tricky to match names to emails, which is what we use as our unique key for registration. That’s why I try to check people in during the day, and clarify with a private chat message asking what someone’s email is if I’m unable to unambiguously match them to their email.</li>
+</ul></li>
+<li><strong>Find a seat</strong>
+<ul>
+<li>There are several ways to allocate learners to a breakout room. First, you can use the faculty details in the naming convention above to group people by discipline, school or faculty.
+<ul>
+<li><em>This can present challenges downstream if a particular aspect of your course is better aligned with one domain’s background knowledge than another’s. For example, I use a problem with cancer patients and controls, which for me (and most people with a biomedical background) obviously indicates that the latter group are healthy, possibly/ideally age/gender matched people without cancer. When I grouped people by Faculty, the life and health sciences team powered through the challenge, whereas the engineers ended up spending a lot of time wrapping their heads around what a control was in this context.</em></li>
+<li>So in the future I think I’ll stick to what happens in real life, and mix people by first letter of name or order of popping into the course, similar to how learners tend to randomly sit together in a 3D classroom.</li>
+</ul></li>
+</ul></li>
+</ol>
+</section>
+<section id="workshop-start" class="level2">
+<h2 class="anchored" data-anchor-id="workshop-start">Workshop start</h2>
+<ol type="1">
+<li><strong>Chat to their neighbours</strong>
+<ul>
+<li>In a 3D workshop this is part of the preliminaries, but you as the instructor have to actively normalise this online.</li>
+<li>It’s one of the hardest things to replicate: the productive interactions and relationship-building/networking among learners that happens when you work together on a bunch of tasks for 2 days straight.</li>
+<li>A somewhat useful replacement that gets learners talking is an icebreaker task (<a href="https://carpentries.github.io/instructor-training/icebreakers/">ideas here</a>), which can either be posted into the shared document OR carried out orally in small groups in breakout rooms. I find it helpful, in addition to asking about something relatable (“What was the most interesting thing you learned working from home last week?”) to ask about learners’ setups and screens (“What does your learning setup look like today?”). That way, I can suggest tweaks, such as logging in from a mobile device as a modification of a two screen setup. Another option is to ask the latter <a href="https://support.zoom.us/hc/en-us/articles/213756303-Polling-for-Meetings">as a poll</a>.</li>
+</ul></li>
+<li><strong>Code of Conduct</strong>
+<ul>
+<li>All workshops need a <a href="https://sydney-informatics-hub.github.io/codeofconduct/">Code of Conduct</a>, which establishes the norms of behaviour you expect to support everyone’s learning. Online, I add information about expectations for private messaging and screen sharing, as well as recording (nope!).</li>
+<li>I also ask people to let me know (via a private chat message, at any point in the workshop) if they’re uncomfortable with me explicitly calling on them, as one of the biggest challenges of teaching online (and off) is extroverts dominating the conversation. To prevent this, I keep a tally of who I’ve called on, but I also want to make sure I don’t make someone who’s wrangling a child or responding to 50 emails about a grant deadline to feel uncomfortable or pressured.</li>
+</ul></li>
+<li><strong>Schedule</strong>
+<ul>
+<li>Just like a “normal” class, I use a slide to walk learners through the schedule, explain how the course content is linked and when breaks will happen.</li>
+</ul></li>
+<li><strong>Sticky notes</strong>
+<ul>
+<li>In a Carpentries workshop, we have a very special way of using <a href="https://dynamicecology.wordpress.com/2015/01/13/sticky-notes-as-a-teaching-and-lab-meeting-tool/">sticky notes</a> to gauge learner state and assess who needs help - without them having to hold their hand up for hours. Zoom is great because it’s a digital platform that allows us to replicate the same - BUT it’s important to recognise that using this feature in Zoom costs screen real estate (and cognitive load!), so may need to be relied on sparingly during some portions of the class, especially the live coding ones!</li>
+<li>To replicate stickies in Zoom you can use the <strong><a href="https://support.zoom.us/hc/en-us/articles/115001286183-Non-verbal-Feedback-During-Meetings">Non-verbal Feedback</a> functionality</strong>:</li>
+</ul></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://daryavanichkina.com/posts/https:/assets.zoom.us/images/en-us/desktop/generic/in-meeting/participants-list-status-icons.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">NonverbalFeedback</figcaption><p></p>
+</figure>
+</div>
+<ul>
+<li><p>While there are a LOT of options, we tended to use only the “Hand up”, “Yes” and “No” options, as (1) you can only use one of these statuses at a time, and (2) we wanted to know whether students were good (“Yes”), needed a helper to reach out (“No”), or wanted to ask a question (“Hand”). The Hand functionality is also quite helpful for the instructor, as it automatically places the person with the hand up at the top left in Gallery view mode.</p></li>
+<li><p>I’ll also mention <a href="https://support.zoom.us/hc/en-us/articles/360038311212-Meeting-reactions"><strong>Reactions</strong></a> here, which unlike Non-verbal feedback are a non-persistent way learners can tell you that all is good: they’re displayed on screen for 5 seconds, and are overlaid <em>over</em> a learners picture in Gallery view. You can only show “thumbs up” or “clap”, so they’re not very helpful for getting negative feedback. Our learners used them intuitively, without us providing explicit instructions, to let us know that they didn’t have any questions during the frequent pauses we made to ask “Does anyone have any questions?/Are there any questions?/What’s unclear about what we just did?”.</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://daryavanichkina.com/posts/https:/zoom-support-cdn.s3.amazonaws.com/images/en-us/desktop/generic/shared-screen-with-reactions.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">galleryviewwithreactions</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="slide-centric-sessions" class="level2">
+<h2 class="anchored" data-anchor-id="slide-centric-sessions">Slide-centric sessions</h2>
+<p>In some of our intermediate sessions, we then dive into slides, with a small slide deck (20 minutes max) that provides some theory and a few conceptual challenge tasks. With these sessions, I</p>
+<ol type="1">
+<li><p>Start by showing learners how best to set up their screens for learning, including if they want to take notes or ask questions via the chat.</p></li>
+<li><p>Make sure I explicitly provide a link to where they can download the slides, so they can annotate a copy as we go, on their own machine.</p></li>
+<li><p>Set up the norms of asking questions: use the chat (or the shared doc, but ideally not both), and have my hosting co-instructor interrupt me during short pauses if I miss a question that a learner asked that would be best answered during that particular slide/mini-session vs at the end of the presentation.</p></li>
+</ol>
+</section>
+<section id="live-coding-sessions" class="level2">
+<h2 class="anchored" data-anchor-id="live-coding-sessions">Live coding sessions</h2>
+<p>These form the core of our workshops, with sessions of coding along interspersed with short, formative assessment tasks, including multiple choice questions, faded examples and more complex, unscaffolded challenge tasks. Live coding is the most challenging aspect to “port” to digital. The key things that help make these work (somewhat):</p>
+<ol type="1">
+<li>Make sure you use/share/project only 1/2 of your screen, and use an appropriate coding “tool” that encompasses everything in that 1/2 screen. This means jupyter notebooks and the terminal are in, but RStudio/a .R script, in it’s native implementation, is out - they just take up too much screen real estate! The best work-around I’ve found so far is to use an Rmarkdown document, with inline output for figures. This is what you get the settings to look like:</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://daryavanichkina.com/fig/200401_RstudioInline.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">inlinesetup</figcaption><p></p>
+</figure>
+</div>
+<p>And this is what the learners’ screens looked like:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://daryavanichkina.com/fig/2004_howtoscreen.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">howtoo</figcaption><p></p>
+</figure>
+</div>
+<ol start="2" type="1">
+<li><p>During the training, start by showing learners how best to set up their screens for learning.</p></li>
+<li><p>If you do decide (or your learners just go) to move to more of a watch me narrate and code, I highly recommend having the challenge tasks commented out in a single code file you distribute throughout the day - so a .py or a .R or (possibly) even a .sh script, although I’m not sure about the latter, as most intro Unix courses don’t necessarily work a lot with shell scripts. Learners can then uncomment the challenges as they go, and work through them at the appropriate times.</p></li>
+</ol>
+</section>
+<section id="breakout-rooms-and-challenge-tasks" class="level2">
+<h2 class="anchored" data-anchor-id="breakout-rooms-and-challenge-tasks">Breakout rooms and challenge tasks</h2>
+<p>Peer learning has been shown in numerous studies to be one of the most effective ways of getting students to learn. In our in-person training sessions, we encourage learners to sit in a group and, for every challenge task, to start working on it themselves, then share their solution or any encountered problems with their neighbour, then their table and - finally - when the group has solves it - with the class. To replicate this in an online environment we used Zoom <a href="https://support.zoom.us/hc/en-us/articles/206476093-Getting-Started-with-Breakout-Rooms">breakout rooms</a>, with a few caveats:</p>
+<ol type="1">
+<li><p>The host - who is NOT the person teaching - needs to set up the maximum number of breakout rooms at the beginning of the training session. Note that ONLY the host, and NOT the co-hosts, can set up breakout rooms and allocate people to them!</p></li>
+<li><p>We send groups of 3-5 learners, plus one co-instructor, into each breakout room. Unlike an in-person event, in a digital skills training we found that it took learners a few minutes to adjust to the breakout context and figure out what they were meant to do and where - so the instructor in each room helped guide this process.</p></li>
+<li><p>Right before a challenge task we’d paste the text of the task into the chat AND add it into our shared document. This meant that all learners had easy access to the activity. Note that the chat in a breakout room can only happen between people IN that room, so if learners are all in a room and want to message the host, who is NOT in their room, they can’t do this! So if you’ve got more rooms than co-instructors it can be helpful to have them post requests for help into the shared document, after which you can jump into the room; they can also ask for help via the app:</p></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://daryavanichkina.com/posts/https:/assets.zoom.us/images/en-us/desktop/generic/ask-for-help-button.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">help</figcaption><p></p>
+</figure>
+</div>
+<ul>
+<li>The red/green “No”/“Yes” participant statuses are not visible to the host from outside a breakout room, so using them to replace stickies doesn’t work in this context.</li>
+<li>Note that users joined via the web client, Chromebooks/Chrome OS or Zoom Rooms are unable to join Breakout Rooms! Zoom suggests the main room as an alternative session for these users, but we’d recommend explicitly requesting learners to use an installed version of the app/an individual machine instead of the web client or room.</li>
+</ul>
+<p>To mimic the green sticky system of in-person teaching, the instructors can use the back-channel to communicate about where their group is in the task OR - if you’ve got rooms without instructors - I’d recommend learners use the shared document to update you when they’ve completed each of the components of the challenge task.</p>
+<ul>
+<li>When everyone’s back together ask for a volunteer early on, then, later in the day, call on people to prevent extroverts from dominating the reporting.</li>
+</ul>
+</section>
+<section id="casual-chats-with-instructors-and-other-learners" class="level2">
+<h2 class="anchored" data-anchor-id="casual-chats-with-instructors-and-other-learners">Casual chats with instructors and other learners</h2>
+<p>This is impossible to fully replicate online, BUT as a workaround: plan for at least one of your instructors to be in the meeting during the morning and afternoon “tea” breaks (Labelled “HERE” below). My “standard” workshop schedule looks like this:</p>
+<ul>
+<li>09:00 am - 10:30 am - Training</li>
+<li><strong>10:30 am - 11:00 am - “Morning tea”</strong> &lt;- HERE</li>
+<li>11:00 am - 12:30 pm - Training</li>
+<li><strong>12:30 pm - 1:30 pm - Lunch</strong></li>
+<li>1:30 pm - 3:00 pm - Training</li>
+<li><strong>3:00 pm - 3:30 pm - “Afternoon tea”</strong> &lt;- HERE</li>
+<li>3:30 pm - 5:00 pm - Training</li>
+</ul>
+<p>What does that instructor do? Small talk at the least, and - usually - after getting to know the learners a bit, they WILL ask you questions about their research, your work or other “stuff” related to the course. It also allows you to reassure them you believe they can learn the content AND that even if their setup is “weird” (according to them) they can still succeed in the course and use the tools and techniques later on.</p>
+<hr>
+<p>Whew! That ended up being a long post! In the <a href="https://daryavanichkina.com/posts/2020-map-digital-2/">next post</a> of this series, I’ll explore some common problems and how to deal with them, as well as discuss how to replicate instructor-instructor communication. If you’re a learner, <a href="https://daryavanichkina.com/posts/2020-great-online-learning-student/">this post</a> is for you!</p>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>I find 30 - 45 minutes into the first session to be that sweet spot by which time everyone has joined, but people who identify that the training is not for them/they have conflicting scheduling responsibilities have not dropped out yet.]↩︎</p></li>
+</ol>
+</section></div> ]]></description>
+  <category>training</category>
+  <guid>https://daryavanichkina.com/posts/2020-04-02-online4instructors.html</guid>
+  <pubDate>Wed, 01 Apr 2020 13:00:00 GMT</pubDate>
+  <media:content url="https://images.unsplash.com/photo-1581043144435-ebcd25885809?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=80" medium="image"/>
+</item>
+<item>
+  <title>Having a great online learning experience: a guide for students</title>
+  <dc:creator>Darya Vanichkina</dc:creator>
+  <link>https://daryavanichkina.com/posts/2020-04-01-online4students.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>With the advent of COVID-19 we’re all having to do the unthinkable, which for an instructor like me means moving hands-on, practical coding workshops online. In this post, I’ll outline a few key things you can do as a <strong>learner</strong> to have what is hopefully the best possible experience attending synchronous online training.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://daryavanichkina.com/posts/https:/images.unsplash.com/photo-1534481016308-0fca71578ae5?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=100" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">airplane</figcaption><p></p>
+</figure>
+</div>
+<section id="follow-your-instructors-instructions" class="level3">
+<h3 class="anchored" data-anchor-id="follow-your-instructors-instructions">1. Follow your instructor’s instructions</h3>
+<section id="install-all-the-things---and-test-them" class="level4">
+<h4 class="anchored" data-anchor-id="install-all-the-things---and-test-them">Install all the things - and test them</h4>
+<p>First and foremost, triple-check that you have installed <em>everything</em> your instructor has suggested, and tested - as much as you know how to - that it works. There are a plethora of online learning tools and platforms out there, and chances are that your instructor would have told you to install a whole bunch of stuff. For example, we use Zoom, Google Docs, and Microsoft Teams in addition to the “normal” R + packages/python + libraries in our classes! - that’s a lot of stuff to install and set up!</p>
+</section>
+<section id="versions-matter" class="level4">
+<h4 class="anchored" data-anchor-id="versions-matter">Versions matter!</h4>
+<p>Make sure you check which versions of particular tools or software packages your instructors need you to have. Note: it’s almost always prudent to update to the <em>latest</em> ones, since this is often what your instructors will test with (unless they have <em>explicitly</em> specified not to!).</p>
+</section>
+<section id="dont-panic---let-your-instructor-know-asap" class="level4">
+<h4 class="anchored" data-anchor-id="dont-panic---let-your-instructor-know-asap">Don’t panic - let your instructor know ASAP</h4>
+<p>If you have an older machine, can’t update some packages OR are getting errors:</p>
+<ol type="1">
+<li>Don’t panic!</li>
+<li>Google the error: solve it if you can, or copy the links to the top hits if the proposed solutions make no sense to you.</li>
+<li>Let your instructors/TAs know as soon as possible, for example via email. Attach a screenshot of the error, and a link to any Google stuff you found - this will help them solve the problem faster.</li>
+<li>If you’re working on an older machine and can’t get the things you need working: if you email them your instructors will know in advance. This means they may be able to provide you with access to Google Colab or RStudio Cloud or another platform, where you are likely to be able to do most if not all of the things - but these require advanced setup, so it’s very helpful to give your instructor a heads up!</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://daryavanichkina.com/posts/https:/images.unsplash.com/photo-1428223501723-d821c5d00ca3?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=100" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">setup</figcaption><p></p>
+</figure>
+</div>
+</section>
+</section>
+<section id="setup-your-setup" class="level3">
+<h3 class="anchored" data-anchor-id="setup-your-setup">2. Setup your setup</h3>
+<section id="use-headphones-with-a-mic-if-you-can" class="level4">
+<h4 class="anchored" data-anchor-id="use-headphones-with-a-mic-if-you-can">Use headphones with a mic (if you can)</h4>
+<p>If at all possible, try to use a pair of USB or Bluetooth headphones, ideally with a built-in mic (less essential), over trying to talk and especially listen over computer audio. Working from home for the past week, I’ve had countless occasions of chatty operators of deafening leaf blowers, friendly neighbours who speak to each other over three fences, and crying toddlers (my contribution to the fray) - all during important meetings where I needed to hear and occasionally speak. My in-ear Apple Airpods were a lifesaver - and my older wired headphones would have worked just as well! Wearing noise cancelling headphones OVER Airpods was my personal lifehack against that leaf-blower - although remember that this affects the mic if you need to speak!</p>
+</section>
+<section id="use-two-screens-if-you-can" class="level4">
+<h4 class="anchored" data-anchor-id="use-two-screens-if-you-can">Use two screens (if you can)</h4>
+<p>In a workshop that involves live coding you’ll want to have you instructor’s video open as well as some place on your local machine that you’re following along and reproducing their code. In the case of R and python this can be especially challenging, as you’d normally want to use and IDE like RStudio or the Jupyter notebook or VSCode, all of which take <em>a lot</em> of screen real estate. Your instructor may also be using one of these IDEs for teaching, which means if you shrink their video too much you won’t be able to see what you’re typing! So if at all possible - use two screens: one for video, and one for coding.</p>
+<p>If you don’t have a secondary monitor, there are a few things you can still do. First, you can use a tablet, such as an iPad, or even a mobile phone (if it has a big screen) to show your instructor’s video, as you code along on your primary machine. This will be especially helpful if you’ve got a small-screen laptop. Second, you can tweak some settings in your video conferencing tool of choice, outlined below, to help you make the most of the screen real estate you do have!</p>
+</section>
+<section id="tweak-your-zoom" class="level4">
+<h4 class="anchored" data-anchor-id="tweak-your-zoom">Tweak your Zoom</h4>
+<p><em>Note: These instructions are for Zoom, but from what I’ve seen of Cisco Webex, Microsoft Teams and other tools, most of this applies too:</em></p>
+<ol type="1">
+<li><strong>Don’t</strong> enter full-screen by default when joining a meeting. You can configure this in the Zoom Settings tab. This will allow you to have your instructor’s video on 1/2 of your screen, and your own code on the other half.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://daryavanichkina.com/fig/2003_zoomsettingsGeneral.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">General Zoom Settings</figcaption><p></p>
+</figure>
+</div>
+<ol start="2" type="1">
+<li>Make sure you are always muted by default when you join a meeting, and can selectively unmute!</li>
+</ol>
+<p>This prevents you from accidentally interrupting your instructor - or having your co-learners listen in on a personal conversation!</p>
+<ol start="3" type="1">
+<li>Use a <a href="https://support.zoom.us/hc/en-us/articles/210707503-Virtual-Background">virtual background</a></li>
+</ol>
+<p>If you’d like (and can - this feature requires some processing power), zoom can hide the room behind you with a virtual background. This can conceal partners, kids, pets and piles of laundry - although it’s not magic, so you will have to fold it eventually.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://daryavanichkina.com/posts/https:/images.unsplash.com/photo-1516534775068-ba3e7458af70?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=80" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">testing</figcaption><p></p>
+</figure>
+</div>
+</section>
+</section>
+<section id="test-your-setup" class="level3">
+<h3 class="anchored" data-anchor-id="test-your-setup">3. Test your setup!</h3>
+<ol type="1">
+<li><p>Most online meeting tools will allow you to have a meeting with yourself, or to join a test meeting. It’s great to try this the night before the workshop, at the latest, as you set up your workspace. <a href="https://support.zoom.us/hc/en-us/articles/201362283-Testing-computer-or-device-audio">Here</a> is a link for how to do this in zoom.</p></li>
+<li><p>For the programming tools, try opening them and seeing what start-up messages are printed. If there’s a warning or something doesn’t look right or hangs it might be helpful to reach out to your instructor.</p></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://daryavanichkina.com/posts/https:/images.unsplash.com/photo-1517842645767-c639042777db?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=80" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">notes</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="set-up-for-notes" class="level3">
+<h3 class="anchored" data-anchor-id="set-up-for-notes">4. Set up for notes</h3>
+<p>Think about how you plan to take notes. In a face to face class, it’s usually easy to have a note-taking app open on your computer, but with the extra windows that you’ll have open with digital teaching, it might be a bit much to try to switch windows all the time. Consider whether you’d prefer to take paper notes, or use a tablet or other secondary device for note-taking instead.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://daryavanichkina.com/posts/https:/images.unsplash.com/photo-1508726096737-5ac7ca26345f?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=80" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">norms</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="make-sure-to-note-the-norms" class="level3">
+<h3 class="anchored" data-anchor-id="make-sure-to-note-the-norms">5. Make sure to note the norms</h3>
+<p>At the beginning of class your instructor will most likely introduce the norms of behaviour:</p>
+<ul>
+<li>How do you ask questions?</li>
+<li>Raise your hand to volunteer to answer?</li>
+<li>Ask for and get help?</li>
+<li>Communicate with other learners?</li>
+</ul>
+<p>Make sure to pay attention to this bit, since - just like an airplane - different instructors will use the same tools differently sometimes, and you don’t want to use the “Hand up” feature for 2 hours waiting for someone to help you if you were supposed to paste into the chat instead.</p>
+<hr>
+<p>I hope the above check-list is helpful for you as you prepare to jump into learning online! Please leave a comment below if I’ve missed something or something is not clear.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>training</category>
+  <guid>https://daryavanichkina.com/posts/2020-04-01-online4students.html</guid>
+  <pubDate>Tue, 31 Mar 2020 13:00:00 GMT</pubDate>
+  <media:content url="https://images.unsplash.com/photo-1534481016308-0fca71578ae5?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=100" medium="image"/>
+</item>
+<item>
+  <title>R for Data Science Day 1</title>
+  <dc:creator>Darya Vanichkina</dc:creator>
+  <link>https://daryavanichkina.com/posts/2019-12-04-r-for-data-science-day-1.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>I am incredibly excited that RStudio has begun an <a href="https://education.rstudio.com/trainers/">instructor certification program</a> based on the Carpentries, so of course I signed up as soon as my overcommited nature allowed! This also provides me with the excuse and motivation to finally formally work my way through <a href="https://r4ds.had.co.nz/">R for Data Science</a>, a book I have read while waiting for GTT tests during my pregnancy and google-landed upon an umpteen number of times while debugging code, but never taken the time to sit down and do the exercises for - and of course the pedagogue in me knows quite well that THAT is how you actually learn and internalise the principles and concepts in any material, especially if it deals with programming and analysis. So over the next few weeks I plan to work my way through R4DS, and this post is the first in which I dive into the exercises.</p>
+<hr>
+<section id="personal-highly-non-exhaustive-notes-on-section-i-explore" class="level2">
+<h2 class="anchored" data-anchor-id="personal-highly-non-exhaustive-notes-on-section-i-explore">Personal, highly non-exhaustive notes on section I: Explore</h2>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;">library</span>(tidyverse)</span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;">theme_set</span>(<span class="fu" style="color: #4758AB;">theme_minimal</span>())</span></code></pre></div>
+<section id="steps-of-the-data-pipeline" class="level3">
+<h3 class="anchored" data-anchor-id="steps-of-the-data-pipeline">Steps of the data pipeline:</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<figure class="figure">
+<img src="https://daryavanichkina.com/posts/https:/d33wubrfki0l68.cloudfront.net/795c039ba2520455d833b4034befc8cf360a70ba/558a5/diagrams/data-science-explore.png" title="Tidy Data Pipeline" class="img-fluid figure-img">
+</figure>
+<p></p><figcaption class="figure-caption">https://r4ds.had.co.nz/explore-intro.html</figcaption><p></p>
+</figure>
+</div>
+<ul>
+<li><strong>Import</strong>: take data stored in a file, database, or web API, and load it into a data frame in R.</li>
+</ul>
+</section>
+<section id="wrangling" class="level3">
+<h3 class="anchored" data-anchor-id="wrangling">Wrangling:</h3>
+<ul>
+<li><p><strong>Tidying</strong> - storing data in a consistent form that matches the semantics of the dataset with the way it is stored. In brief, when your data is tidy, each column is a variable, and each row is an observation.</p></li>
+<li><p><strong>Transformation</strong></p>
+<ul>
+<li>narrowing in on observations of interest (like all people in one city, or all data from the last year),</li>
+<li>creating new variables that are functions of existing variables (like computing speed from distance and time),</li>
+<li>calculating a set of summary statistics (like counts or means). Together, tidying and transforming are called wrangling</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="small-data-vs-big-data" class="level2">
+<h2 class="anchored" data-anchor-id="small-data-vs-big-data">Small data vs big data</h2>
+<ul>
+<li>Small/medium data: hundreds of megabytes of data, and with a little care up to 1-2 Gb of data.</li>
+<li>If you’re routinely working with larger data (10-100 Gb, say), you should learn more about data.table.</li>
+</ul>
+</section>
+<section id="is-big-data-really-big-two-ways-of-thinking-small-about-big-data" class="level2">
+<h2 class="anchored" data-anchor-id="is-big-data-really-big-two-ways-of-thinking-small-about-big-data">Is big data really big? Two ways of thinking small about big data</h2>
+<section id="sampling" class="level3">
+<h3 class="anchored" data-anchor-id="sampling">Sampling</h3>
+<p>Sampling may be enough to answer the question.</p>
+</section>
+<section id="your-big-data-problem-is-actually-a-large-number-of-small-data-problems" class="level3">
+<h3 class="anchored" data-anchor-id="your-big-data-problem-is-actually-a-large-number-of-small-data-problems">Your big data problem is actually a large number of small data problems</h3>
+<ul>
+<li>Each individual problem might fit in memory, but you have millions of them. For example, you might want to fit a model to each person in your dataset. That would be trivial if you had just 10 or 100 people, but instead you have a million.</li>
+<li>So you need a system (like Hadoop or Spark) that allows you to send different datasets to different computers for processing.</li>
+<li>Once you’ve figured out how to answer the question for a single subset using the tools described in this book, you can use tools like sparklyr, rhipe, and ddr to solve it for the full dataset.</li>
+</ul>
+</section>
+</section>
+<section id="key-definitions-for-tidy-data-reference" class="level2">
+<h2 class="anchored" data-anchor-id="key-definitions-for-tidy-data-reference">Key definitions for tidy data (reference)</h2>
+<ul>
+<li>A <strong>variable</strong> is a quantity, quality, or property that you can measure.</li>
+<li>A <strong>value</strong> is the state of a variable when you measure it. The value of a variable may change from measurement to measurement.</li>
+<li>An <strong>observation</strong> is a set of measurements made under similar conditions (you usually make all of the measurements in an observation at the same time and on the same object). An observation will contain several values, each associated with a different variable. I’ll sometimes refer to an observation as a data point.</li>
+<li><strong>Tabular data</strong> is a set of values, each associated with a variable and an observation. Tabular data is tidy if each value is placed in its own “cell”, each variable in its own column, and each observation in its own row.</li>
+</ul>
+</section>
+<section id="variable-types" class="level2">
+<h2 class="anchored" data-anchor-id="variable-types">Variable types</h2>
+<ul>
+<li>A variable is continuous if it can take any of an infinite set of ordered values.</li>
+<li>A variable is categorical if it can only take one of a small set of values. In R, categorical variables are usually saved as factors or character vectors.</li>
+</ul>
+</section>
+<section id="eda-key-definitions" class="level2">
+<h2 class="anchored" data-anchor-id="eda-key-definitions">EDA key definitions</h2>
+<ul>
+<li><strong>Variation</strong> is the tendency of the values of a variable to change from measurement to measurement.</li>
+<li>Covariation is the tendency for the values of two or more variables to vary together in a related way. T</li>
+<li>he residuals give us a view of the price of the diamond, once the effect of carat has been removed.</li>
+</ul>
+<section id="new-to-me-ggplot-aesthetics" class="level3">
+<h3 class="anchored" data-anchor-id="new-to-me-ggplot-aesthetics">New (to me) <code>ggplot()</code> aesthetics</h3>
+<ul>
+<li><p><code>stroke</code> - is either the size of the point (for a default <code>geom_point()</code>) OR, if used with shape 21-25, which have both a colour and a fill, is the thickness of the stroke around the plotted shape.</p></li>
+<li><p>You can generally use geoms and stats interchangeably! For example, you can use stat_count() instead of geom_bar() to make the same plot!</p></li>
+</ul>
+<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;">ggplot</span>(<span class="at" style="color: #657422;">data =</span> diamonds) <span class="sc" style="color: #5E5E5E;">+</span> </span>
+<span id="cb2-2">  <span class="fu" style="color: #4758AB;">geom_bar</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> cut, <span class="at" style="color: #657422;">y =</span> ..count.. <span class="sc" style="color: #5E5E5E;">/</span> <span class="fu" style="color: #4758AB;">sum</span>(..count..), <span class="at" style="color: #657422;">fill =</span> color))</span></code></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://daryavanichkina.com/../images/1912_ggplotproportion.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Ggplot proportion chart</figcaption><p></p>
+</figure>
+</div>
+<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;"># not really new, but I'm sure I'll forget position = "fill"</span></span>
+<span id="cb3-2"><span class="fu" style="color: #4758AB;">ggplot</span>(<span class="at" style="color: #657422;">data =</span> diamonds) <span class="sc" style="color: #5E5E5E;">+</span> </span>
+<span id="cb3-3">  <span class="fu" style="color: #4758AB;">geom_bar</span>(<span class="at" style="color: #657422;">mapping =</span> <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> cut, <span class="at" style="color: #657422;">fill =</span> clarity), <span class="at" style="color: #657422;">position =</span> <span class="st" style="color: #20794D;">"fill"</span>)</span></code></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://daryavanichkina.com/../images/1912_proportionchart.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">proportion</figcaption><p></p>
+</figure>
+</div>
+<div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="co" style="color: #5E5E5E;"># pie chart from bar</span></span>
+<span id="cb4-2"><span class="fu" style="color: #4758AB;">ggplot</span>(<span class="at" style="color: #657422;">data =</span> diamonds) <span class="sc" style="color: #5E5E5E;">+</span> </span>
+<span id="cb4-3">  <span class="fu" style="color: #4758AB;">geom_bar</span>(<span class="at" style="color: #657422;">mapping =</span> <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> <span class="dv" style="color: #AD0000;">1</span>, <span class="at" style="color: #657422;">fill =</span> clarity)) <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">coord_polar</span>(<span class="at" style="color: #657422;">theta =</span> <span class="st" style="color: #20794D;">"y"</span>)</span></code></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://daryavanichkina.com/../images/1912_piechart.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">pie chart</figcaption><p></p>
+</figure>
+</div>
+<ul>
+<li><p><code>+ coord_cartesian(xlim = c(1,2), ylim)</code> - retain outlier</p></li>
+<li><p><code>+ xlim()</code> - remove outlier</p></li>
+<li><p>On average, humans are best able to perceive differences in angles relative to 45 degrees. The function ggthemes::bank_slopes() will calculate the optimal aspect ratio to bank slopes to 45-degrees.</p></li>
+<li><p>Use the <code>near()</code> function to test for equality of numbers (as it’s better able to handle those pesky computer math issues)</p></li>
+<li><p>You can use <code>matches("(.)\\1")</code> with <code>select()</code> to pick variables based on arbitrary regex. <code>num_range("x", 1:3)</code>: matches x1, x2 and x3.</p></li>
+<li><p>Use <code>select()</code> in conjunction with the <code>everything()</code> helper, when you want to , for example, move a handful of variables to the start of the data frame.</p></li>
+</ul>
+<div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;">select</span>(flights, time_hour, air_time, <span class="fu" style="color: #4758AB;">everything</span>())</span></code></pre></div>
+<pre><code># A tibble: 336,776 x 19
+   time_hour           air_time  year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time arr_delay carrier
+   &lt;dttm&gt;                 &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt; &lt;chr&gt;  
+ 1 2013-01-01 05:00:00      227  2013     1     1      517            515         2      830            819        11 UA     
+ 2 2013-01-01 05:00:00      227  2013     1     1      533            529         4      850            830        20 UA     
+ 3 2013-01-01 05:00:00      160  2013     1     1      542            540         2      923            850        33 AA     
+ 4 2013-01-01 05:00:00      183  2013     1     1      544            545        -1     1004           1022       -18 B6     
+ 5 2013-01-01 06:00:00      116  2013     1     1      554            600        -6      812            837       -25 DL     
+ 6 2013-01-01 05:00:00      150  2013     1     1      554            558        -4      740            728        12 UA     
+ 7 2013-01-01 06:00:00      158  2013     1     1      555            600        -5      913            854        19 B6     
+ 8 2013-01-01 06:00:00       53  2013     1     1      557            600        -3      709            723       -14 EV     
+ 9 2013-01-01 06:00:00      140  2013     1     1      557            600        -3      838            846        -8 B6     
+10 2013-01-01 06:00:00      138  2013     1     1      558            600        -2      753            745         8 AA     
+# … with 336,766 more rows, and 7 more variables: flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, distance &lt;dbl&gt;,
+#   hour &lt;dbl&gt;, minute &lt;dbl&gt;</code></pre>
+<ul>
+<li><p>To generate rolling aggregates of data: R provides functions for running sums, products, mins and maxes: <code>cumsum()</code>, <code>cumprod()</code>, <code>cummin()</code>, <code>cummax()</code>; and dplyr provides <code>cummean()</code> for cumulative means. If you need rolling aggregates (i.e.&nbsp;a sum computed over a rolling window), try the RcppRoll package.</p></li>
+<li><p>Ranking functions: <code>min_rank(x)</code> (default gives smallest values the small ranks; use <code>desc(x)</code> to give the largest values the smallest ranks). Otherwise: <code>row_number()</code>, <code>dense_rank()</code>, <code>percent_rank()</code>, <code>cume_dist()</code>, <code>ntile()</code>.</p></li>
+<li><p>Use <code>%/%</code> and <code>%%</code> for modular division and remainders.</p></li>
+</ul>
+</section>
+<section id="very-clear-table-of-ggplot-mappings-from-here" class="level3">
+<h3 class="anchored" data-anchor-id="very-clear-table-of-ggplot-mappings-from-here">Very clear table of ggplot mappings (from <a href="https://jrnold.github.io/r4ds-exercise-solutions/data-visualisation.html">here</a>)</h3>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">geom</th>
+<th style="text-align: left;">default stat</th>
+<th style="text-align: left;">shared docs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">geom_abline()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_hline()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geom_vline()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_bar()</td>
+<td style="text-align: left;">stat_count()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geom_col()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_bin2d()</td>
+<td style="text-align: left;">stat_bin_2d()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geom_blank()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_boxplot()</td>
+<td style="text-align: left;">stat_boxplot()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geom_countour()</td>
+<td style="text-align: left;">stat_countour()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_count()</td>
+<td style="text-align: left;">stat_sum()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geom_density()</td>
+<td style="text-align: left;">stat_density()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_density_2d()</td>
+<td style="text-align: left;">stat_density_2d()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geom_dotplot()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_errorbarh()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geom_hex()</td>
+<td style="text-align: left;">stat_hex()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_freqpoly()</td>
+<td style="text-align: left;">stat_bin()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geom_histogram()</td>
+<td style="text-align: left;">stat_bin()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_crossbar()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geom_errorbar()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_linerange()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geom_pointrange()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_map()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geom_point()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_map()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geom_path()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_line()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geom_step()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_point()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geom_polygon()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_qq_line()</td>
+<td style="text-align: left;">stat_qq_line()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geom_qq()</td>
+<td style="text-align: left;">stat_qq()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_quantile()</td>
+<td style="text-align: left;">stat_quantile()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geom_ribbon()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_area()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geom_rug()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_smooth()</td>
+<td style="text-align: left;">stat_smooth()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geom_spoke()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_label()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geom_text()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_raster()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geom_rect()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_tile()</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geom_violin()</td>
+<td style="text-align: left;">stat_ydensity()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geom_sf()</td>
+<td style="text-align: left;">stat_sf()</td>
+<td style="text-align: left;">x</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="very-clear-table-of-ggplot-stats-from-here" class="level3">
+<h3 class="anchored" data-anchor-id="very-clear-table-of-ggplot-stats-from-here">Very clear table of ggplot stats (from <a href="https://jrnold.github.io/r4ds-exercise-solutions/data-visualisation.html">here</a>)</h3>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">stat</th>
+<th style="text-align: left;">default geom</th>
+<th style="text-align: left;">shared docs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">stat_ecdf()</td>
+<td style="text-align: left;">geom_step()</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">stat_ellipse()</td>
+<td style="text-align: left;">geom_path()</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">stat_function()</td>
+<td style="text-align: left;">geom_path()</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">stat_identity()</td>
+<td style="text-align: left;">geom_point()</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">stat_summary_2d()</td>
+<td style="text-align: left;">geom_tile()</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">stat_summary_hex()</td>
+<td style="text-align: left;">geom_hex()</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">stat_summary_bin()</td>
+<td style="text-align: left;">geom_pointrange()</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">stat_summary()</td>
+<td style="text-align: left;">geom_pointrange()</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">stat_unique()</td>
+<td style="text-align: left;">geom_point()</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">stat_count()</td>
+<td style="text-align: left;">geom_bar()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">stat_bin_2d()</td>
+<td style="text-align: left;">geom_tile()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">stat_boxplot()</td>
+<td style="text-align: left;">geom_boxplot()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">stat_countour()</td>
+<td style="text-align: left;">geom_contour()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">stat_sum()</td>
+<td style="text-align: left;">geom_point()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">stat_density()</td>
+<td style="text-align: left;">geom_area()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">stat_density_2d()</td>
+<td style="text-align: left;">geom_density_2d()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">stat_bin_hex()</td>
+<td style="text-align: left;">geom_hex()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">stat_bin()</td>
+<td style="text-align: left;">geom_bar()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">stat_qq_line()</td>
+<td style="text-align: left;">geom_path()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">stat_qq()</td>
+<td style="text-align: left;">geom_point()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">stat_quantile()</td>
+<td style="text-align: left;">geom_quantile()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">stat_smooth()</td>
+<td style="text-align: left;">geom_smooth()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">stat_ydensity()</td>
+<td style="text-align: left;">geom_violin()</td>
+<td style="text-align: left;">x</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">stat_sf()</td>
+<td style="text-align: left;">geom_rect()</td>
+<td style="text-align: left;">x</td>
+</tr>
+</tbody>
+</table>
+
+
+</section>
+</section>
+
+ ]]></description>
+  <category>tidyverse</category>
+  <category>R</category>
+  <guid>https://daryavanichkina.com/posts/2019-12-04-r-for-data-science-day-1.html</guid>
+  <pubDate>Tue, 03 Dec 2019 13:00:00 GMT</pubDate>
+  <media:content url="https://d33wubrfki0l68.cloudfront.net/795c039ba2520455d833b4034befc8cf360a70ba/558a5/diagrams/data-science-explore.png " medium="image"/>
+</item>
+<item>
+  <title>Moving to Hugo</title>
+  <dc:creator>Darya Vanichkina</dc:creator>
+  <link>https://daryavanichkina.com/posts/2019-03-29-moving-to-hugo.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>I’m finally making the leap, and (hopefully) moving this website to blogdown + hugo + gitlab + netlify.</p>
+<p>So far, useful resources for wrapping my head around how to do this:</p>
+<ul>
+<li><a href="https://alison.rbind.io/post/up-and-running-with-blogdown/">Alison Presmanes Hill’s documentation</a></li>
+<li><a href="https://maraaverick.rbind.io/2017/10/updating-blogdown-hugo-version-netlify/">Very useful gotcha for configuring Netlify</a></li>
+<li><a href="https://www.sarasoueidan.com/blog/jekyll-ghpages-to-hugo-netlify/">Non-blogdown specific very detailed outlined (for future reference, when I want to add new page types)</a></li>
+</ul>
+<p>Things that don’t seem to work:</p>
+<ul>
+<li>Math! :sob: (but, hey, emoji do! :smile:)</li>
+<li>FontAwesome “social” icons apart from the default (but I think this is something I need to figure out)</li>
+</ul>
+
+
+
+ ]]></description>
+  <category>other</category>
+  <guid>https://daryavanichkina.com/posts/2019-03-29-moving-to-hugo.html</guid>
+  <pubDate>Thu, 28 Mar 2019 13:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Training the trainer presentation</title>
+  <link>https://daryavanichkina.com/posts/2018-02-20-ANDS.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/o4RIOWAd7j4rrE" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen="">
+</iframe>
+<div style="margin-bottom:5px">
+<strong> <a href="//www.slideshare.net/DaryaVanichkina1/andstrainingthetrainer" title="ANDS_TrainingTheTrainer" target="_blank">ANDS_TrainingTheTrainer</a> </strong> from <strong><a href="//www.slideshare.net/DaryaVanichkina1" target="_blank">Darya Vanichkina</a></strong>
+</div>
+
+
+
+ ]]></description>
+  <category>presentations</category>
+  <category>training</category>
+  <guid>https://daryavanichkina.com/posts/2018-02-20-ANDS.html</guid>
+  <pubDate>Mon, 19 Feb 2018 13:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Amazon AWS workshop at the University of Sydney</title>
+  <link>https://daryavanichkina.com/posts/2016-11-01-AWSworkshop.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>On October 24th I attented a talk by Adrian White about using Amazon AWS for research. Below are my notes, not extensively annotated, in the hope that they’ll be useful for someone. If something is not clear, please ask in the comments, and I’ll try to answer to the best of my knowledge</p>
+<section id="aws-workshop" class="level1">
+<h1>161024_AWS workshop</h1>
+<ul>
+<li>SciTeam ~10 ppl</li>
+</ul>
+<section id="overview-of-aws-services" class="level2">
+<h2 class="anchored" data-anchor-id="overview-of-aws-services">Overview of AWS services</h2>
+<ul>
+<li><p>If you need to make your data available you have availability zones. For an ultra-stable website we can make our app accessible in multiple AZs.</p></li>
+<li><p>Networking - pair with AARNet in Australia</p></li>
+<li><p>spark to run GATK</p></li>
+<li><p>ML module - developed for ecommerce based on how people visit websites</p></li>
+<li><p>supervised learning only, basic linear regression</p></li>
+</ul>
+</section>
+<section id="essential-services" class="level2">
+<h2 class="anchored" data-anchor-id="essential-services">Essential services</h2>
+<section id="elastic-compute-ec2" class="level3">
+<h3 class="anchored" data-anchor-id="elastic-compute-ec2">Elastic compute (EC2)</h3>
+<ul>
+<li>elastic load balance capability interesting for when you’re firing up a shiny analytics environment</li>
+</ul>
+</section>
+<section id="networking-services" class="level3">
+<h3 class="anchored" data-anchor-id="networking-services">Networking Services</h3>
+<section id="amazon-vpc-virtual-private-cloud" class="level4">
+<h4 class="anchored" data-anchor-id="amazon-vpc-virtual-private-cloud">Amazon VPC (virtual private cloud)</h4>
+<ul>
+<li>own network isolated, within a region, you control addressing, DNS servers, whether it connects to the internet</li>
+</ul>
+</section>
+<section id="aws-directconnect" class="level4">
+<h4 class="anchored" data-anchor-id="aws-directconnect">AWS DirectConnect</h4>
+<ul>
+<li>if you need to transfer data faster</li>
+</ul>
+</section>
+<section id="amazon-route-53" class="level4">
+<h4 class="anchored" data-anchor-id="amazon-route-53">Amazon Route 53</h4>
+<ul>
+<li>Domain Name System (DNS) web service. ### Storage #### Amazon S3</li>
+<li>object storage service (put/get/delete) not a file system (so can’t do byte range retrievals and other subsets of the files)</li>
+<li>durability with a 10^6 objects you have 1:10k chance of losing it</li>
+<li>File size - up to 5 Tb.</li>
+</ul>
+</section>
+<section id="amazon-ebs" class="level4">
+<h4 class="anchored" data-anchor-id="amazon-ebs">Amazon EBS</h4>
+<ul>
+<li>up to 16 Tb</li>
+<li>disk that fires up and is mounted to a server on EC2</li>
+<li>can still use magnetic disk to cut cost (default is SSD) #### Glacier</li>
+<li>file size up to 50 Tb</li>
+<li>cold storage</li>
+<li>can take 3-5 hours to retrieve object</li>
+<li>also 11 9s durability #### AWS Storage Gateway</li>
+<li>storage on premise ### Databases ### Amazon RDS</li>
+<li>Standard relational database. Maintained/run by amazon so you can just use the data #### Amazon DynamoDB</li>
+<li>Managed NoSQL database service</li>
+<li>today need 100 reads/sec, tomorrow 1000k</li>
+</ul>
+</section>
+<section id="amazon-elasticache" class="level4">
+<h4 class="anchored" data-anchor-id="amazon-elasticache">Amazon ElastiCache</h4>
+<ul>
+<li>reddis</li>
+<li>some there open source libraries</li>
+</ul>
+</section>
+</section>
+<section id="big-data-services" class="level3">
+<h3 class="anchored" data-anchor-id="big-data-services">Big Data Services</h3>
+<ul>
+<li>Amazon EMR (Elastic Map Reduce)</li>
+<li>AWS Data Pipeline Hosted Hadoop framework
+<ul>
+<li>Move data among AWS services and on premises data sources</li>
+</ul></li>
+<li>Amazon Redshift
+<ul>
+<li>Petabyte-scale data warehouse service</li>
+<li>OLAP style DB environment (massively parallel processing database)</li>
+</ul></li>
+</ul>
+</section>
+<section id="monitoring-services" class="level3">
+<h3 class="anchored" data-anchor-id="monitoring-services">Monitoring services</h3>
+<ul>
+<li>Amazon CloudWatch (free)
+<ul>
+<li>Monitor resources</li>
+<li>you can make your own monitors such as how many times a function is run and send you notifications or make graphs</li>
+</ul></li>
+<li>AWS IAM (Identity &amp; Access Mgmt)
+<ul>
+<li>Manage users, groups &amp; permissions</li>
+</ul></li>
+<li>AWS OpsWorks
+<ul>
+<li>Dev-Ops framework for application lifecycle management</li>
+</ul></li>
+<li>AWS CloudFormation
+<ul>
+<li>Templates to deploy &amp; manage</li>
+<li>This is useful for us. You build a cluster based on templates = users ,roles, storage, databases, etc</li>
+<li>infrastructure as a configuration file</li>
+</ul></li>
+<li>AWS Elastic Beanstalk
+<ul>
+<li>Automate resource management</li>
+<li>can host apps with python or java or docker containers (find out more)</li>
+</ul></li>
+</ul>
+</section>
+<section id="accessing-your-resources" class="level3">
+<h3 class="anchored" data-anchor-id="accessing-your-resources">Accessing your resources</h3>
+<ul>
+<li>Everything you can do through the Console, you can do through the CLI or an SDK</li>
+<li>SDK’s for most programming languages
+<ul>
+<li>Andriod, IOS, Java, .Net, Node.js, PHP, Python, Ruby, Go</li>
+</ul></li>
+</ul>
+<section id="commercial-models" class="level4">
+<h4 class="anchored" data-anchor-id="commercial-models">Commercial models</h4>
+<ul>
+<li>on-demand
+<ul>
+<li>On-Demand Pay for compute capacity by the hour with no long-term commitments For spiky workloads, or to define needs</li>
+</ul></li>
+<li>spot
+<ul>
+<li>Bid for unused capacity, charged at a Spot Price which fluctuates based on supply and demand For time-insensitive or transient workloads</li>
+<li>60-70% savings on on demand price when it’s on Spot</li>
+<li>if price goes above that cost, it gets shut down in 2 minutes</li>
+<li>RNA-seq on spot to have disappearing servers on 250 k samples</li>
+</ul></li>
+<li>Reserved
+<ul>
+<li>Make a low, one-time payment and receive a significant discount on the hourly charge. For committed utilization</li>
+</ul></li>
+<li>Dedicated
+<ul>
+<li>you are the <em>only</em> user on a particular physical piece of hardware</li>
+<li>health care data compliancy (in the US)</li>
+</ul></li>
+</ul>
+<p>Amazon won’t kill jobs for you itself if your bill goes higher than X. You can configure this yourself, specifying what should happen to storage.</p>
+</section>
+</section>
+<section id="security" class="level3">
+<h3 class="anchored" data-anchor-id="security">Security</h3>
+</section>
+<section id="popular-hpc-workloads-on-aws" class="level3">
+<h3 class="anchored" data-anchor-id="popular-hpc-workloads-on-aws">Popular HPC workloads on AWS</h3>
+<ul>
+<li>Genome processing</li>
+<li>Modeling and Simulation</li>
+<li>Government and Educational Research</li>
+<li>Monte Carlo Simulations</li>
+<li>Transcoding and Encoding (video)</li>
+<li>Computational Chemistry</li>
+</ul>
+</section>
+<section id="educate" class="level3">
+<h3 class="anchored" data-anchor-id="educate">Educate</h3>
+<ul>
+<li>aws.amazon.com/training/- self-paced-labs</li>
+<li>aws.amazon.com/training</li>
+<li>aws.amazon.com/certification</li>
+</ul>
+<p>Can also be used in class:</p>
+<ul>
+<li>AWS blog - best place to get updates on the main stuff that changes</li>
+<li>Deeper into a topic - product page + documentation</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="moving-data-to-aws" class="level1">
+<h1>Moving data to AWS</h1>
+<section id="storing-data-in-s3-and-ec2" class="level3">
+<h3 class="anchored" data-anchor-id="storing-data-in-s3-and-ec2">Storing data in S3 and EC2</h3>
+<p>Amazon S3 is object based storage</p>
+<ul>
+<li>Data is an object (treat each file as a single object)</li>
+<li>Consists of data (globally unique identifier) and metadata</li>
+<li>Very simple operations: (not POSIX!)</li>
+<li>PUT, GET, DELETE, LIST</li>
+<li>Cannot do an lseek, partial read or write, over-write existing data</li>
+<li>Versioning is allowed (only differences are stored)</li>
+<li>You control where data is located (Amazon never moves or copies it)</li>
+<li>Flat hierarchy (no concept of directories)</li>
+</ul>
+</section>
+<section id="amazon-s3-is" class="level3">
+<h3 class="anchored" data-anchor-id="amazon-s3-is">Amazon S3 is</h3>
+<ul>
+<li>Extremely Durable (99.999999999%)</li>
+<li>Extremely Available (99.99%)</li>
+<li>Virtually infinite (scalable)</li>
+<li>Pay only for what you use</li>
+<li>You control who has access to your data (and the location of the data)</li>
+<li>Data Encryption
+<ul>
+<li>not encrypted by default</li>
+<li>can tick a box to get amazon to manage encryption</li>
+<li>can be completely client side encryption only</li>
+</ul></li>
+<li>Event notifications</li>
+<li>Lifecycle Management</li>
+<li>Amazon S3 is more read oriented than write oriented</li>
+<li>However, write performance is still very good</li>
+</ul>
+<p>QIMR: Moving data to Europe via snowball - a data store device</p>
+<ul>
+<li>Optimising data transfer to S3</li>
+<li>Examples</li>
+</ul>
+</section>
+<section id="preliminaries" class="level3">
+<h3 class="anchored" data-anchor-id="preliminaries">Preliminaries</h3>
+<section id="before-worrying-about-upload-performance" class="level4">
+<h4 class="anchored" data-anchor-id="before-worrying-about-upload-performance">Before worrying about upload performance:</h4>
+<ol type="1">
+<li>Know file size distribution and the amount of data
+<ul>
+<li>Average file size? Largest? Smallest? Standard Deviation?</li>
+</ul></li>
+<li>Know how you are connected to Internet and AWS
+<ul>
+<li>Perform preliminary tests to S3 to understand network performance</li>
+</ul></li>
+<li>Know how you will use data in an Amazon S3 bucket
+<ul>
+<li>Will it be shared?</li>
+<li>How is it organized? How do applications access the data?</li>
+<li>Read vs.&nbsp;Write?</li>
+<li>Being able to answer these questions will make things much, much easier (with faster uploads)</li>
+</ul></li>
+</ol>
+</section>
+</section>
+<section id="non-network-keys-to-the-fastest-upload" class="level3">
+<h3 class="anchored" data-anchor-id="non-network-keys-to-the-fastest-upload">Non-Network Keys to the fastest upload</h3>
+<ul>
+<li>The following are general principles for the quickest data upload from outside of AWS</li>
+<li>Multi-part upload
+<ul>
+<li>aws s3 create-multipart-upload</li>
+<li><strong>aws s3 sync # Better command that will try to optimise the performance for you!!!</strong></li>
+<li>All high-level commands that involve uploading objects into S3 (aws s3 cp, aws s3 mv, and aws s3 sync) automatically perform a multipart upload when the object is large</li>
+</ul></li>
+<li>Parallel upload
+<ul>
+<li>each process uses a cpu</li>
+<li>How you do this is very specific to the language (SDK)</li>
+<li>In Python use multi-processing module</li>
+<li>Can use threads (C++, Java)
+<ul>
+<li>Some tools already available:</li>
+</ul></li>
+<li>s3-parallel-put (https://github.com/twpayne/s3-parallel-put )</li>
+</ul></li>
+<li>Random prefix to key name
+<ul>
+<li>first two characters of filename are part of the key, and should be randomised (evenly) by the alphabet so that they get put onto different partitions and hence the performance is much better</li>
+</ul></li>
+<li>tar
+<ul>
+<li>can put everything into a tar archive (such as images), then look at the TOC of the tar and pull out only the byte range of the image you need from AWS</li>
+</ul></li>
+<li>Data compression</li>
+</ul>
+</section>
+<section id="examples" class="level3">
+<h3 class="anchored" data-anchor-id="examples">Examples</h3>
+<section id="ska-square-kilometer-array" class="level4">
+<h4 class="anchored" data-anchor-id="ska-square-kilometer-array">SKA (square kilometer) array</h4>
+<ul>
+<li>s3-parallel-upload script (python/boto2)</li>
+<li>performance dropped off after ~30 parallel processes</li>
+</ul>
+</section>
+</section>
+<section id="hpc" class="level3">
+<h3 class="anchored" data-anchor-id="hpc">HPC</h3>
+<section id="cluster-hpc" class="level4">
+<h4 class="anchored" data-anchor-id="cluster-hpc">Cluster HPC</h4>
+<ul>
+<li>can do placement groups - which means the compute nodes are close to each other physically at the server farm</li>
+<li>storage is ephemeral, EBS, NFSv4 Amazon EFS or Lustre Intel cloud edition (PAYG), BeeGFS</li>
+<li>is still redundant within your region (so not as durable as S3)</li>
+<li>minimum use time on Amazon HPC is 1 hour (so cost is that of 1 hour)</li>
+</ul>
+</section>
+<section id="instance-types" class="level4">
+<h4 class="anchored" data-anchor-id="instance-types">Instance types</h4>
+<ul>
+<li>Family - optimised for a particular use
+<ul>
+<li>ex R3 - memory</li>
+<li>ex G2/P2 - GPU</li>
+<li>ec C3/ CPU use type</li>
+<li>P2
+<ul>
+<li>machine learning genomics (tensor flow)</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="data-lakes" class="level4">
+<h4 class="anchored" data-anchor-id="data-lakes">Data lakes</h4>
+<ul>
+<li>store datasets of different types</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="research-on-aws" class="level1">
+<h1>Research on AWS</h1>
+</section>
+<section id="lab-alces-flight-cfncluster" class="level1">
+<h1>Lab: Alces Flight &amp; CfnCluster</h1>
+<p>Apart from Alces flight, what other launch a cluster configurations are there?</p>
+<p>In order to relaunch a snapshot you have you can use CfnCluster.</p>
+<p>spark R machine learning</p>
+<p>jupiter gnu (ask him via email)</p>
+<section id="if-you-need-to-use-a-key-on-windows" class="level2">
+<h2 class="anchored" data-anchor-id="if-you-need-to-use-a-key-on-windows">If you need to use a key on Windows</h2>
+<p><a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html">Puttylink</a></p>
+
+
+</section>
+</section>
+
+ ]]></description>
+  <category>conferences</category>
+  <guid>https://daryavanichkina.com/posts/2016-11-01-AWSworkshop.html</guid>
+  <pubDate>Mon, 31 Oct 2016 13:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>2016-PyConAU 2016 Presentation</title>
+  <link>https://daryavanichkina.com/posts/2016-08-12-pycon2016.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>I presented a talk on <strong>Big data biology for pythonistas: getting in on the genomics revolution</strong> at PyCon Au 2016.</p>
+<section id="video" class="level3">
+<h3 class="anchored" data-anchor-id="video">Video</h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/fQ_vNHDNDCA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+</iframe>
+</section>
+<section id="slides" class="level3">
+<h3 class="anchored" data-anchor-id="slides">Slides</h3>
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/8n6RIYzhxBttVs" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen="">
+</iframe>
+<div style="margin-bottom:5px">
+<strong> <a href="//www.slideshare.net/DaryaVanichkina1/big-data-biology-for-pythonistas-getting-in-on-the-genomics-revolution" title="Big data biology for pythonistas: getting in on the genomics revolution" target="_blank">Big data biology for pythonistas: getting in on the genomics revolution</a> </strong> from <strong><a target="_blank" href="//www.slideshare.net/DaryaVanichkina1">Darya Vanichkina</a></strong>
+</div>
+</section>
+<section id="abstract" class="level3">
+<h3 class="anchored" data-anchor-id="abstract">Abstract</h3>
+<p>In 2001 Bill Clinton unveiled “the most important, most wondrous map ever produced by humankind” - the human genome. This monumental endeavour cost $3 billion, and took hundreds of scientists from all over the world 13 years. Today, a single person can generate such a map in ~2 days for $1000. This dramatic drop in cost means that we now have data for hundreds of thousands of people - and other species - from all corners of the globe, and cohorts are available for every major disease under the sun. Petabytes of new data are also being generated every week.</p>
+<p>Most of this data is publicly available, so anyone with an internet connection can try in silico biology from the comfort of their own home. In my talk, I’ll walk through what this data looks like, and how it’s analysed - with a special focus on where python fits into the workflow (;tldr the most interesting parts!). I will also highlight some common pitfalls software engineers and developers face when getting into this space.</p>
+<p>Finally, I’ll showcase several other facets of bioinformatics that sorely need contributions from good coders. Genomics is rapidly entering the world of health care in both the public and private hospital sectors, and in direct-to-consumer genetic testing. Understanding this data, the challenges and limitations of its analytics will help us all make better-informed health and medical decisions, affecting our quality of life and those we love.</p>
+</section>
+<section id="note" class="level3">
+<h3 class="anchored" data-anchor-id="note">Note:</h3>
+<p>If you are trying to follow up on my talk and carry out an analysis of some data (or are looking for some data, or would like to know where to find the data from paper X), please leave a comment below, and I’ll do my best to answer your question and help! I don’t monitor the comments on youtube or slideshare, but I do get a ping if you leave a comment here.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>presentations</category>
+  <guid>https://daryavanichkina.com/posts/2016-08-12-pycon2016.html</guid>
+  <pubDate>Thu, 11 Aug 2016 14:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Lorne Genome 2012 poster</title>
+  <link>https://daryavanichkina.com/posts/2014-03-24-lorne2012poster.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Better late than never: my now-published Lorne Genome 2012 poster:</p>
+<iframe src="https://widgets.figshare.com/articles/978468/embed?show_title=1" width="568" height="351" allowfullscreen="true" frameborder="0">
+</iframe>
+
+
+
+ ]]></description>
+  <category>presentations</category>
+  <guid>https://daryavanichkina.com/posts/2014-03-24-lorne2012poster.html</guid>
+  <pubDate>Sun, 23 Mar 2014 13:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Hello World!</title>
+  <dc:creator>Darya Vanichkina</dc:creator>
+  <link>https://daryavanichkina.com/posts/2013-01-01-helloworld.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>This is the 1st post for this new Jekyll-powered blog.</p>
+<p>Welcome to my blog!</p>
+
+
+
+ ]]></description>
+  <guid>https://daryavanichkina.com/posts/2013-01-01-helloworld.html</guid>
+  <pubDate>Fri, 12 Jul 2013 14:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>2013 ciRNA papers</title>
+  <link>https://daryavanichkina.com/posts/2013-07-13-ciRNApapers.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>A presentation I made for a journal club on the “1st” 3 ciRNA papers</p>
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/y31DG64uLGfanZ" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen="">
+</iframe>
+<div style="margin-bottom:5px">
+<strong> <a href="//www.slideshare.net/DaryaVanichkina1/ci-26604922" title="Comparing the early ciRNA papers " target="_blank">Comparing the early ciRNA papers </a> </strong> from <strong><a href="https://www.slideshare.net/DaryaVanichkina1" target="_blank">Darya Vanichkina</a></strong>
+</div>
+
+
+
+ ]]></description>
+  <category>presentations</category>
+  <guid>https://daryavanichkina.com/posts/2013-07-13-ciRNApapers.html</guid>
+  <pubDate>Fri, 12 Jul 2013 14:00:00 GMT</pubDate>
+</item>
+</channel>
+</rss>

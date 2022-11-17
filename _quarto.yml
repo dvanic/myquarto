@@ -1,0 +1,41 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Darya Vanichkina"
+  site-url: https://daryavanichkina.com/
+  description: "Darya Vanichkina's blog"
+  google-analytics: "UA-54373354-1"
+  open-graph: true
+  
+  navbar:
+    background: primary
+    search: true
+    right:
+      - href: about.html
+        text: "About"
+      - href: projects.html
+        text: "Projects"
+      - href: training.html
+        text: "Training"
+      - href: talks.html
+        text: "Talks"
+      - href: cv.html
+        text: "CV"
+      - href: contact.html
+        text: "Contact"
+      - href: posts.html
+        text: "Blog"
+      - icon: rss
+        href: posts.xml
+      - icon: github
+        href: https://github.com/dvanic
+format:
+  html:
+    theme:
+      light: [flatly, styles.scss]
+      dark:  [darkly, styles.scss]
+
+
+

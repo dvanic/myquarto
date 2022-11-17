@@ -1,0 +1,17 @@
+---
+image: fig/daryaVhead1.jpg
+about:
+  template: jolla
+  image-width: 30em
+  links:
+    - icon: github
+      href: https://github.com/dvanic
+    - icon: twitter
+      href: https://twitter.com/dvanichkina
+    - icon: linkedin
+      href: https://www.linkedin.com/in/daryavanichkina
+---
+
+# Darya Vanichkina PhD SFHEA
+# Data Scientist & Professional Educator
+

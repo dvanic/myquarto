@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.251">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Darya Vanichkina">
+<meta name="dcterms.date" content="2020-04-03">
+
+<title>Darya Vanichkina - Mapping a live coding workshop for digital delivery (part 2)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<script type="text/javascript">
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-54373354-1', 'auto');
+
+ga('send', {
+  hitType: 'pageview',
+  'anonymizeIp': true,
+});
+</script>
+
+
+<meta property="og:title" content="Darya Vanichkina - Mapping a live coding workshop for digital delivery (part 2)">
+<meta property="og:description" content="With the advent of COVID-19 we’re all having to do the unthinkable, which for an instructor like me means moving hands-on, practical coding workshops online.">
+<meta property="og:site-name" content="Darya Vanichkina">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Darya Vanichkina</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">About</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../projects.html">Projects</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../training.html">Training</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../talks.html">Talks</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cv.html">CV</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../contact.html">Contact</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../posts.html">Blog</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../posts.xml"><i class="bi bi-rss" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/dvanic"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Mapping a live coding workshop for digital delivery (part 2)</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">training</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Darya Vanichkina </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">April 3, 2020</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>With the advent of COVID-19 we’re all having to do the unthinkable, which for an instructor like me means moving hands-on, practical coding workshops online. I’ve already written a post with a student-facing map of the process (and some tips for students), but I wanted to focus on a few instructor-related aspects of the map in this post.</p>
+<section id="my-personal-teaching-setup" class="level2">
+<h2 class="anchored" data-anchor-id="my-personal-teaching-setup">My personal teaching setup</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../fig/mysetup2.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">mysetup</figcaption><p></p>
+</figure>
+</div>
+<ul>
+<li><p>I’m incredibly lucky to have access to several machines, which I use to work through materials on all of the platforms and also while teaching.</p></li>
+<li><p>During live teaching, we use two machines: (1) a shared “training” laptop on which we live code or show slides, connected to the projector all day, and (2) our own individual machines, which we use for looking at the notes.</p></li>
+<li><p>For teaching online, I use:</p>
+<ol type="1">
+<li>A primary machine, with a good camera, as my teaching machine. This has a vanilla setup of RStudio and/or Jupyter, notifications are turned off and all I can see are the things I need to teach. This laptop has only the one, built-in screen.</li>
+<li>A secondary machine, a.k.a. my command centre. This machine has my back-channel open, Zoom gallery view (I log in twice to the training) so I can see my learners, Zoom chats and Participants all visible. My notes are <em>printed out</em> on paper, as I have enough screens and windows to try to juggle.</li>
+<li>A third machine, which has one (small-ish) screen, and shows me what a learner with only one laptop/desktop screen is seeing. This is not essential, but helps me adjust font sizes and window widths to make sure people can actually live code along with me, without needing to rely on my co-instructors (I still ask students if it’s OK, of course, but this helps me self-adjust faster).</li>
+<li>I use an iPad if I need access to whiteboard (see below).</li>
+</ol></li>
+</ul>
+</section>
+<section id="back-channel-communication-whispering-in-someones-ear" class="level2">
+<h2 class="anchored" data-anchor-id="back-channel-communication-whispering-in-someones-ear">Back-channel communication: whispering in someone’s ear</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://images.unsplash.com/photo-1482356432770-3a99f07aba35?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=80" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">whisper</figcaption><p></p>
+</figure>
+</div>
+<ul>
+<li><p>You need a quick and easy way to communicate between you and your co-instructors. I recommend a different, secondary chat application for this, for example Microsoft Teams or Slack (or Telegram/Whatsapp - whatever), if you’re using Zoom as your primary teaching tool.</p></li>
+<li><p>Ideally, you set up two channels in this: one for urgent messages to the instructor who’s teaching (“YOUR SCREEN IS TINY!”), and another for non-teaching instructors to communicate with each other. This allows your helpers to communicate about challenging software installs (“Do you have any experience updating R libraries on Ubuntu?”), delegate responsibilities (“Can you take over host please? I really need a break for 3 minutes!”) and otherwise manage the class - but all of this is not relevant for the instructor who’s teaching and can actually distract them if they keep getting pinged about it.</p></li>
+</ul>
+</section>
+<section id="common-problems-learner-with-setup-challenges" class="level2">
+<h2 class="anchored" data-anchor-id="common-problems-learner-with-setup-challenges">Common problems: learner with setup challenges</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://images.unsplash.com/photo-1495821697794-a40e5fca2830?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">challenges</figcaption><p></p>
+</figure>
+</div>
+<ul>
+<li><p>First and foremost, send out detailed setup and installation instructions, complete with screenshots, to your learners several days before the course. Remind them to email you with screenshots of any error messages, or - if you’re teaching a large class - get them to post the screenshots into a shared document, and encourage peers to help.</p></li>
+<li><p>Second, provide the opportunity for learners who have had issues to join the meeting an hour early and try to get help (yes, this means I’m online at 8 am for a 9 am class).</p></li>
+<li><p>My preferred way of helping debug issues is to have learners post a screenshot of the error message into a specific place in the shared document we’re using, and for me to guide them in trying to fix it (via the Zoom chat if at all possible - but note it doesn’t work well with line breaks, so you may need to use the shared doc for pasting code as well).</p></li>
+<li><p>Tools like Zoom do provide the functionality to share screens and take over someone’s desktop, BUT I’ve found taking screenshots is faster, doesn’t require you to jump out into a breakout room (so the learner doesn’t miss out on core content), and doesn’t cause bandwidth problems (I’ve tried taking over learners’ desktops with suboptimal bandwidth, and it kicked both of us out of the session).</p></li>
+<li><p>Finally, it can be helpful to have a backup cloud platform for teaching as well, as the digital equivalent of spare laptops. We’ve been successful using <a href="https://mybinder.org/">mybinder.org</a> for python, and have tried but not productionised <a href="https://rstudio.cloud">rstudio.cloud</a> for R. I’d love a suggestion for an online terminal for teaching basic Unix!</p></li>
+</ul>
+</section>
+<section id="common-problems-poor-internet-connectivity" class="level2">
+<h2 class="anchored" data-anchor-id="common-problems-poor-internet-connectivity">Common problems: poor internet connectivity</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://images.unsplash.com/photo-1518016491499-75f85ea4c86d?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">connectivity</figcaption><p></p>
+</figure>
+</div>
+<ul>
+<li><p>If you are having issues with your connection, consider (1) switching to slides/screenshare-only mode, (2) ensuring your device has priority on your home WiFi network, (3) trying to teach via a personal hotspot or (4) swapping to another instructor teaching<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. This is something you can communicate about with your team via the back-channel - and a key reason the back-channel needs to use very little bandwidth!</p></li>
+<li><p>For learners, you can try asking them to turn off their video, and possibly also closing other tabs/devices connected to the internet.</p></li>
+</ul>
+</section>
+<section id="common-problems-tool-stack-meltdown" class="level2">
+<h2 class="anchored" data-anchor-id="common-problems-tool-stack-meltdown">Common problems: Tool stack meltdown</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://images.unsplash.com/photo-1516537219851-920e2670c6e3?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=80" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">volcano</figcaption><p></p>
+</figure>
+</div>
+<ul>
+<li><p><strong>EXPECT</strong> your primary tool stack to melt down. If you are using Zoom/Teams/GoToMeeting, expect your platform to go down at least once during the training (it’s great if it doesn’t, but you’re prepared if it does!). Have a plan, with your co-instructors, what you’re going to do: switch to another tool? take an off-schedule break? Something else?</p></li>
+<li><p>Explicitly tell your students how you’ll communicate with them to let them know where to go in the event of a breakdown. For us, I prefer using the shared doc, but an email would also work (albeit might be slower, as they’re hopefully not checking email while we’re teaching).</p></li>
+</ul>
+</section>
+<section id="shared-documents" class="level2">
+<h2 class="anchored" data-anchor-id="shared-documents">Shared documents</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://images.unsplash.com/photo-1545377079-08d414f11a5f?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">shareddoc</figcaption><p></p>
+</figure>
+</div>
+<ul>
+<li><p>A shared, student-editable document is essential for successful delivery of training.</p></li>
+<li><p>My primary criteria for a shared document include:</p>
+<ol type="1">
+<li>It is editable by all students (ideally without logging in),</li>
+<li>It doesn’t take up too much screen real estate,</li>
+<li>It allows you to post images by copy-pasting them in,</li>
+<li>It doesn’t require any cognitive overhead for learners to figure out how to use it.</li>
+</ol></li>
+<li><p>The official solution recommended by the University of Sydney is a Microsoft Office Online Word document.</p></li>
+<li><p>I have had success using Google Docs. I provide a link to a public doc, so learners don’t have to log in with their Google Account, and ensure that no student data is collected in the doc (i.e.&nbsp;learners can use first names or pseudonyms only on the doc). Most people have used Docs, so there is no overhead in figuring out how to use the tool - we can just dive in and move on.</p></li>
+<li><p>There are tools like the <a href="https://etherpad.org/">Etherpad</a>, <a href="https://hackmd.io">hack.md</a> and an open-source, self-hosted version called <a href="https://demo.codimd.org/">CodiMD</a>. The latter two support document creation in markdown, which is great because it’s plain text, but also not so great, because it uses more screen real estate than Google docs (especially with the preview pane open side by side with the markdown itself).</p></li>
+<li><p>What goes in the Doc? My (non-exhaustive) check-list includes:</p>
+<ul>
+<li>The title of the course</li>
+<li>The names of all of the instructors who are part of the teaching team</li>
+<li>Links to the course materials</li>
+<li>Links to any data downloads</li>
+<li>Links to the registration page for the course</li>
+<li>Links to pre and post workshop surveys</li>
+<li>Details about the zoom meeting, and every possible way learners can log onto it</li>
+<li>Links to the setup instructions and tests that setup completed successfully</li>
+<li>[Links to the mybinder or Rstudio cloud instance, if using as a backup]</li>
+</ul></li>
+</ul>
+</section>
+<section id="code-transfer" class="level2">
+<h2 class="anchored" data-anchor-id="code-transfer">Code transfer</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://images.unsplash.com/photo-1542903660-eedba2cda473?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">codetransfer</figcaption><p></p>
+</figure>
+</div>
+<ul>
+<li><p>Sometimes you need to share a chunk of code with your learners. While you can paste it into the shared document or Zoom chat, often these tools will do strange things with spaces and quotes.</p></li>
+<li><p>Instead, I recommend pasting them into a public <a href="https://gist.github.com/">GitHub gist</a>, sharing the link with your learners via the chat, and screen sharing how you would access the gist and move it into your R/python session.</p></li>
+</ul>
+</section>
+<section id="whiteboard" class="level2">
+<h2 class="anchored" data-anchor-id="whiteboard">Whiteboard</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://images.unsplash.com/photo-1532619675605-1ede6c2ed2b0?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=80" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">whiteboard</figcaption><p></p>
+</figure>
+</div>
+<ul>
+<li><p>In an in-person live coding class, I often use the whiteboard when answering student questions or working through problems.</p></li>
+<li><p>Digitally, I’m a lot more hesitant to use one, if only because it takes away screen real estate from the other things I’m doing, which are often more important for the learners to see at the time.</p></li>
+<li><p>However, I have had success using my iPad and both GoodNotes and Notability when I needed a digital whiteboard, following the instructions <a href="https://www.youtube.com/watch?v=8TI43FzHd6Q">here</a>.</p></li>
+</ul>
+<hr>
+<p>I hope these two posts are helpful for you as you prepare to jump into teaching online! Please leave a comment below if you found something useful, unclear or would like to add something else I missed!</p>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>This is why we say all instructors have to be able to teach all content! If you think it’s different in-person, ask me about the time I had a massive, I-can’t-stop-even-if-I-try-really-hard coughing fit in the middle of teaching. I literally walked out of the classroom to try not to die in public, waving vaguely to my co-instructor to go on without me (which she very successfully did). That’s also when I discovered, after 20 minutes of searching, that there is no student-accessible hot water tap in the Sydney Uni Quadrangle (!), and was able to soothe my throat only after some kind caterers who were wrapping up for the day shared a pot of hot honey lemon tea.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

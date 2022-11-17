@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.251">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2016-11-01">
+
+<title>Darya Vanichkina - Amazon AWS workshop at the University of Sydney</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<script type="text/javascript">
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-54373354-1', 'auto');
+
+ga('send', {
+  hitType: 'pageview',
+  'anonymizeIp': true,
+});
+</script>
+
+
+<meta property="og:title" content="Darya Vanichkina - Amazon AWS workshop at the University of Sydney">
+<meta property="og:description" content="On October 24th I attented a talk by Adrian White about using Amazon AWS for research. Below are my notes, not extensively annotated, in the hope that they’ll be useful for someone.">
+<meta property="og:site-name" content="Darya Vanichkina">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Darya Vanichkina</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">About</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../projects.html">Projects</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../training.html">Training</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../talks.html">Talks</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cv.html">CV</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../contact.html">Contact</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../posts.html">Blog</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../posts.xml"><i class="bi bi-rss" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/dvanic"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Amazon AWS workshop at the University of Sydney</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">conferences</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">November 1, 2016</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>On October 24th I attented a talk by Adrian White about using Amazon AWS for research. Below are my notes, not extensively annotated, in the hope that they’ll be useful for someone. If something is not clear, please ask in the comments, and I’ll try to answer to the best of my knowledge</p>
+<section id="aws-workshop" class="level1">
+<h1>161024_AWS workshop</h1>
+<ul>
+<li>SciTeam ~10 ppl</li>
+</ul>
+<section id="overview-of-aws-services" class="level2">
+<h2 class="anchored" data-anchor-id="overview-of-aws-services">Overview of AWS services</h2>
+<ul>
+<li><p>If you need to make your data available you have availability zones. For an ultra-stable website we can make our app accessible in multiple AZs.</p></li>
+<li><p>Networking - pair with AARNet in Australia</p></li>
+<li><p>spark to run GATK</p></li>
+<li><p>ML module - developed for ecommerce based on how people visit websites</p></li>
+<li><p>supervised learning only, basic linear regression</p></li>
+</ul>
+</section>
+<section id="essential-services" class="level2">
+<h2 class="anchored" data-anchor-id="essential-services">Essential services</h2>
+<section id="elastic-compute-ec2" class="level3">
+<h3 class="anchored" data-anchor-id="elastic-compute-ec2">Elastic compute (EC2)</h3>
+<ul>
+<li>elastic load balance capability interesting for when you’re firing up a shiny analytics environment</li>
+</ul>
+</section>
+<section id="networking-services" class="level3">
+<h3 class="anchored" data-anchor-id="networking-services">Networking Services</h3>
+<section id="amazon-vpc-virtual-private-cloud" class="level4">
+<h4 class="anchored" data-anchor-id="amazon-vpc-virtual-private-cloud">Amazon VPC (virtual private cloud)</h4>
+<ul>
+<li>own network isolated, within a region, you control addressing, DNS servers, whether it connects to the internet</li>
+</ul>
+</section>
+<section id="aws-directconnect" class="level4">
+<h4 class="anchored" data-anchor-id="aws-directconnect">AWS DirectConnect</h4>
+<ul>
+<li>if you need to transfer data faster</li>
+</ul>
+</section>
+<section id="amazon-route-53" class="level4">
+<h4 class="anchored" data-anchor-id="amazon-route-53">Amazon Route 53</h4>
+<ul>
+<li>Domain Name System (DNS) web service. ### Storage #### Amazon S3</li>
+<li>object storage service (put/get/delete) not a file system (so can’t do byte range retrievals and other subsets of the files)</li>
+<li>durability with a 10^6 objects you have 1:10k chance of losing it</li>
+<li>File size - up to 5 Tb.</li>
+</ul>
+</section>
+<section id="amazon-ebs" class="level4">
+<h4 class="anchored" data-anchor-id="amazon-ebs">Amazon EBS</h4>
+<ul>
+<li>up to 16 Tb</li>
+<li>disk that fires up and is mounted to a server on EC2</li>
+<li>can still use magnetic disk to cut cost (default is SSD) #### Glacier</li>
+<li>file size up to 50 Tb</li>
+<li>cold storage</li>
+<li>can take 3-5 hours to retrieve object</li>
+<li>also 11 9s durability #### AWS Storage Gateway</li>
+<li>storage on premise ### Databases ### Amazon RDS</li>
+<li>Standard relational database. Maintained/run by amazon so you can just use the data #### Amazon DynamoDB</li>
+<li>Managed NoSQL database service</li>
+<li>today need 100 reads/sec, tomorrow 1000k</li>
+</ul>
+</section>
+<section id="amazon-elasticache" class="level4">
+<h4 class="anchored" data-anchor-id="amazon-elasticache">Amazon ElastiCache</h4>
+<ul>
+<li>reddis</li>
+<li>some there open source libraries</li>
+</ul>
+</section>
+</section>
+<section id="big-data-services" class="level3">
+<h3 class="anchored" data-anchor-id="big-data-services">Big Data Services</h3>
+<ul>
+<li>Amazon EMR (Elastic Map Reduce)</li>
+<li>AWS Data Pipeline Hosted Hadoop framework
+<ul>
+<li>Move data among AWS services and on premises data sources</li>
+</ul></li>
+<li>Amazon Redshift
+<ul>
+<li>Petabyte-scale data warehouse service</li>
+<li>OLAP style DB environment (massively parallel processing database)</li>
+</ul></li>
+</ul>
+</section>
+<section id="monitoring-services" class="level3">
+<h3 class="anchored" data-anchor-id="monitoring-services">Monitoring services</h3>
+<ul>
+<li>Amazon CloudWatch (free)
+<ul>
+<li>Monitor resources</li>
+<li>you can make your own monitors such as how many times a function is run and send you notifications or make graphs</li>
+</ul></li>
+<li>AWS IAM (Identity &amp; Access Mgmt)
+<ul>
+<li>Manage users, groups &amp; permissions</li>
+</ul></li>
+<li>AWS OpsWorks
+<ul>
+<li>Dev-Ops framework for application lifecycle management</li>
+</ul></li>
+<li>AWS CloudFormation
+<ul>
+<li>Templates to deploy &amp; manage</li>
+<li>This is useful for us. You build a cluster based on templates = users ,roles, storage, databases, etc</li>
+<li>infrastructure as a configuration file</li>
+</ul></li>
+<li>AWS Elastic Beanstalk
+<ul>
+<li>Automate resource management</li>
+<li>can host apps with python or java or docker containers (find out more)</li>
+</ul></li>
+</ul>
+</section>
+<section id="accessing-your-resources" class="level3">
+<h3 class="anchored" data-anchor-id="accessing-your-resources">Accessing your resources</h3>
+<ul>
+<li>Everything you can do through the Console, you can do through the CLI or an SDK</li>
+<li>SDK’s for most programming languages
+<ul>
+<li>Andriod, IOS, Java, .Net, Node.js, PHP, Python, Ruby, Go</li>
+</ul></li>
+</ul>
+<section id="commercial-models" class="level4">
+<h4 class="anchored" data-anchor-id="commercial-models">Commercial models</h4>
+<ul>
+<li>on-demand
+<ul>
+<li>On-Demand Pay for compute capacity by the hour with no long-term commitments For spiky workloads, or to define needs</li>
+</ul></li>
+<li>spot
+<ul>
+<li>Bid for unused capacity, charged at a Spot Price which fluctuates based on supply and demand For time-insensitive or transient workloads</li>
+<li>60-70% savings on on demand price when it’s on Spot</li>
+<li>if price goes above that cost, it gets shut down in 2 minutes</li>
+<li>RNA-seq on spot to have disappearing servers on 250 k samples</li>
+</ul></li>
+<li>Reserved
+<ul>
+<li>Make a low, one-time payment and receive a significant discount on the hourly charge. For committed utilization</li>
+</ul></li>
+<li>Dedicated
+<ul>
+<li>you are the <em>only</em> user on a particular physical piece of hardware</li>
+<li>health care data compliancy (in the US)</li>
+</ul></li>
+</ul>
+<p>Amazon won’t kill jobs for you itself if your bill goes higher than X. You can configure this yourself, specifying what should happen to storage.</p>
+</section>
+</section>
+<section id="security" class="level3">
+<h3 class="anchored" data-anchor-id="security">Security</h3>
+</section>
+<section id="popular-hpc-workloads-on-aws" class="level3">
+<h3 class="anchored" data-anchor-id="popular-hpc-workloads-on-aws">Popular HPC workloads on AWS</h3>
+<ul>
+<li>Genome processing</li>
+<li>Modeling and Simulation</li>
+<li>Government and Educational Research</li>
+<li>Monte Carlo Simulations</li>
+<li>Transcoding and Encoding (video)</li>
+<li>Computational Chemistry</li>
+</ul>
+</section>
+<section id="educate" class="level3">
+<h3 class="anchored" data-anchor-id="educate">Educate</h3>
+<ul>
+<li>aws.amazon.com/training/- self-paced-labs</li>
+<li>aws.amazon.com/training</li>
+<li>aws.amazon.com/certification</li>
+</ul>
+<p>Can also be used in class:</p>
+<ul>
+<li>AWS blog - best place to get updates on the main stuff that changes</li>
+<li>Deeper into a topic - product page + documentation</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="moving-data-to-aws" class="level1">
+<h1>Moving data to AWS</h1>
+<section id="storing-data-in-s3-and-ec2" class="level3">
+<h3 class="anchored" data-anchor-id="storing-data-in-s3-and-ec2">Storing data in S3 and EC2</h3>
+<p>Amazon S3 is object based storage</p>
+<ul>
+<li>Data is an object (treat each file as a single object)</li>
+<li>Consists of data (globally unique identifier) and metadata</li>
+<li>Very simple operations: (not POSIX!)</li>
+<li>PUT, GET, DELETE, LIST</li>
+<li>Cannot do an lseek, partial read or write, over-write existing data</li>
+<li>Versioning is allowed (only differences are stored)</li>
+<li>You control where data is located (Amazon never moves or copies it)</li>
+<li>Flat hierarchy (no concept of directories)</li>
+</ul>
+</section>
+<section id="amazon-s3-is" class="level3">
+<h3 class="anchored" data-anchor-id="amazon-s3-is">Amazon S3 is</h3>
+<ul>
+<li>Extremely Durable (99.999999999%)</li>
+<li>Extremely Available (99.99%)</li>
+<li>Virtually infinite (scalable)</li>
+<li>Pay only for what you use</li>
+<li>You control who has access to your data (and the location of the data)</li>
+<li>Data Encryption
+<ul>
+<li>not encrypted by default</li>
+<li>can tick a box to get amazon to manage encryption</li>
+<li>can be completely client side encryption only</li>
+</ul></li>
+<li>Event notifications</li>
+<li>Lifecycle Management</li>
+<li>Amazon S3 is more read oriented than write oriented</li>
+<li>However, write performance is still very good</li>
+</ul>
+<p>QIMR: Moving data to Europe via snowball - a data store device</p>
+<ul>
+<li>Optimising data transfer to S3</li>
+<li>Examples</li>
+</ul>
+</section>
+<section id="preliminaries" class="level3">
+<h3 class="anchored" data-anchor-id="preliminaries">Preliminaries</h3>
+<section id="before-worrying-about-upload-performance" class="level4">
+<h4 class="anchored" data-anchor-id="before-worrying-about-upload-performance">Before worrying about upload performance:</h4>
+<ol type="1">
+<li>Know file size distribution and the amount of data
+<ul>
+<li>Average file size? Largest? Smallest? Standard Deviation?</li>
+</ul></li>
+<li>Know how you are connected to Internet and AWS
+<ul>
+<li>Perform preliminary tests to S3 to understand network performance</li>
+</ul></li>
+<li>Know how you will use data in an Amazon S3 bucket
+<ul>
+<li>Will it be shared?</li>
+<li>How is it organized? How do applications access the data?</li>
+<li>Read vs.&nbsp;Write?</li>
+<li>Being able to answer these questions will make things much, much easier (with faster uploads)</li>
+</ul></li>
+</ol>
+</section>
+</section>
+<section id="non-network-keys-to-the-fastest-upload" class="level3">
+<h3 class="anchored" data-anchor-id="non-network-keys-to-the-fastest-upload">Non-Network Keys to the fastest upload</h3>
+<ul>
+<li>The following are general principles for the quickest data upload from outside of AWS</li>
+<li>Multi-part upload
+<ul>
+<li>aws s3 create-multipart-upload</li>
+<li><strong>aws s3 sync # Better command that will try to optimise the performance for you!!!</strong></li>
+<li>All high-level commands that involve uploading objects into S3 (aws s3 cp, aws s3 mv, and aws s3 sync) automatically perform a multipart upload when the object is large</li>
+</ul></li>
+<li>Parallel upload
+<ul>
+<li>each process uses a cpu</li>
+<li>How you do this is very specific to the language (SDK)</li>
+<li>In Python use multi-processing module</li>
+<li>Can use threads (C++, Java)
+<ul>
+<li>Some tools already available:</li>
+</ul></li>
+<li>s3-parallel-put (https://github.com/twpayne/s3-parallel-put )</li>
+</ul></li>
+<li>Random prefix to key name
+<ul>
+<li>first two characters of filename are part of the key, and should be randomised (evenly) by the alphabet so that they get put onto different partitions and hence the performance is much better</li>
+</ul></li>
+<li>tar
+<ul>
+<li>can put everything into a tar archive (such as images), then look at the TOC of the tar and pull out only the byte range of the image you need from AWS</li>
+</ul></li>
+<li>Data compression</li>
+</ul>
+</section>
+<section id="examples" class="level3">
+<h3 class="anchored" data-anchor-id="examples">Examples</h3>
+<section id="ska-square-kilometer-array" class="level4">
+<h4 class="anchored" data-anchor-id="ska-square-kilometer-array">SKA (square kilometer) array</h4>
+<ul>
+<li>s3-parallel-upload script (python/boto2)</li>
+<li>performance dropped off after ~30 parallel processes</li>
+</ul>
+</section>
+</section>
+<section id="hpc" class="level3">
+<h3 class="anchored" data-anchor-id="hpc">HPC</h3>
+<section id="cluster-hpc" class="level4">
+<h4 class="anchored" data-anchor-id="cluster-hpc">Cluster HPC</h4>
+<ul>
+<li>can do placement groups - which means the compute nodes are close to each other physically at the server farm</li>
+<li>storage is ephemeral, EBS, NFSv4 Amazon EFS or Lustre Intel cloud edition (PAYG), BeeGFS</li>
+<li>is still redundant within your region (so not as durable as S3)</li>
+<li>minimum use time on Amazon HPC is 1 hour (so cost is that of 1 hour)</li>
+</ul>
+</section>
+<section id="instance-types" class="level4">
+<h4 class="anchored" data-anchor-id="instance-types">Instance types</h4>
+<ul>
+<li>Family - optimised for a particular use
+<ul>
+<li>ex R3 - memory</li>
+<li>ex G2/P2 - GPU</li>
+<li>ec C3/ CPU use type</li>
+<li>P2
+<ul>
+<li>machine learning genomics (tensor flow)</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="data-lakes" class="level4">
+<h4 class="anchored" data-anchor-id="data-lakes">Data lakes</h4>
+<ul>
+<li>store datasets of different types</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="research-on-aws" class="level1">
+<h1>Research on AWS</h1>
+</section>
+<section id="lab-alces-flight-cfncluster" class="level1">
+<h1>Lab: Alces Flight &amp; CfnCluster</h1>
+<p>Apart from Alces flight, what other launch a cluster configurations are there?</p>
+<p>In order to relaunch a snapshot you have you can use CfnCluster.</p>
+<p>spark R machine learning</p>
+<p>jupiter gnu (ask him via email)</p>
+<section id="if-you-need-to-use-a-key-on-windows" class="level2">
+<h2 class="anchored" data-anchor-id="if-you-need-to-use-a-key-on-windows">If you need to use a key on Windows</h2>
+<p><a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html">Puttylink</a></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

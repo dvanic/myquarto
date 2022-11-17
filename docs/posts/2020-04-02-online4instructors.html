@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.251">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Darya Vanichkina">
+<meta name="dcterms.date" content="2020-04-02">
+
+<title>Darya Vanichkina - Mapping a live coding workshop for digital delivery</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<script type="text/javascript">
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-54373354-1', 'auto');
+
+ga('send', {
+  hitType: 'pageview',
+  'anonymizeIp': true,
+});
+</script>
+
+
+<meta property="og:title" content="Darya Vanichkina - Mapping a live coding workshop for digital delivery">
+<meta property="og:description" content="With the advent of COVID-19 we’re all having to do the unthinkable, which for an instructor like me means moving hands-on, practical coding workshops online.">
+<meta property="og:site-name" content="Darya Vanichkina">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Darya Vanichkina</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">About</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../projects.html">Projects</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../training.html">Training</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../talks.html">Talks</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cv.html">CV</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../contact.html">Contact</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../posts.html">Blog</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../posts.xml"><i class="bi bi-rss" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/dvanic"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Mapping a live coding workshop for digital delivery</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">training</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Darya Vanichkina </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">April 2, 2020</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>With the advent of COVID-19 we’re all having to do the unthinkable, which for an instructor like me means moving hands-on, practical coding workshops online. In this post, I’ll provide a map that helped me formalise how I broke down our workshops into components, and tried to map each of them to an online tool, platform or approach. I’ve used Zoom for most of the examples below, since that’s what I’ve used for teaching, but I’m sure that most of this functionality is well supported by other online meeting tools.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://images.unsplash.com/photo-1581043144435-ebcd25885809?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=80" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">NameTag</figcaption><p></p>
+</figure>
+</div>
+<section id="preliminaries" class="level2">
+<h2 class="anchored" data-anchor-id="preliminaries">Preliminaries</h2>
+<p>A learners arrives in my training room. They:</p>
+<ol type="1">
+<li><strong>Sign in on a sign-in sheet</strong>
+<ul>
+<li>The “Host” can take a screenshot of all of the participants, in gallery view, and/or a list of the names of Participants, approximately 30 minutes after the session begins<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</li>
+</ul></li>
+<li><strong>Make a name tag for themselves</strong>
+<ul>
+<li>Rename themselves in Zoom to their preferred name, faculty or school (depending on teaching cohort) and preferred pronoun, so I’d become, for example “Darya (SIH, she/her)”.</li>
+<li>This can sometimes make it tricky to match names to emails, which is what we use as our unique key for registration. That’s why I try to check people in during the day, and clarify with a private chat message asking what someone’s email is if I’m unable to unambiguously match them to their email.</li>
+</ul></li>
+<li><strong>Find a seat</strong>
+<ul>
+<li>There are several ways to allocate learners to a breakout room. First, you can use the faculty details in the naming convention above to group people by discipline, school or faculty.
+<ul>
+<li><em>This can present challenges downstream if a particular aspect of your course is better aligned with one domain’s background knowledge than another’s. For example, I use a problem with cancer patients and controls, which for me (and most people with a biomedical background) obviously indicates that the latter group are healthy, possibly/ideally age/gender matched people without cancer. When I grouped people by Faculty, the life and health sciences team powered through the challenge, whereas the engineers ended up spending a lot of time wrapping their heads around what a control was in this context.</em></li>
+<li>So in the future I think I’ll stick to what happens in real life, and mix people by first letter of name or order of popping into the course, similar to how learners tend to randomly sit together in a 3D classroom.</li>
+</ul></li>
+</ul></li>
+</ol>
+</section>
+<section id="workshop-start" class="level2">
+<h2 class="anchored" data-anchor-id="workshop-start">Workshop start</h2>
+<ol type="1">
+<li><strong>Chat to their neighbours</strong>
+<ul>
+<li>In a 3D workshop this is part of the preliminaries, but you as the instructor have to actively normalise this online.</li>
+<li>It’s one of the hardest things to replicate: the productive interactions and relationship-building/networking among learners that happens when you work together on a bunch of tasks for 2 days straight.</li>
+<li>A somewhat useful replacement that gets learners talking is an icebreaker task (<a href="https://carpentries.github.io/instructor-training/icebreakers/">ideas here</a>), which can either be posted into the shared document OR carried out orally in small groups in breakout rooms. I find it helpful, in addition to asking about something relatable (“What was the most interesting thing you learned working from home last week?”) to ask about learners’ setups and screens (“What does your learning setup look like today?”). That way, I can suggest tweaks, such as logging in from a mobile device as a modification of a two screen setup. Another option is to ask the latter <a href="https://support.zoom.us/hc/en-us/articles/213756303-Polling-for-Meetings">as a poll</a>.</li>
+</ul></li>
+<li><strong>Code of Conduct</strong>
+<ul>
+<li>All workshops need a <a href="https://sydney-informatics-hub.github.io/codeofconduct/">Code of Conduct</a>, which establishes the norms of behaviour you expect to support everyone’s learning. Online, I add information about expectations for private messaging and screen sharing, as well as recording (nope!).</li>
+<li>I also ask people to let me know (via a private chat message, at any point in the workshop) if they’re uncomfortable with me explicitly calling on them, as one of the biggest challenges of teaching online (and off) is extroverts dominating the conversation. To prevent this, I keep a tally of who I’ve called on, but I also want to make sure I don’t make someone who’s wrangling a child or responding to 50 emails about a grant deadline to feel uncomfortable or pressured.</li>
+</ul></li>
+<li><strong>Schedule</strong>
+<ul>
+<li>Just like a “normal” class, I use a slide to walk learners through the schedule, explain how the course content is linked and when breaks will happen.</li>
+</ul></li>
+<li><strong>Sticky notes</strong>
+<ul>
+<li>In a Carpentries workshop, we have a very special way of using <a href="https://dynamicecology.wordpress.com/2015/01/13/sticky-notes-as-a-teaching-and-lab-meeting-tool/">sticky notes</a> to gauge learner state and assess who needs help - without them having to hold their hand up for hours. Zoom is great because it’s a digital platform that allows us to replicate the same - BUT it’s important to recognise that using this feature in Zoom costs screen real estate (and cognitive load!), so may need to be relied on sparingly during some portions of the class, especially the live coding ones!</li>
+<li>To replicate stickies in Zoom you can use the <strong><a href="https://support.zoom.us/hc/en-us/articles/115001286183-Non-verbal-Feedback-During-Meetings">Non-verbal Feedback</a> functionality</strong>:</li>
+</ul></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://assets.zoom.us/images/en-us/desktop/generic/in-meeting/participants-list-status-icons.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">NonverbalFeedback</figcaption><p></p>
+</figure>
+</div>
+<ul>
+<li><p>While there are a LOT of options, we tended to use only the “Hand up”, “Yes” and “No” options, as (1) you can only use one of these statuses at a time, and (2) we wanted to know whether students were good (“Yes”), needed a helper to reach out (“No”), or wanted to ask a question (“Hand”). The Hand functionality is also quite helpful for the instructor, as it automatically places the person with the hand up at the top left in Gallery view mode.</p></li>
+<li><p>I’ll also mention <a href="https://support.zoom.us/hc/en-us/articles/360038311212-Meeting-reactions"><strong>Reactions</strong></a> here, which unlike Non-verbal feedback are a non-persistent way learners can tell you that all is good: they’re displayed on screen for 5 seconds, and are overlaid <em>over</em> a learners picture in Gallery view. You can only show “thumbs up” or “clap”, so they’re not very helpful for getting negative feedback. Our learners used them intuitively, without us providing explicit instructions, to let us know that they didn’t have any questions during the frequent pauses we made to ask “Does anyone have any questions?/Are there any questions?/What’s unclear about what we just did?”.</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://zoom-support-cdn.s3.amazonaws.com/images/en-us/desktop/generic/shared-screen-with-reactions.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">galleryviewwithreactions</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="slide-centric-sessions" class="level2">
+<h2 class="anchored" data-anchor-id="slide-centric-sessions">Slide-centric sessions</h2>
+<p>In some of our intermediate sessions, we then dive into slides, with a small slide deck (20 minutes max) that provides some theory and a few conceptual challenge tasks. With these sessions, I</p>
+<ol type="1">
+<li><p>Start by showing learners how best to set up their screens for learning, including if they want to take notes or ask questions via the chat.</p></li>
+<li><p>Make sure I explicitly provide a link to where they can download the slides, so they can annotate a copy as we go, on their own machine.</p></li>
+<li><p>Set up the norms of asking questions: use the chat (or the shared doc, but ideally not both), and have my hosting co-instructor interrupt me during short pauses if I miss a question that a learner asked that would be best answered during that particular slide/mini-session vs at the end of the presentation.</p></li>
+</ol>
+</section>
+<section id="live-coding-sessions" class="level2">
+<h2 class="anchored" data-anchor-id="live-coding-sessions">Live coding sessions</h2>
+<p>These form the core of our workshops, with sessions of coding along interspersed with short, formative assessment tasks, including multiple choice questions, faded examples and more complex, unscaffolded challenge tasks. Live coding is the most challenging aspect to “port” to digital. The key things that help make these work (somewhat):</p>
+<ol type="1">
+<li>Make sure you use/share/project only 1/2 of your screen, and use an appropriate coding “tool” that encompasses everything in that 1/2 screen. This means jupyter notebooks and the terminal are in, but RStudio/a .R script, in it’s native implementation, is out - they just take up too much screen real estate! The best work-around I’ve found so far is to use an Rmarkdown document, with inline output for figures. This is what you get the settings to look like:</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../fig/200401_RstudioInline.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">inlinesetup</figcaption><p></p>
+</figure>
+</div>
+<p>And this is what the learners’ screens looked like:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../fig/2004_howtoscreen.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">howtoo</figcaption><p></p>
+</figure>
+</div>
+<ol start="2" type="1">
+<li><p>During the training, start by showing learners how best to set up their screens for learning.</p></li>
+<li><p>If you do decide (or your learners just go) to move to more of a watch me narrate and code, I highly recommend having the challenge tasks commented out in a single code file you distribute throughout the day - so a .py or a .R or (possibly) even a .sh script, although I’m not sure about the latter, as most intro Unix courses don’t necessarily work a lot with shell scripts. Learners can then uncomment the challenges as they go, and work through them at the appropriate times.</p></li>
+</ol>
+</section>
+<section id="breakout-rooms-and-challenge-tasks" class="level2">
+<h2 class="anchored" data-anchor-id="breakout-rooms-and-challenge-tasks">Breakout rooms and challenge tasks</h2>
+<p>Peer learning has been shown in numerous studies to be one of the most effective ways of getting students to learn. In our in-person training sessions, we encourage learners to sit in a group and, for every challenge task, to start working on it themselves, then share their solution or any encountered problems with their neighbour, then their table and - finally - when the group has solves it - with the class. To replicate this in an online environment we used Zoom <a href="https://support.zoom.us/hc/en-us/articles/206476093-Getting-Started-with-Breakout-Rooms">breakout rooms</a>, with a few caveats:</p>
+<ol type="1">
+<li><p>The host - who is NOT the person teaching - needs to set up the maximum number of breakout rooms at the beginning of the training session. Note that ONLY the host, and NOT the co-hosts, can set up breakout rooms and allocate people to them!</p></li>
+<li><p>We send groups of 3-5 learners, plus one co-instructor, into each breakout room. Unlike an in-person event, in a digital skills training we found that it took learners a few minutes to adjust to the breakout context and figure out what they were meant to do and where - so the instructor in each room helped guide this process.</p></li>
+<li><p>Right before a challenge task we’d paste the text of the task into the chat AND add it into our shared document. This meant that all learners had easy access to the activity. Note that the chat in a breakout room can only happen between people IN that room, so if learners are all in a room and want to message the host, who is NOT in their room, they can’t do this! So if you’ve got more rooms than co-instructors it can be helpful to have them post requests for help into the shared document, after which you can jump into the room; they can also ask for help via the app:</p></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://assets.zoom.us/images/en-us/desktop/generic/ask-for-help-button.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">help</figcaption><p></p>
+</figure>
+</div>
+<ul>
+<li>The red/green “No”/“Yes” participant statuses are not visible to the host from outside a breakout room, so using them to replace stickies doesn’t work in this context.</li>
+<li>Note that users joined via the web client, Chromebooks/Chrome OS or Zoom Rooms are unable to join Breakout Rooms! Zoom suggests the main room as an alternative session for these users, but we’d recommend explicitly requesting learners to use an installed version of the app/an individual machine instead of the web client or room.</li>
+</ul>
+<p>To mimic the green sticky system of in-person teaching, the instructors can use the back-channel to communicate about where their group is in the task OR - if you’ve got rooms without instructors - I’d recommend learners use the shared document to update you when they’ve completed each of the components of the challenge task.</p>
+<ul>
+<li>When everyone’s back together ask for a volunteer early on, then, later in the day, call on people to prevent extroverts from dominating the reporting.</li>
+</ul>
+</section>
+<section id="casual-chats-with-instructors-and-other-learners" class="level2">
+<h2 class="anchored" data-anchor-id="casual-chats-with-instructors-and-other-learners">Casual chats with instructors and other learners</h2>
+<p>This is impossible to fully replicate online, BUT as a workaround: plan for at least one of your instructors to be in the meeting during the morning and afternoon “tea” breaks (Labelled “HERE” below). My “standard” workshop schedule looks like this:</p>
+<ul>
+<li>09:00 am - 10:30 am - Training</li>
+<li><strong>10:30 am - 11:00 am - “Morning tea”</strong> &lt;- HERE</li>
+<li>11:00 am - 12:30 pm - Training</li>
+<li><strong>12:30 pm - 1:30 pm - Lunch</strong></li>
+<li>1:30 pm - 3:00 pm - Training</li>
+<li><strong>3:00 pm - 3:30 pm - “Afternoon tea”</strong> &lt;- HERE</li>
+<li>3:30 pm - 5:00 pm - Training</li>
+</ul>
+<p>What does that instructor do? Small talk at the least, and - usually - after getting to know the learners a bit, they WILL ask you questions about their research, your work or other “stuff” related to the course. It also allows you to reassure them you believe they can learn the content AND that even if their setup is “weird” (according to them) they can still succeed in the course and use the tools and techniques later on.</p>
+<hr>
+<p>Whew! That ended up being a long post! In the <a href="https://daryavanichkina.com/posts/2020-map-digital-2/">next post</a> of this series, I’ll explore some common problems and how to deal with them, as well as discuss how to replicate instructor-instructor communication. If you’re a learner, <a href="https://daryavanichkina.com/posts/2020-great-online-learning-student/">this post</a> is for you!</p>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>I find 30 - 45 minutes into the first session to be that sweet spot by which time everyone has joined, but people who identify that the training is not for them/they have conflicting scheduling responsibilities have not dropped out yet.]<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

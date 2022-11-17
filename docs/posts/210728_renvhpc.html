@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.251">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Darya Vanichkina">
+<meta name="dcterms.date" content="2021-07-28">
+
+<title>Darya Vanichkina - Installing packages on a PBS-Pro HPC cluster using renv</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<script type="text/javascript">
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-54373354-1', 'auto');
+
+ga('send', {
+  hitType: 'pageview',
+  'anonymizeIp': true,
+});
+</script>
+
+
+<meta property="og:title" content="Darya Vanichkina - Installing packages on a PBS-Pro HPC cluster using renv">
+<meta property="og:description" content="Today someone asked about my workflow for using R on an HPC cluster, and - more specifically - about how to install packages when executing a workflow that requires use of HPC.">
+<meta property="og:site-name" content="Darya Vanichkina">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Darya Vanichkina</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">About</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../projects.html">Projects</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../training.html">Training</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../talks.html">Talks</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cv.html">CV</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../contact.html">Contact</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../posts.html">Blog</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../posts.xml"><i class="bi bi-rss" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/dvanic"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Installing packages on a PBS-Pro HPC cluster using renv</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Data science</div>
+                <div class="quarto-category">R</div>
+                <div class="quarto-category">WorkJournal</div>
+                <div class="quarto-category">compute</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Darya Vanichkina </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">July 28, 2021</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="using-renv-on-a-pbs-pro-hpc-cluster" class="level2">
+<h2 class="anchored" data-anchor-id="using-renv-on-a-pbs-pro-hpc-cluster">Using renv on a PBS-Pro HPC cluster</h2>
+<p>Today someone asked about my workflow for using R on an HPC cluster, and - more specifically - about how to install packages when executing a workflow that requires use of HPC. Google wasn’t helpful with providing a link to share - so the onus is on me to write <em>the</em> blog post.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://source.unsplash.com/E2qx9Ed2qIQ/800x600.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">suitcase</figcaption><p></p>
+</figure>
+</div>
+<section id="the-why" class="level3">
+<h3 class="anchored" data-anchor-id="the-why">The “why”</h3>
+<p>Just like working on our local machines, when working on an HPC cluster we really want to be able to have a consistent R environment for each of our projects that we snapshot at the time of working on said project. This means code that was written months or even years ago will still work as expected, even if the packages on CRAN have since been updated with breaking changes. The <a href="https://rstudio.github.io/renv/index.html"><code>renv</code></a> package is brilliant at managing this - however, it is not intuitive to figure out how to use it when working on an HPC cluster - which is what I work through in the below post.</p>
+</section>
+<section id="assumptions" class="level3">
+<h3 class="anchored" data-anchor-id="assumptions">Assumptions</h3>
+<p>This post makes a few assumptions:</p>
+<ol type="1">
+<li>You are planning to use R for analysis, and know how to install packages on your local machine.</li>
+<li>You are working with a PBS-Pro HPC cluster, and know all of the core commands (this is not an introduction to <code>ssh</code>, <code>qsub</code>, <code>module load</code> etc - see <a href="https://sydney-informatics-hub.github.io/training.artemis.introhpc/">here</a> for an intro). I <em>think</em> some of the below should generalise to SLURM or other cluster schedulers, but don’t have access to them so can’t test.</li>
+<li>You want to use the <a href="https://rstudio.github.io/renv/articles/renv.html"><code>renv</code></a> library to manage the packages in your project (You do, you really do - I cannot recommend this highly enough, especially for sanity of future you). You know the basics of using <code>renv</code> on your local machine, as per <a href="https://rstudio.github.io/renv/articles/renv.html">the <code>renv</code> vignette</a> - that’s probably the best intro to <code>renv</code>.</li>
+</ol>
+<p>Oof, now that that’s out of the way, let’s dive in :dolphin: …</p>
+</section>
+<section id="step-1-ssh-into-your-cluster-and-fire-up-an-interactive-session" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-ssh-into-your-cluster-and-fire-up-an-interactive-session">Step 1: <code>ssh</code> into your cluster and fire up an interactive session</h3>
+<p>After you login to your HPC server, I recommend starting up an interactive session so you’re not working on and hence clogging up the login nodes. (You can do this on a login node too, but depending on how much compute prototyping your analysis requires this may crash :fire: - or get you a cranky email from an admin :rage: ).</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qsub</span> <span class="at">-I</span> <span class="at">-l</span> walltime=4:0:0 <span class="at">-l</span> select=1:ncpus=1:mem=10gb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="step-2-launch-r-and-install-renv" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-launch-r-and-install-renv">Step 2: Launch R and install renv</h3>
+<p>After you’re logged in to the worker node, run the following commands to:</p>
+<ul>
+<li>navigate to the project directory</li>
+<li>get rid of everything that may have inadvertently been preloaded</li>
+<li>launch R</li>
+<li>install <code>renv</code></li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> myprojectdirectory</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> purge</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load R/4.0.4 <span class="co"># &lt;- or whatver version or R is available on your cluster</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This will open the R command line interface.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"renv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This will return the details that the installation of <code>renv()</code> will occur into a default location:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Installing</span> package into ‘/home/myusername/R/x86_64-pc-linux-gnu-library/4.0’</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And ask me to select a CRAN mirror for installation; after choosing the appropriate mirror and pressing return the package will be installed.</p>
+</section>
+<section id="step-3-install-the-packages-you-need-ideally-prototype-your-analysis-and-snapshot-the-installs-using-renv" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-install-the-packages-you-need-ideally-prototype-your-analysis-and-snapshot-the-installs-using-renv">Step 3: Install the packages you need, (ideally) prototype your analysis and snapshot the installs using <code>renv</code></h3>
+<p>For this demo, I am going to assume that my project depends on the <code>tidyverse</code> family of libraries, and that I want to install them in one go. (<em>In real life, I actually avoid taking this approach, and instead install each of the tidyverse libraries one by one as I use and need them.</em>)</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(renv)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># initialise renv</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">init</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This will ask me to restart R, after doing which I can start installing packages.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># wait... and wait... for packages to successfully install</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>I would next prototype my analysis code, installing as many packages as I need using the normal <code>install.packages()</code> syntax - and eventually wrap the analysis up into a script.</p>
+<p>After you have installed all of the libraries you need, in the interactive R session, exectute the following command:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this will tell you whether renv has captured versions </span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># of all of the packages you need to install</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">status</span>()</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># if the result of renv::status() was not </span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># "The project is already synchronized with the lockfile."</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># run the below command to snapshot all currently installed libraries</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For this demo, I’m going to assume I want to run the following command that uses the built-in <code>gss_cat</code> dataset from the <code>forcats</code> package, the pipe and the <code>dplyr::filter()</code> command - so nicely tests a few of the <code>tidyverse</code> libraries in one line:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>gss_cat <span class="sc">%&gt;%</span> <span class="fu">head</span>() <span class="sc">%&gt;%</span> <span class="fu">filter</span>(tvhours <span class="sc">&lt;</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The output should be:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a># A tibble: 3 × 9</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>   year marital      age race  rincome    partyid     relig     denom    tvhours</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  &lt;int&gt; &lt;fct&gt;      &lt;int&gt; &lt;fct&gt; &lt;fct&gt;      &lt;fct&gt;       &lt;fct&gt;     &lt;fct&gt;      &lt;int&gt;</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>1  2000 Widowed       67 White Not appli… Independent Protesta… No deno…       2</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>2  2000 Never mar…    39 White Not appli… Ind,near r… Orthodox… Not app…       4</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>3  2000 Divorced      25 White Not appli… Not str de… None      Not app…       1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="optional-step-3a-look-at-the-renv.lock-file-to-see-all-of-the-packages-you-have-installed-into-the-project" class="level3">
+<h3 class="anchored" data-anchor-id="optional-step-3a-look-at-the-renv.lock-file-to-see-all-of-the-packages-you-have-installed-into-the-project">(Optional) Step 3a: Look at the <code>renv.lock</code> file to see all of the packages you have installed into the project</h3>
+<p>The <code>renv.lock</code> file stores details about the R version and all of the packages that are installed in your environment in <code>.json</code> format. So installing the <code>tidyverse</code> packages in one fell swoop like I did above results in quite a long list of libraries (last 5 shown here):</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a> <span class="er">"vroom":</span> <span class="fu">{</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"Package"</span><span class="fu">:</span> <span class="st">"vroom"</span><span class="fu">,</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"Version"</span><span class="fu">:</span> <span class="st">"1.5.3"</span><span class="fu">,</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"Source"</span><span class="fu">:</span> <span class="st">"Repository"</span><span class="fu">,</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"Repository"</span><span class="fu">:</span> <span class="st">"CRAN"</span><span class="fu">,</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"Hash"</span><span class="fu">:</span> <span class="st">"aac6012f34348b3ca6bf373fe7172b06"</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span><span class="er">,</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="er">"withr":</span> <span class="fu">{</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"Package"</span><span class="fu">:</span> <span class="st">"withr"</span><span class="fu">,</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"Version"</span><span class="fu">:</span> <span class="st">"2.4.2"</span><span class="fu">,</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"Source"</span><span class="fu">:</span> <span class="st">"Repository"</span><span class="fu">,</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"Repository"</span><span class="fu">:</span> <span class="st">"CRAN"</span><span class="fu">,</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"Hash"</span><span class="fu">:</span> <span class="st">"ad03909b44677f930fa156d47d7a3aeb"</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span><span class="er">,</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="er">"xfun":</span> <span class="fu">{</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"Package"</span><span class="fu">:</span> <span class="st">"xfun"</span><span class="fu">,</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"Version"</span><span class="fu">:</span> <span class="st">"0.24"</span><span class="fu">,</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"Source"</span><span class="fu">:</span> <span class="st">"Repository"</span><span class="fu">,</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"Repository"</span><span class="fu">:</span> <span class="st">"CRAN"</span><span class="fu">,</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"Hash"</span><span class="fu">:</span> <span class="st">"88cdb9779a657ad80ad942245fffba31"</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span><span class="er">,</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    <span class="er">"xml2":</span> <span class="fu">{</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"Package"</span><span class="fu">:</span> <span class="st">"xml2"</span><span class="fu">,</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"Version"</span><span class="fu">:</span> <span class="st">"1.3.2"</span><span class="fu">,</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"Source"</span><span class="fu">:</span> <span class="st">"Repository"</span><span class="fu">,</span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"Repository"</span><span class="fu">:</span> <span class="st">"CRAN"</span><span class="fu">,</span></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"Hash"</span><span class="fu">:</span> <span class="st">"d4d71a75dd3ea9eb5fa28cc21f9585e2"</span></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span><span class="er">,</span></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>    <span class="er">"yaml":</span> <span class="fu">{</span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"Package"</span><span class="fu">:</span> <span class="st">"yaml"</span><span class="fu">,</span></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"Version"</span><span class="fu">:</span> <span class="st">"2.2.1"</span><span class="fu">,</span></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"Source"</span><span class="fu">:</span> <span class="st">"Repository"</span><span class="fu">,</span></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"Repository"</span><span class="fu">:</span> <span class="st">"CRAN"</span><span class="fu">,</span></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"Hash"</span><span class="fu">:</span> <span class="st">"2826c5d9efb0a88f657c7a679c7106db"</span></span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>I sometimes find that <code>renv::status()</code> and <code>renv::snapshot()</code> in step 3 don’t immediately see all of the libraries I have installed in the environment, and - weirdly - I need to restart R and run <code>renv::status()</code> again before it will detect that a bunch of libraries have been installed. So if you’re missing libraries in the <code>renv.lock</code> file you know need to be there - restarting R and re-running <code>renv::status()</code> and <code>renv::snapshot()</code> may be the way to go.</p>
+</section>
+<section id="step-4-save-your-script-and-submit-it-via-pbs" class="level3">
+<h3 class="anchored" data-anchor-id="step-4-save-your-script-and-submit-it-via-pbs">Step 4: Save your script and submit it via PBS</h3>
+<p>Wrap the above code into <code>myscript.R</code> , with the following contents:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>gss_cat <span class="sc">%&gt;%</span> <span class="fu">head</span>() <span class="sc">%&gt;%</span> <span class="fu">filter</span>(tvhours <span class="sc">&lt;</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then create a shell script (<code>myshellscript.sh</code>) that can be submitted to the PBS queue:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#! /bin/bash</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> purge</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load R/4.0.4</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /to/my/projectpath</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> myscript.R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Finally, submit to the queue:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qsub</span> <span class="at">-l</span> walltime=0:10:0 <span class="at">-l</span> select=1:ncpus=1:mem=1gb <span class="at">-N</span> mytestscript myshellscript.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note that I’m only asking for 1 Gb of RAM and 10 minutes of walltime. This is probably a lot less than you’d need for any “real” analysis - but it’s perfectly fine for my script above.</p>
+<p>After that executes, I get the following output in <code>mytestscript.o123456</code>, where 123456 is the job number that my PBS scheduler automatically assigned to my script run:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 3 × 9</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>   year marital      age race  rincome    partyid     relig     denom    tvhours</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="sc">&lt;</span>int<span class="sc">&gt;</span> <span class="er">&lt;</span>fct<span class="sc">&gt;</span>      <span class="er">&lt;</span>int<span class="sc">&gt;</span> <span class="er">&lt;</span>fct<span class="sc">&gt;</span> <span class="er">&lt;</span>fct<span class="sc">&gt;</span>      <span class="er">&lt;</span>fct<span class="sc">&gt;</span>       <span class="er">&lt;</span>fct<span class="sc">&gt;</span>     <span class="er">&lt;</span>fct<span class="sc">&gt;</span>      <span class="er">&lt;</span>int<span class="sc">&gt;</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>  <span class="dv">2000</span> Widowed       <span class="dv">67</span> White Not appli… Independent Protesta… No deno…       <span class="dv">2</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>  <span class="dv">2000</span> Never mar…    <span class="dv">39</span> White Not appli… Ind,near r… Orthodox… Not app…       <span class="dv">4</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>  <span class="dv">2000</span> Divorced      <span class="dv">25</span> White Not appli… Not str de… None      Not app…       <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And the package loading messages in <code>mytestscript.e123456</code>:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>Warning message<span class="sc">:</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>renv took longer than <span class="fu">expected</span> (<span class="dv">66</span> seconds) to activate the sandbox.</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>The sandbox can be disabled by setting<span class="sc">:</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    RENV_CONFIG_SANDBOX_ENABLED <span class="ot">=</span> <span class="cn">FALSE</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>within an appropriate start<span class="sc">-</span>up .Renviron file. See <span class="st">`</span><span class="at">?renv::config</span><span class="st">`</span> <span class="cf">for</span> more details.</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>Warning<span class="sc">:</span> program compiled against libxml <span class="dv">209</span> using older <span class="dv">207</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>── Attaching packages ─────────────────────────────────────── tidyverse <span class="dv">1</span>.<span class="fl">3.1</span> ──</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>✔ ggplot2 <span class="dv">3</span>.<span class="fl">3.5</span>     ✔ purrr   <span class="dv">0</span>.<span class="fl">3.4</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>✔ tibble  <span class="dv">3</span>.<span class="fl">1.3</span>     ✔ dplyr   <span class="dv">1</span>.<span class="fl">0.7</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>✔ tidyr   <span class="dv">1</span>.<span class="fl">1.3</span>     ✔ stringr <span class="dv">1</span>.<span class="fl">4.0</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>✔ readr   <span class="dv">2</span>.<span class="fl">0.0</span>     ✔ forcats <span class="dv">0</span>.<span class="fl">5.1</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>── Conflicts ────────────────────────────────────────── <span class="fu">tidyverse_conflicts</span>() ──</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>✖ dplyr<span class="sc">::</span><span class="fu">filter</span>() masks stats<span class="sc">::</span><span class="fu">filter</span>()</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>✖ dplyr<span class="sc">::</span><span class="fu">lag</span>()    masks stats<span class="sc">::</span><span class="fu">lag</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This includes a warning that the <code>renv</code> sandbox took a while to load, but this doesn’t seem to affect functionality, so I haven’t disabled it.</p>
+<hr>
+<p>That’s it! Hopefully the above helps you use <code>renv()</code> with a PBS-Pro based HPC cluster :blush:, and please do leave a comment if something isn’t clear or doesn’t work as expected.</p>
+</section>
+<section id="even-more-notes" class="level3">
+<h3 class="anchored" data-anchor-id="even-more-notes">(Even more) notes</h3>
+<ol type="1">
+<li>This workflow means that your package install information (i.e.&nbsp;the binaries) are stored in the project folder, in the <code>renv</code> folder. So they are <em>not</em> stored on the worker nodes where your job is being executed, but instead in your home or project folder. This is a <em>good</em> thing, as it means you’re not hitting up CRAN to install packages every time you run a job.</li>
+<li>This workflow also means that while you can <code>rsync</code> your project folder from your local machine to the remove server (or prototype on your local machine), you will need to run <code>renv::restrore()</code> once on the “other” machine prior to being able to execute or deploy the script.</li>
+</ol>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
