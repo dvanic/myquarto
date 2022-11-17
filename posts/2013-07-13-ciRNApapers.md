@@ -2,9 +2,9 @@
 title: "2013 ciRNA papers"
 date: '2013-07-13'
 layout: post
-slug: 2013-ciRNApapers
 categories:
 - presentations
+image: https://www.frontiersin.org/files/Articles/379625/fonc-08-00179-HTML-r1/image_m/fonc-08-00179-g001.jpg
 ---
 A presentation I made for a journal club on the "1st" 3 ciRNA papers
 

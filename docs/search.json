@@ -140,13 +140,6 @@
     "text": "If you need to use a key on Windows\nPuttylink"
   },
   {
-    "objectID": "posts/2013-01-01-helloworld.html",
-    "href": "posts/2013-01-01-helloworld.html",
-    "title": "Hello World!",
-    "section": "",
-    "text": "Welcome to my blog!"
-  },
-  {
     "objectID": "posts/2018-02-20-ANDS.html",
     "href": "posts/2018-02-20-ANDS.html",
     "title": "Training the trainer presentation",
@@ -823,7 +816,7 @@
     "href": "posts.html",
     "title": "Darya Vanichkina",
     "section": "",
-    "text": "Date\n\n\nTitle\n\n\n\n\n\n\n\n\n\nOct 31, 2021\n\n\nPrinting 4 iPhone photos on 4x6 photo paper\n\n\n\n\n\n\n\nJul 28, 2021\n\n\nInstalling packages on a PBS-Pro HPC cluster using renv\n\n\n\n\n\n\n\nApr 12, 2021\n\n\nggplot batch variable visualisation in Rmd without for loops\n\n\n\n\n\n\n\nApr 9, 2021\n\n\nAvoiding 443 errors and RCurl woes with the REDCap API on Windows\n\n\n\n\n\n\n\nMay 1, 2020\n\n\nLiving dangerously: a newbie guide to running multiple version of R on a Mac\n\n\n\n\n\n \n\n\n\nApr 7, 2020\n\n\nJumping into digital: Lessons learned while moving live-coding workshops online\n\n\n\n\n\n\n\nApr 3, 2020\n\n\nMapping a live coding workshop for digital delivery (part 2)\n\n\n\n\n\n\n\nApr 2, 2020\n\n\nMapping a live coding workshop for digital delivery\n\n\n\n\n\n\n\nApr 1, 2020\n\n\nHaving a great online learning experience: a guide for students\n\n\n\n\n\n\n\nDec 4, 2019\n\n\nR for Data Science Day 1\n\n\n\n\n\n \n\n\n\nMar 29, 2019\n\n\nMoving to Hugo\n\n\n\n\n\n \n\n\n\nFeb 20, 2018\n\n\nTraining the trainer presentation\n\n\n\n\n\n \n\n\n\nNov 1, 2016\n\n\nAmazon AWS workshop at the University of Sydney\n\n\n\n\n\n \n\n\n\nAug 12, 2016\n\n\n2016-PyConAU 2016 Presentation\n\n\n\n\n\n \n\n\n\nMar 24, 2014\n\n\nLorne Genome 2012 poster\n\n\n\n\n\n \n\n\n\nJul 13, 2013\n\n\nHello World!\n\n\n\n\n\n \n\n\n\nJul 13, 2013\n\n\n2013 ciRNA papers\n\n\n\n\n\n\nNo matching items"
+    "text": "No matching items"
   },
   {
     "objectID": "cv.html",

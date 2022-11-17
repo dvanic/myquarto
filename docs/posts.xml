@@ -19,7 +19,6 @@
 
 
 
-
 <p>While this blog tends to focus on things I do at work or as part of data-sciency related extracurricular interests, I can’t help but post the solution to an amusing problem being the parent of a preschooler threw my way. My daughter’s daycare has a roaming koala (yes, a koala, because we’re in Australia, y’all), who gets to spend a week with each family in turn, after which we’re meant to contribute photos and some text to the “Koala’s adventures” scrapbook.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -147,7 +146,6 @@
   <dc:creator>Darya Vanichkina</dc:creator>
   <link>https://daryavanichkina.com/posts/210728_renvhpc.html</link>
   <description><![CDATA[ 
-
 
 
 
@@ -338,7 +336,6 @@
 
 
 
-
 <p>When working with data, often you want to make a specific type of plot across a bunch of variables at once. The R/tidyverse way of doing this involves some (basic) non-standard evaluation, but - because I know I’ll forget how to do this in the future - I thought I’d write up this short blog post with code that works.</p>
 <p>In the below snippet, we use ggplot on the built-in mtcars dataset to make a scatterplot of each of the variables against the <code>mpg</code> variable, colouring it by the number of cylinders (on the fly converted to a factor).</p>
 <p>To do this, I define the <code>makeplots()</code> function, which takes a single argument called <code>myfeature</code>. Within the function, I need to save the plot as a variable (<code>a</code>), and then print it so that it is rendered in the Rmd. I grab the column names I’d like to iterate over and save them into a character vector (In real life, I tend do grab them all using <code>names(mtcars)</code>, but I choose a few manually to keep this blog post manageable. Also, I could have used commands like <code>setdiff()</code> to subset the <code>names(mtcars)</code> character vector to remove, for example, mpg itself).</p>
@@ -398,7 +395,6 @@
   <dc:creator>Darya Vanichkina</dc:creator>
   <link>https://daryavanichkina.com/posts/2021-04-09-redcap-api-crossplatform.html</link>
   <description><![CDATA[ 
-
 
 
 
@@ -517,10 +513,9 @@
 
 
 
-
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://daryavanichkina.com/posts/https:/unsplash.com/photos/3uunq0n1WRY.png" class="img-fluid figure-img"></p>
+<p><img src="https://daryavanichkina.com/posts/https:/images.unsplash.com/photo-1577134352098-0599fcdefaae?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=870&amp;q=80" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption">TBH I want to be this chicken…</figcaption><p></p>
 </figure>
 </div>
@@ -614,14 +609,13 @@
   <category>WorkJournal</category>
   <guid>https://daryavanichkina.com/posts/2020-05-01-rswitch.html</guid>
   <pubDate>Thu, 30 Apr 2020 14:00:00 GMT</pubDate>
-  <media:content url="https://unsplash.com/photos/3uunq0n1WRY" medium="image"/>
+  <media:content url="https://images.unsplash.com/photo-1577134352098-0599fcdefaae?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=870&amp;q=80" medium="image"/>
 </item>
 <item>
   <title>Jumping into digital: Lessons learned while moving live-coding workshops online</title>
   <dc:creator>Darya Vanichkina</dc:creator>
   <link>https://daryavanichkina.com/posts/2020-04-07-ardctalk.html</link>
   <description><![CDATA[ 
-
 
 
 
@@ -645,13 +639,13 @@
   <category>training</category>
   <guid>https://daryavanichkina.com/posts/2020-04-07-ardctalk.html</guid>
   <pubDate>Mon, 06 Apr 2020 14:00:00 GMT</pubDate>
+  <media:content url="https://daryavanichkina.com/fig/20_jumpdigital.png" medium="image" type="image/png" height="102" width="144"/>
 </item>
 <item>
   <title>Mapping a live coding workshop for digital delivery (part 2)</title>
   <dc:creator>Darya Vanichkina</dc:creator>
   <link>https://daryavanichkina.com/posts/2020-04-03-online4instructor2.html</link>
   <description><![CDATA[ 
-
 
 
 
@@ -814,7 +808,6 @@
   <dc:creator>Darya Vanichkina</dc:creator>
   <link>https://daryavanichkina.com/posts/2020-04-02-online4instructors.html</link>
   <description><![CDATA[ 
-
 
 
 
@@ -984,7 +977,6 @@
 
 
 
-
 <p>With the advent of COVID-19 we’re all having to do the unthinkable, which for an instructor like me means moving hands-on, practical coding workshops online. In this post, I’ll outline a few key things you can do as a <strong>learner</strong> to have what is hopefully the best possible experience attending synchronous online training.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1108,7 +1100,6 @@
   <dc:creator>Darya Vanichkina</dc:creator>
   <link>https://daryavanichkina.com/posts/2019-12-04-r-for-data-science-day-1.html</link>
   <description><![CDATA[ 
-
 
 
 
@@ -1639,7 +1630,6 @@
 
 
 
-
 <p>I’m finally making the leap, and (hopefully) moving this website to blogdown + hugo + gitlab + netlify.</p>
 <p>So far, useful resources for wrapping my head around how to do this:</p>
 <ul>
@@ -1659,12 +1649,12 @@
   <category>other</category>
   <guid>https://daryavanichkina.com/posts/2019-03-29-moving-to-hugo.html</guid>
   <pubDate>Thu, 28 Mar 2019 13:00:00 GMT</pubDate>
+  <media:content url="https://d33wubrfki0l68.cloudfront.net/c38c7334cc3f23585738e40334284fddcaf03d5e/2e17c/images/hugo-logo-wide.svg" medium="image" type="image/svg+xml"/>
 </item>
 <item>
   <title>Training the trainer presentation</title>
   <link>https://daryavanichkina.com/posts/2018-02-20-ANDS.html</link>
   <description><![CDATA[ 
-
 
 
 
@@ -1681,12 +1671,12 @@
   <category>training</category>
   <guid>https://daryavanichkina.com/posts/2018-02-20-ANDS.html</guid>
   <pubDate>Mon, 19 Feb 2018 13:00:00 GMT</pubDate>
+  <media:content url="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=2670&amp;q=80" medium="image"/>
 </item>
 <item>
   <title>Amazon AWS workshop at the University of Sydney</title>
   <link>https://daryavanichkina.com/posts/2016-11-01-AWSworkshop.html</link>
   <description><![CDATA[ 
-
 
 
 
@@ -2031,12 +2021,12 @@
   <category>conferences</category>
   <guid>https://daryavanichkina.com/posts/2016-11-01-AWSworkshop.html</guid>
   <pubDate>Mon, 31 Oct 2016 13:00:00 GMT</pubDate>
+  <media:content url="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" medium="image" type="image/svg+xml"/>
 </item>
 <item>
   <title>2016-PyConAU 2016 Presentation</title>
   <link>https://daryavanichkina.com/posts/2016-08-12-pycon2016.html</link>
   <description><![CDATA[ 
-
 
 
 
@@ -2071,12 +2061,12 @@
   <category>presentations</category>
   <guid>https://daryavanichkina.com/posts/2016-08-12-pycon2016.html</guid>
   <pubDate>Thu, 11 Aug 2016 14:00:00 GMT</pubDate>
+  <media:content url="https://daryavanichkina.com/fig/16_pycon.png" medium="image" type="image/png" height="129" width="144"/>
 </item>
 <item>
   <title>Lorne Genome 2012 poster</title>
   <link>https://daryavanichkina.com/posts/2014-03-24-lorne2012poster.html</link>
   <description><![CDATA[ 
-
 
 
 
@@ -2090,30 +2080,12 @@
   <category>presentations</category>
   <guid>https://daryavanichkina.com/posts/2014-03-24-lorne2012poster.html</guid>
   <pubDate>Sun, 23 Mar 2014 13:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Hello World!</title>
-  <dc:creator>Darya Vanichkina</dc:creator>
-  <link>https://daryavanichkina.com/posts/2013-01-01-helloworld.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>This is the 1st post for this new Jekyll-powered blog.</p>
-<p>Welcome to my blog!</p>
-
-
-
- ]]></description>
-  <guid>https://daryavanichkina.com/posts/2013-01-01-helloworld.html</guid>
-  <pubDate>Fri, 12 Jul 2013 14:00:00 GMT</pubDate>
+  <media:content url="https://daryavanichkina.com/fig/1300_posterScreenshot.png" medium="image" type="image/png" height="109" width="144"/>
 </item>
 <item>
   <title>2013 ciRNA papers</title>
   <link>https://daryavanichkina.com/posts/2013-07-13-ciRNApapers.html</link>
   <description><![CDATA[ 
-
 
 
 
@@ -2130,6 +2102,7 @@
   <category>presentations</category>
   <guid>https://daryavanichkina.com/posts/2013-07-13-ciRNApapers.html</guid>
   <pubDate>Fri, 12 Jul 2013 14:00:00 GMT</pubDate>
+  <media:content url="https://www.frontiersin.org/files/Articles/379625/fonc-08-00179-HTML-r1/image_m/fonc-08-00179-g001.jpg" medium="image" type="image/jpeg"/>
 </item>
 </channel>
 </rss>

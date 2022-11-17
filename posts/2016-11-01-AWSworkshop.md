@@ -5,6 +5,7 @@ slug: 2016-AWSworkshop
 title: Amazon AWS workshop at the University of Sydney
 categories:
 - conferences
+image: https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg
 ---
 
 On October 24th I attented a talk by Adrian White about using Amazon AWS for research. Below are my notes, not extensively annotated, in the hope that they'll be useful for someone. If something is not clear, please ask in the comments, and I'll try to answer to the best of my knowledge

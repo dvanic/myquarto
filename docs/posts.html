@@ -72,9 +72,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-image','listing-date','listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      valueNames: ['listing-image','listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-date","listing-title","listing-author"],
+      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -172,7 +172,7 @@ ga('send', {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(17)</span></div><div class="category" data-category="Data science">Data science <span class="quarto-category-count">(5)</span></div><div class="category" data-category="Family">Family <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ImageMagick">ImageMagick <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R">R <span class="quarto-category-count">(5)</span></div><div class="category" data-category="REDCap">REDCap <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Rmd">Rmd <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Shell">Shell <span class="quarto-category-count">(1)</span></div><div class="category" data-category="WorkJournal">WorkJournal <span class="quarto-category-count">(4)</span></div><div class="category" data-category="compute">compute <span class="quarto-category-count">(1)</span></div><div class="category" data-category="conferences">conferences <span class="quarto-category-count">(1)</span></div><div class="category" data-category="other">other <span class="quarto-category-count">(1)</span></div><div class="category" data-category="presentations">presentations <span class="quarto-category-count">(4)</span></div><div class="category" data-category="tidyverse">tidyverse <span class="quarto-category-count">(1)</span></div><div class="category" data-category="training">training <span class="quarto-category-count">(5)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(16)</span></div><div class="category" data-category="Data science">Data science <span class="quarto-category-count">(5)</span></div><div class="category" data-category="Family">Family <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ImageMagick">ImageMagick <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R">R <span class="quarto-category-count">(5)</span></div><div class="category" data-category="REDCap">REDCap <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Rmd">Rmd <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Shell">Shell <span class="quarto-category-count">(1)</span></div><div class="category" data-category="WorkJournal">WorkJournal <span class="quarto-category-count">(4)</span></div><div class="category" data-category="compute">compute <span class="quarto-category-count">(1)</span></div><div class="category" data-category="conferences">conferences <span class="quarto-category-count">(1)</span></div><div class="category" data-category="other">other <span class="quarto-category-count">(1)</span></div><div class="category" data-category="presentations">presentations <span class="quarto-category-count">(4)</span></div><div class="category" data-category="tidyverse">tidyverse <span class="quarto-category-count">(1)</span></div><div class="category" data-category="training">training <span class="quarto-category-count">(5)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -182,228 +182,233 @@ ga('send', {
 
 
 
-<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
-
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-<th>
-</th>
-<th>
-Date
-</th>
-<th>
-Title
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-categories="Data science,Family,ImageMagick,Shell" data-listing-date-sort="1635598800000" data-listing-file-modified-sort="1668648190776" data-listing-reading-time-sort="5.805" data-listing-title-sort="Printing 4 iPhone photos on 4x6 photo paper" data-listing-filename-sort="2021-10-31-imagemagick3by6.md">
-<td class="listing-image">
-<img src="./fig/211031_koalafamily.jpeg" style="height: 40px;">
-</td>
-<td class="listing-date">
-Oct 31, 2021
-</td>
-<td class="listing-title">
-<a href="./posts/2021-10-31-imagemagick3by6.html" class="title">Printing 4 iPhone photos on 4x6 photo paper</a>
-</td>
-</tr>
-<tr data-index="1" data-categories="Data science,R,WorkJournal,compute" data-listing-date-sort="1627394400000" data-listing-file-modified-sort="1668647827368" data-listing-reading-time-sort="8.915" data-listing-title-sort="Installing packages on a PBS-Pro HPC cluster using renv" data-listing-filename-sort="210728_renvhpc.md">
-<td class="listing-image">
-<img src="https://source.unsplash.com/E2qx9Ed2qIQ/800x600" style="height: 40px;">
-</td>
-<td class="listing-date">
-Jul 28, 2021
-</td>
-<td class="listing-title">
-<a href="./posts/210728_renvhpc.html" class="title">Installing packages on a PBS-Pro HPC cluster using renv</a>
-</td>
-</tr>
-<tr data-index="2" data-categories="Data science,R,WorkJournal,Rmd" data-listing-date-sort="1618149600000" data-listing-file-modified-sort="1668648190794" data-listing-reading-time-sort="1.55" data-listing-title-sort="ggplot batch variable visualisation in Rmd without for loops" data-listing-filename-sort="2021-04-12-ggplot2map.md">
-<td class="listing-image">
-<img src="./fig/2104_disp.png" style="height: 40px;">
-</td>
-<td class="listing-date">
-Apr 12, 2021
-</td>
-<td class="listing-title">
-<a href="./posts/2021-04-12-ggplot2map.html" class="title">ggplot batch variable visualisation in Rmd without for loops</a>
-</td>
-</tr>
-<tr data-index="3" data-categories="Data science,R,WorkJournal,REDCap" data-listing-date-sort="1617890400000" data-listing-file-modified-sort="1668648815385" data-listing-reading-time-sort="4.985" data-listing-title-sort="Avoiding 443 errors and RCurl woes with the REDCap API on Windows" data-listing-filename-sort="2021-04-09-redcap-api-crossplatform.md">
-<td class="listing-image">
-<img src="./fig/2104_what2exportREDCap.png" style="height: 40px;">
-</td>
-<td class="listing-date">
-Apr 9, 2021
-</td>
-<td class="listing-title">
-<a href="./posts/2021-04-09-redcap-api-crossplatform.html" class="title">Avoiding 443 errors and RCurl woes with the REDCap API on Windows</a>
-</td>
-</tr>
-<tr data-index="4" data-categories="Data science,R,WorkJournal" data-listing-date-sort="1588255200000" data-listing-file-modified-sort="1668648190789" data-listing-reading-time-sort="3.945" data-listing-title-sort="Living dangerously: a newbie guide to running multiple version of R on a Mac" data-listing-filename-sort="2020-05-01-rswitch.md">
-<td class="listing-image">
-<img src="https://unsplash.com/photos/3uunq0n1WRY" style="height: 40px;">
-</td>
-<td class="listing-date">
-May 1, 2020
-</td>
-<td class="listing-title">
-<a href="./posts/2020-05-01-rswitch.html" class="title">Living dangerously: a newbie guide to running multiple version of R on a Mac</a>
-</td>
-</tr>
-<tr data-index="5" data-categories="training" data-listing-date-sort="1586181600000" data-listing-file-modified-sort="1668647827396" data-listing-reading-time-sort="1.235" data-listing-title-sort="Jumping into digital: Lessons learned while moving live-coding workshops online" data-listing-filename-sort="2020-04-07-ardctalk.md">
-<td class="listing-image">
-<div class="table-img" style="height: 40px;">
-&nbsp;
+<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-categories="Data science,Family,ImageMagick,Shell" data-listing-date-sort="1635598800000" data-listing-file-modified-sort="1668648190776" data-listing-reading-time-sort="5.805">
+<a href="./posts/2021-10-31-imagemagick3by6.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./fig/211031_koalafamily.jpeg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Printing 4 iPhone photos on 4x6 photo paper
+</h5>
 </div>
-</td>
-<td class="listing-date">
-Apr 7, 2020
-</td>
-<td class="listing-title">
-<a href="./posts/2020-04-07-ardctalk.html" class="title">Jumping into digital: Lessons learned while moving live-coding workshops online</a>
-</td>
-</tr>
-<tr data-index="6" data-categories="training" data-listing-date-sort="1585832400000" data-listing-file-modified-sort="1668648190790" data-listing-reading-time-sort="7.97" data-listing-title-sort="Mapping a live coding workshop for digital delivery (part 2)" data-listing-filename-sort="2020-04-03-online4instructor2.md">
-<td class="listing-image">
-<img src="./fig/mysetup2.jpg" style="height: 40px;">
-</td>
-<td class="listing-date">
-Apr 3, 2020
-</td>
-<td class="listing-title">
-<a href="./posts/2020-04-03-online4instructor2.html" class="title">Mapping a live coding workshop for digital delivery (part 2)</a>
-</td>
-</tr>
-<tr data-index="7" data-categories="training" data-listing-date-sort="1585746000000" data-listing-file-modified-sort="1668648190789" data-listing-reading-time-sort="10.975" data-listing-title-sort="Mapping a live coding workshop for digital delivery" data-listing-filename-sort="2020-04-02-online4instructors.md">
-<td class="listing-image">
-<img src="https://images.unsplash.com/photo-1581043144435-ebcd25885809?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=80" style="height: 40px;">
-</td>
-<td class="listing-date">
-Apr 2, 2020
-</td>
-<td class="listing-title">
-<a href="./posts/2020-04-02-online4instructors.html" class="title">Mapping a live coding workshop for digital delivery</a>
-</td>
-</tr>
-<tr data-index="8" data-categories="training" data-listing-date-sort="1585659600000" data-listing-file-modified-sort="1668648190778" data-listing-reading-time-sort="5.78" data-listing-title-sort="Having a great online learning experience: a guide for students" data-listing-filename-sort="2020-04-01-online4students.md">
-<td class="listing-image">
-<img src="https://images.unsplash.com/photo-1534481016308-0fca71578ae5?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=100" style="height: 40px;">
-</td>
-<td class="listing-date">
-Apr 1, 2020
-</td>
-<td class="listing-title">
-<a href="./posts/2020-04-01-online4students.html" class="title">Having a great online learning experience: a guide for students</a>
-</td>
-</tr>
-<tr data-index="9" data-categories="tidyverse,R" data-listing-date-sort="1575378000000" data-listing-file-modified-sort="1668647827401" data-listing-reading-time-sort="11.68" data-listing-title-sort="R for Data Science Day 1" data-listing-filename-sort="2019-12-04-r-for-data-science-day-1.markdown">
-<td class="listing-image">
-<img src="https://d33wubrfki0l68.cloudfront.net/795c039ba2520455d833b4034befc8cf360a70ba/558a5/diagrams/data-science-explore.png " style="height: 40px;">
-</td>
-<td class="listing-date">
-Dec 4, 2019
-</td>
-<td class="listing-title">
-<a href="./posts/2019-12-04-r-for-data-science-day-1.html" class="title">R for Data Science Day 1</a>
-</td>
-</tr>
-<tr data-index="10" data-categories="other" data-listing-date-sort="1553778000000" data-listing-file-modified-sort="1668647827365" data-listing-reading-time-sort="0.43" data-listing-title-sort="Moving to Hugo" data-listing-filename-sort="2019-03-29-moving-to-hugo.md">
-<td class="listing-image">
-<div class="table-img" style="height: 40px;">
-&nbsp;
 </div>
-</td>
-<td class="listing-date">
-Mar 29, 2019
-</td>
-<td class="listing-title">
-<a href="./posts/2019-03-29-moving-to-hugo.html" class="title">Moving to Hugo</a>
-</td>
-</tr>
-<tr data-index="11" data-categories="presentations,training" data-listing-date-sort="1519045200000" data-listing-file-modified-sort="1668647827368" data-listing-reading-time-sort="0.155" data-listing-title-sort="Training the trainer presentation" data-listing-filename-sort="2018-02-20-ANDS.md">
-<td class="listing-image">
-<div class="table-img" style="height: 40px;">
-&nbsp;
+</a>
 </div>
-</td>
-<td class="listing-date">
-Feb 20, 2018
-</td>
-<td class="listing-title">
-<a href="./posts/2018-02-20-ANDS.html" class="title">Training the trainer presentation</a>
-</td>
-</tr>
-<tr data-index="12" data-categories="conferences" data-listing-date-sort="1477918800000" data-listing-file-modified-sort="1668647827401" data-listing-reading-time-sort="6.445" data-listing-title-sort="Amazon AWS workshop at the University of Sydney" data-listing-filename-sort="2016-11-01-AWSworkshop.md">
-<td class="listing-image">
-<div class="table-img" style="height: 40px;">
-&nbsp;
+<div class="g-col-1" data-index="1" data-categories="Data science,R,WorkJournal,compute" data-listing-date-sort="1627394400000" data-listing-file-modified-sort="1668647827368" data-listing-reading-time-sort="8.915">
+<a href="./posts/210728_renvhpc.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="https://source.unsplash.com/E2qx9Ed2qIQ/800x600" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Installing packages on a PBS-Pro HPC cluster using renv
+</h5>
 </div>
-</td>
-<td class="listing-date">
-Nov 1, 2016
-</td>
-<td class="listing-title">
-<a href="./posts/2016-11-01-AWSworkshop.html" class="title">Amazon AWS workshop at the University of Sydney</a>
-</td>
-</tr>
-<tr data-index="13" data-categories="presentations" data-listing-date-sort="1470924000000" data-listing-file-modified-sort="1668647827365" data-listing-reading-time-sort="1.975" data-listing-title-sort="2016-PyConAU 2016 Presentation" data-listing-filename-sort="2016-08-12-pycon2016.md">
-<td class="listing-image">
-<div class="table-img" style="height: 40px;">
-&nbsp;
 </div>
-</td>
-<td class="listing-date">
-Aug 12, 2016
-</td>
-<td class="listing-title">
-<a href="./posts/2016-08-12-pycon2016.html" class="title">2016-PyConAU 2016 Presentation</a>
-</td>
-</tr>
-<tr data-index="14" data-categories="presentations" data-listing-date-sort="1395579600000" data-listing-file-modified-sort="1668647827365" data-listing-reading-time-sort="0.075" data-listing-title-sort="Lorne Genome 2012 poster" data-listing-filename-sort="2014-03-24-lorne2012poster.md">
-<td class="listing-image">
-<div class="table-img" style="height: 40px;">
-&nbsp;
+</a>
 </div>
-</td>
-<td class="listing-date">
-Mar 24, 2014
-</td>
-<td class="listing-title">
-<a href="./posts/2014-03-24-lorne2012poster.html" class="title">Lorne Genome 2012 poster</a>
-</td>
-</tr>
-<tr data-index="15" data-listing-date-sort="1373637600000" data-listing-file-modified-sort="1634717468000" data-listing-reading-time-sort="0.065" data-listing-title-sort="Hello World!" data-listing-filename-sort="2013-01-01-helloworld.md">
-<td class="listing-image">
-<div class="table-img" style="height: 40px;">
-&nbsp;
+<div class="g-col-1" data-index="2" data-categories="Data science,R,WorkJournal,Rmd" data-listing-date-sort="1618149600000" data-listing-file-modified-sort="1668648190794" data-listing-reading-time-sort="1.55">
+<a href="./posts/2021-04-12-ggplot2map.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./fig/2104_disp.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+ggplot batch variable visualisation in Rmd without for loops
+</h5>
 </div>
-</td>
-<td class="listing-date">
-Jul 13, 2013
-</td>
-<td class="listing-title">
-<a href="./posts/2013-01-01-helloworld.html" class="title">Hello World!</a>
-</td>
-</tr>
-<tr data-index="16" data-categories="presentations" data-listing-date-sort="1373637600000" data-listing-file-modified-sort="1668647827365" data-listing-reading-time-sort="0.27" data-listing-title-sort="2013 ciRNA papers" data-listing-filename-sort="2013-07-13-ciRNApapers.md">
-<td class="listing-image">
-<div class="table-img" style="height: 40px;">
-&nbsp;
 </div>
-</td>
-<td class="listing-date">
-Jul 13, 2013
-</td>
-<td class="listing-title">
-<a href="./posts/2013-07-13-ciRNApapers.html" class="title">2013 ciRNA papers</a>
-</td>
-</tr>
-</tbody>
-
-</table>
+</a>
+</div>
+<div class="g-col-1" data-index="3" data-categories="Data science,R,WorkJournal,REDCap" data-listing-date-sort="1617890400000" data-listing-file-modified-sort="1668648815385" data-listing-reading-time-sort="4.985">
+<a href="./posts/2021-04-09-redcap-api-crossplatform.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./fig/2104_what2exportREDCap.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Avoiding 443 errors and RCurl woes with the REDCap API on Windows
+</h5>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="4" data-categories="Data science,R,WorkJournal" data-listing-date-sort="1588255200000" data-listing-file-modified-sort="1668652903622" data-listing-reading-time-sort="3.945">
+<a href="./posts/2020-05-01-rswitch.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="https://images.unsplash.com/photo-1577134352098-0599fcdefaae?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=870&amp;q=80" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Living dangerously: a newbie guide to running multiple version of R on a Mac
+</h5>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="5" data-categories="training" data-listing-date-sort="1586181600000" data-listing-file-modified-sort="1668652853132" data-listing-reading-time-sort="1.235">
+<a href="./posts/2020-04-07-ardctalk.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./fig/20_jumpdigital.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Jumping into digital: Lessons learned while moving live-coding workshops online
+</h5>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="6" data-categories="training" data-listing-date-sort="1585832400000" data-listing-file-modified-sort="1668648190790" data-listing-reading-time-sort="7.97">
+<a href="./posts/2020-04-03-online4instructor2.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./fig/mysetup2.jpg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Mapping a live coding workshop for digital delivery (part 2)
+</h5>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="7" data-categories="training" data-listing-date-sort="1585746000000" data-listing-file-modified-sort="1668648190789" data-listing-reading-time-sort="10.975">
+<a href="./posts/2020-04-02-online4instructors.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="https://images.unsplash.com/photo-1581043144435-ebcd25885809?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=80" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Mapping a live coding workshop for digital delivery
+</h5>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="8" data-categories="training" data-listing-date-sort="1585659600000" data-listing-file-modified-sort="1668648190778" data-listing-reading-time-sort="5.78">
+<a href="./posts/2020-04-01-online4students.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="https://images.unsplash.com/photo-1534481016308-0fca71578ae5?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=100" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Having a great online learning experience: a guide for students
+</h5>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="9" data-categories="tidyverse,R" data-listing-date-sort="1575378000000" data-listing-file-modified-sort="1668647827401" data-listing-reading-time-sort="11.68">
+<a href="./posts/2019-12-04-r-for-data-science-day-1.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="https://d33wubrfki0l68.cloudfront.net/795c039ba2520455d833b4034befc8cf360a70ba/558a5/diagrams/data-science-explore.png " class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+R for Data Science Day 1
+</h5>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="10" data-categories="other" data-listing-date-sort="1553778000000" data-listing-file-modified-sort="1668652802609" data-listing-reading-time-sort="0.43">
+<a href="./posts/2019-03-29-moving-to-hugo.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="https://d33wubrfki0l68.cloudfront.net/c38c7334cc3f23585738e40334284fddcaf03d5e/2e17c/images/hugo-logo-wide.svg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Moving to Hugo
+</h5>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="11" data-categories="presentations,training" data-listing-date-sort="1519045200000" data-listing-file-modified-sort="1668652773302" data-listing-reading-time-sort="0.155">
+<a href="./posts/2018-02-20-ANDS.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=2670&amp;q=80" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Training the trainer presentation
+</h5>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="12" data-categories="conferences" data-listing-date-sort="1477918800000" data-listing-file-modified-sort="1668652736403" data-listing-reading-time-sort="6.445">
+<a href="./posts/2016-11-01-AWSworkshop.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Amazon AWS workshop at the University of Sydney
+</h5>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="13" data-categories="presentations" data-listing-date-sort="1470924000000" data-listing-file-modified-sort="1668652697928" data-listing-reading-time-sort="1.975">
+<a href="./posts/2016-08-12-pycon2016.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./fig/16_pycon.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+2016-PyConAU 2016 Presentation
+</h5>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="14" data-categories="presentations" data-listing-date-sort="1395579600000" data-listing-file-modified-sort="1668652630383" data-listing-reading-time-sort="0.075">
+<a href="./posts/2014-03-24-lorne2012poster.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./fig/1300_posterScreenshot.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Lorne Genome 2012 poster
+</h5>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="15" data-categories="presentations" data-listing-date-sort="1373637600000" data-listing-file-modified-sort="1668652634037" data-listing-reading-time-sort="0.27">
+<a href="./posts/2013-07-13-ciRNApapers.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="https://www.frontiersin.org/files/Articles/379625/fonc-08-00179-HTML-r1/image_m/fonc-08-00179-g001.jpg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+2013 ciRNA papers
+</h5>
+</div>
+</div>
+</a>
+</div>
+</div>
 <div class="listing-no-matching d-none">
 No matching items
 </div>
