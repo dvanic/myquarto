@@ -1,8 +1,7 @@
 ---
 title: Flu prediction
 date: '2020-05-20'
-categories: 
-- management
+categories: "Management"
 image: ../fig/2111_flu.jpg
 ---
 

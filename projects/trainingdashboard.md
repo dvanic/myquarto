@@ -1,8 +1,7 @@
 ---
 title: Training dashboard
 date: 2021-08-20
-categories: 
-- analysis
+categories: "Analysis"
 image: ../fig/2111_sihtraining.jpg
 ---
 

@@ -394,35 +394,35 @@
   {
     "objectID": "projects/gambling.html#clients",
     "href": "projects/gambling.html#clients",
-    "title": "Use of consumer protection tools by Australian sports wagerers",
+    "title": "Online sports betting",
     "section": "Clients",
     "text": "Clients\n\nA/Prof Sally Gainsbury, Brain & Mind Centre, University of Sydney\nDr Robert Heirene, Brain & Mind Centre, University of Sydney"
   },
   {
     "objectID": "projects/gambling.html#purpose",
     "href": "projects/gambling.html#purpose",
-    "title": "Use of consumer protection tools by Australian sports wagerers",
+    "title": "Online sports betting",
     "section": "Purpose",
     "text": "Purpose\n\nThe clients have a partnership with Responsible Wagering Australia to provide experimental data for research.\nFor this project, the questions were:\n\nWhat proportion of online sports wagerers use consumer protection tools (deposit limits, timeouts & self-exclusions)?\nWhat are the differences between wagerers who use each of the tool types?"
   },
   {
     "objectID": "projects/gambling.html#approach",
     "href": "projects/gambling.html#approach",
-    "title": "Use of consumer protection tools by Australian sports wagerers",
+    "title": "Online sports betting",
     "section": "Approach",
     "text": "Approach\n\nIntegrated 12+ million online wagering transactions from 50 000 clients of 6 major online wagering operators. Engineered over 200 features for analysis.\nThis revealed that mandatory vs opt-in deposit limits are likely to reduce the risk of harms.\nCreated a visualisation for the tool use trajectory for ~3000 clients to enable data understanding and hypothesis generation, for the next work around understanding tool use patterns among users of multiple tools."
   },
   {
     "objectID": "projects/gambling.html#outcome",
     "href": "projects/gambling.html#outcome",
-    "title": "Use of consumer protection tools by Australian sports wagerers",
+    "title": "Online sports betting",
     "section": "Outcome",
     "text": "Outcome\n\nCo-authored the first academic publication regarding consumer protection tool use among sports wagerers in Australia.\nContributed to a report for Responsible Wagering Australia.\nStudy results were covered by multiple media outlets (see below links)."
   },
   {
     "objectID": "projects/gambling.html#links",
     "href": "projects/gambling.html#links",
-    "title": "Use of consumer protection tools by Australian sports wagerers",
+    "title": "Online sports betting",
     "section": "Links",
     "text": "Links\n\nAcademic manuscript: Heirene, R. M., Vanichkina, D. P., & Gainsbury, S. M. (2021). Patterns and correlates of consumer protection tool use by Australian online gambling customers. Psychology of Addictive Behaviors. Advance online publication. https://doi.org/10.1037/adb0000761\nFeature in Asia Gaming Brief\nFeature in GREO Evidence Centre (Canada)\nUniversity of Sydney Publicity brief\nCode repository/website with results (Sydney Uni access only) ## Key tools\nR: data.table, tidyverse, Rmarkdown, lubridate, gtsummary, tidyquant, lmertest, broom; Git + GitHub.\n\nNote: cover photo credit Mathew Schwartz on Unsplash"
   },
@@ -457,35 +457,35 @@
   {
     "objectID": "projects/corpus.html",
     "href": "projects/corpus.html",
-    "title": "Australian obesity corpus preparation, analysis and comparison with the UK",
+    "title": "Australian corpus",
     "section": "",
     "text": "Photo by Ugur Akdemir on Unsplash"
   },
   {
     "objectID": "projects/corpus.html#client",
     "href": "projects/corpus.html#client",
-    "title": "Australian obesity corpus preparation, analysis and comparison with the UK",
+    "title": "Australian corpus",
     "section": "Client",
     "text": "Client\n\nProf Monika Bednarek, Faculty of Arts & Social Sciences, University of Sydney"
   },
   {
     "objectID": "projects/corpus.html#purpose",
     "href": "projects/corpus.html#purpose",
-    "title": "Australian obesity corpus preparation, analysis and comparison with the UK",
+    "title": "Australian corpus",
     "section": "Purpose",
     "text": "Purpose\n\nThe client prepared a corpus of media articles that focused on obesity by manually downloading articles from LexisNexis on Windows.\nThe client then reached out to SIH, as multiple character encoding issues were encountered as a result of the manual download, so the first aim was to generate a “clean” corpus that could be used for data analysis.\nThe second aim was to compare usage of specific language features between Australian tabloids and broadsheets, and across publications, to see whether journalists were adhering to the Obesity Collective’s guidelines on reporting.\nThe final aim was to compare these features between Australian and UK publications. ## Approach\nResolved encoding issues in the 27 000+ articles from 12 Australian newspapers.\nImplemented near-duplicate detection, visualisation and removal using minhash and locality-sensitive hashing (“reimplemented Turnitin in Python”) to ensure subsequent statistical analyses were not invalid due to duplicates.\nUsed topic modelling to create sub-corpora for further analysis.\nTranslated analytics spreadsheets used by researchers to a standalone Python script, automating and scaling one-vs-all and one-vs-one sub-corpus analysis.\nProvided comprehensive client-interpretable documentation.\nGenerated parametric and non-parametric statistical analyses within the Australian corpus and between the Australian/UK corpora, including fixed and mixed effects linear modelling, in line with expectations for such analyses in statistical linguistics.\nCode from the above became part of a larger national project in computational linguistics."
   },
   {
     "objectID": "projects/corpus.html#key-tools",
     "href": "projects/corpus.html#key-tools",
-    "title": "Australian obesity corpus preparation, analysis and comparison with the UK",
+    "title": "Australian corpus",
     "section": "Key tools",
     "text": "Key tools\n\nCorpus cleaning/topic modelling: Python: pandas, chardet, spacy, seaborn, gensim, datasketch; Git + GitHub; Jira; fdupes.\nCorpus comparison and modelling: R: tidyverse, coin; Git + GitHub; Jira."
   },
   {
     "objectID": "projects/corpus.html#outcomes",
     "href": "projects/corpus.html#outcomes",
-    "title": "Australian obesity corpus preparation, analysis and comparison with the UK",
+    "title": "Australian corpus",
     "section": "Outcomes",
     "text": "Outcomes\n\nMultiple variants of the clean corpus were prepared for use by the client, who carried out their own investigation using a series of GUI tools.\nThe corpus manual has been published here.\nThe Australian corpus comparison has been submitted for publication code here.\nThe Australian vs UK corpus comparison has been submitted for publication as a book chapter code here.\nThe code for carrying out topic modelling, duplicate/near-duplicate detection, spreadsheet generalisation, parametric and non-parametric analyses has been generalised and incorporated into the Australian Text Analytics Platform (ATAP), a multi-centre, ARDC-funded initiative to provide linguists with GUI interfaces for carrying out common tasks."
   },
@@ -541,42 +541,42 @@
   {
     "objectID": "projects/nowcasting.html#clients",
     "href": "projects/nowcasting.html#clients",
-    "title": "Visualising 20 years of plant-available water in the Murray-Darling basin",
+    "title": "Shiny soil moisture",
     "section": "Clients",
     "text": "Clients\n\nProf Thomas Bishop, Sydney Institute of Agriculture, University of Sydney"
   },
   {
     "objectID": "projects/nowcasting.html#purpose",
     "href": "projects/nowcasting.html#purpose",
-    "title": "Visualising 20 years of plant-available water in the Murray-Darling basin",
+    "title": "Shiny soil moisture",
     "section": "Purpose",
     "text": "Purpose\n\nThe client had a hindcast of plant available water (PAW) for the top 1 m of soil for the Murray-Darling Basin at 500 m for the period 2000-2020.\nThe Grains Research and Development Corporation (GRDC) funded a project to visualise this modelling data for farmers and stakeholders."
   },
   {
     "objectID": "projects/nowcasting.html#approach",
     "href": "projects/nowcasting.html#approach",
-    "title": "Visualising 20 years of plant-available water in the Murray-Darling basin",
+    "title": "Shiny soil moisture",
     "section": "Approach",
     "text": "Approach\n\nBuilt an R-Shiny dashboard to present this geospatial data, including creating custom scaling functionality that supports increasing image resolution as a user zooms in to an area of interest.\nData is hosted on AWS Cloud infrastrucure (S3) - so optimised data structure to support rapid serving of results.\nApp is deployed to shinyapps.io."
   },
   {
     "objectID": "projects/nowcasting.html#outcome",
     "href": "projects/nowcasting.html#outcome",
-    "title": "Visualising 20 years of plant-available water in the Murray-Darling basin",
+    "title": "Shiny soil moisture",
     "section": "Outcome",
     "text": "Outcome\n\nProject was funded by GRDC, bring in $35000 to SIH.\nSuccess of project resulted in acquiring competitive funding for an additional 18 month position at SIH, to create real-time modelling infrastructure and deployment of the results to cloud infrastructure. Value of this additional funding is over $250 000."
   },
   {
     "objectID": "projects/nowcasting.html#links",
     "href": "projects/nowcasting.html#links",
-    "title": "Visualising 20 years of plant-available water in the Murray-Darling basin",
+    "title": "Shiny soil moisture",
     "section": "Links",
     "text": "Links\n\nShiny Dashboard"
   },
   {
     "objectID": "projects/nowcasting.html#key-tools",
     "href": "projects/nowcasting.html#key-tools",
-    "title": "Visualising 20 years of plant-available water in the Murray-Darling basin",
+    "title": "Shiny soil moisture",
     "section": "Key tools",
     "text": "Key tools\n\nR: R-Shiny terra, sf, ncdf4, stars, raster, leaflet, leafem, tidyverse, rgdal; Git + GitHub."
   },
@@ -695,42 +695,42 @@
   {
     "objectID": "projects/railways.html#clients",
     "href": "projects/railways.html#clients",
-    "title": "Does the rail corridor provide an important ecological niche for wildlife in the Greater Sydney region?",
+    "title": "Greater Sydney railways",
     "section": "Clients",
     "text": "Clients\n\nProfessor Dieter Hochuli, Sydney Environment Institute, University of Sydney\nAssociate Professor Kurt Iveson, Sydney Environment Institute & Sydney Southeast Asia Centre, University of Sydney"
   },
   {
     "objectID": "projects/railways.html#purpose",
     "href": "projects/railways.html#purpose",
-    "title": "Does the rail corridor provide an important ecological niche for wildlife in the Greater Sydney region?",
+    "title": "Greater Sydney railways",
     "section": "Purpose",
     "text": "Purpose\n\nClients had observed that in some parts of Sydney the rail corridor provides pockets of valuable habitat for native wildlife.\nThey were interested in finding out whether we could quantify the overall proportion of such possible habitats in the rail corridor in the Sydney Basin."
   },
   {
     "objectID": "projects/railways.html#approach",
     "href": "projects/railways.html#approach",
-    "title": "Does the rail corridor provide an important ecological niche for wildlife in the Greater Sydney region?",
+    "title": "Greater Sydney railways",
     "section": "Approach",
     "text": "Approach\n\nIdentified and retrieved optimal geospatial datasets for carrying out this analysis, including government and open street map railway annotations and two models of land cover.\nOverlapped railways with lot annotations, and carried out substantial data cleaning to remove artifacts such as tunnels, bridges, model railways etc.\nReplicated ArcGIS approach to polygon overlaps in R (a surprisingly non-trivial task).\nBuilt a dynamic website so clients could browse and share results with stakeholders, as well as view what had been filtered."
   },
   {
     "objectID": "projects/railways.html#outcome",
     "href": "projects/railways.html#outcome",
-    "title": "Does the rail corridor provide an important ecological niche for wildlife in the Greater Sydney region?",
+    "title": "Greater Sydney railways",
     "section": "Outcome",
     "text": "Outcome\n\nProject was funded by clients.\nOther results still under embargo."
   },
   {
     "objectID": "projects/railways.html#links",
     "href": "projects/railways.html#links",
-    "title": "Does the rail corridor provide an important ecological niche for wildlife in the Greater Sydney region?",
+    "title": "Greater Sydney railways",
     "section": "Links",
     "text": "Links\n\nStill under embargo."
   },
   {
     "objectID": "projects/railways.html#key-tools",
     "href": "projects/railways.html#key-tools",
-    "title": "Does the rail corridor provide an important ecological niche for wildlife in the Greater Sydney region?",
+    "title": "Greater Sydney railways",
     "section": "Key tools",
     "text": "Key tools\n\nR: terra, sf, exactextractr, rgdal, leaflet, tidyverse, janitor, skimr, htmlwidgets, plotly; Git + GitHub."
   },
@@ -765,7 +765,7 @@
   {
     "objectID": "projects.html",
     "href": "projects.html",
-    "title": "Darya Vanichkina",
+    "title": "Projects",
     "section": "",
     "text": "No matching items"
   },
@@ -809,7 +809,7 @@
     "href": "training.html#professional-experience",
     "title": "Training",
     "section": "Professional experience",
-    "text": "Professional experience\nI have developed and delivered a wide range of training:\n\n\n\n\n\n\n\n\nDate\nOrganisation\nDetails\n\n\n\n\n2021\nPetroleum Exploration Society of Australia\nPython for Geosciences (online, attendees from Santos, BHP, Origin, Beach Energy etc)\n\n\n2021\neHealth@Sydney\nPython for analysing disease spread & electronic health records (online)\n\n\n2020\nSydney Informatics Hub\nMachine learning in R (online and in-person); Machine learning in python (online); Publication-quality tables in R (online); Profiling R code (online); Teaching at the Informatics Hub\n\n\n2020\nUniversity of Sydney Business School\nBusiness School Data Science Summer School\n\n\n2020\nCarpentries\nCarpentries Instructor Training (online)\n\n\n2019\nMonash University\nCarpentries Instructor Training\n\n\n2019\nUniversity of Sydney Business School\nBusiness School Data Science Summer School\n\n\n2019\nSydney Informatics Hub\nMachine learning in R (in-person x 4); Machine learning in python (in-person x 4)\n\n\n2019\nUNSW\nGeospatial data analysis\n\n\n2019\nSIH\nRNA-seq data analysis course using R + HPC\n\n\n2018\nWomen Who Code Sydney\nR for Data Analysis (https://github.com/dvanic/wwc2018)\n\n\n2018\nUniversity of Sydney Brain and Mind Centre\nR for Biomedical Researchers\n\n\n2018\nSydney Informatics Hub\nGeospatial data analysis\n\n\n2018\nCSIRO\nIntroduction to SQL for the CSIRO Data School\n\n\n2018\nMacquarie University\nIntroduction to R for reproducible scientific analysis\n\n\n2017\nUniversity of Technology, Sydney\nIntroduction to R, Unix and version control\n\n\n2016\nUniversity of Sydney\nIntroduction to python, Unix and version control\n\n\n2016\npyconAU\nIntroduction to data management, python for data analysis and version control\n\n\n2015\nUniversity of Queensland\nLead tutor for courses in microbiology, cell biology and bioinformatics\n\n\n2014\nUniversity of Queensland\nAwarded competitive grant to develop flipped learning materials for bioinformatics course. Subsequent feedback indicated that “these materials were a lifesaver for the course when the COVID pandemic and associated pivot to online learning occurred”.\n\n\n2014\nUniversity of Queensland\nLead tutor for courses in bioinformatics and cell biology\n\n\n2013\nUniversity of Queensland\nLead tutor for courses in bioinformatics, cell biology and microbiology\n\n\n2012\nUniversity of Queensland\nTutor/lead tutor for courses in microbiology and cell biology\n\n\n2011\nUniversity of Queensland\nTutor/lead tutor for courses in microbiology and genetics"
+    "text": "Professional experience\nI have developed and delivered a wide range of training:\n\n\n\nDate\nOrganisation\nDetails\n\n\n\n\n2022\nSydney Quantum Academy\nContribution to developing Intro git and Parallel Python\n\n\n2022\nPetroleum Exploration Society of Australia\nPython for Geosciences (online, attendees from Santos, BHP, Origin, Beach Energy etc)\n\n\n2022\nNew Quarto-based SIH training template\nSIH Quarto training template\n\n\n2022\nSydney Informatics Hub\nA gentle introduction to computer vision\n\n\n2022\nSydney Informatics Hub\nIntroduction to R-Shiny\n\n\n2021\nPetroleum Exploration Society of Australia\nPython for Geosciences (online, attendees from Santos, BHP, Origin, Beach Energy etc)\n\n\n2021\neHealth@Sydney\nPython for analysing disease spread & electronic health records (online)\n\n\n2020\nSydney Informatics Hub\nMachine learning in R (online and in-person); Machine learning in python (online); Publication-quality tables in R (online); Profiling R code (online); Teaching at the Informatics Hub\n\n\n2020\nUniversity of Sydney Business School\nBusiness School Data Science Summer School\n\n\n2020\nCarpentries\nCarpentries Instructor Training (online)\n\n\n2019\nMonash University\nCarpentries Instructor Training\n\n\n2019\nUniversity of Sydney Business School\nBusiness School Data Science Summer School\n\n\n2019\nSydney Informatics Hub\nMachine learning in R (in-person x 4); Machine learning in python (in-person x 4)\n\n\n2019\nUNSW\nGeospatial data analysis\n\n\n2019\nSIH\nRNA-seq data analysis course using R + HPC\n\n\n2018\nWomen Who Code Sydney\nR for Data Analysis (https://github.com/dvanic/wwc2018)\n\n\n2018\nUniversity of Sydney Brain and Mind Centre\nR for Biomedical Researchers\n\n\n2018\nSydney Informatics Hub\nGeospatial data analysis\n\n\n2018\nCSIRO\nIntroduction to SQL for the CSIRO Data School\n\n\n2018\nMacquarie University\nIntroduction to R for reproducible scientific analysis\n\n\n2017\nUniversity of Technology, Sydney\nIntroduction to R, Unix and version control\n\n\n2016\nUniversity of Sydney\nIntroduction to python, Unix and version control\n\n\n2016\npyconAU\nIntroduction to data management, python for data analysis and version control\n\n\n2015\nUniversity of Queensland\nLead tutor for courses in microbiology, cell biology and bioinformatics\n\n\n2014\nUniversity of Queensland\nAwarded competitive grant to develop flipped learning materials for bioinformatics course. Subsequent feedback indicated that “these materials were a lifesaver for the course when the COVID pandemic and associated pivot to online learning occurred”.\n\n\n2014\nUniversity of Queensland\nLead tutor for courses in bioinformatics and cell biology\n\n\n2013\nUniversity of Queensland\nLead tutor for courses in bioinformatics, cell biology and microbiology\n\n\n2012\nUniversity of Queensland\nTutor/lead tutor for courses in microbiology and cell biology\n\n\n2011\nUniversity of Queensland\nTutor/lead tutor for courses in microbiology and genetics"
   },
   {
     "objectID": "posts.html",

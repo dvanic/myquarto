@@ -1,8 +1,7 @@
 ---
 title: Social network analysis
 date: '2021-05-10'
-categories: 
-- management
+categories: "Management"
 image: ../fig/2111_socialnetwork.jpg
 ---
 

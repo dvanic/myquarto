@@ -1,8 +1,7 @@
 ---
 title: Vegmachine API
 date: '2019-11-20'
-categories: 
-- analysis
+categories: "Analysis"
 image: ../fig/2111_vegmachine.jpg
 ---
 

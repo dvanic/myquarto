@@ -1,8 +1,8 @@
 ---
-title: Visualising 20 years of plant-available water in the Murray-Darling basin
+title: Shiny soil moisture
+subtitle: Visualising 20 years of plant-available water in the Murray-Darling basin
 date: 2022-07-30
-categories: 
-- analysis
+categories: "Analysis"
 image: ../fig/2211_nowcasting_grid.png
 ---
 

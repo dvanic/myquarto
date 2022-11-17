@@ -1,8 +1,7 @@
 ---
 title: Protehome software
 date: '2020-01-20'
-categories: 
-- management
+categories: "Management"
 image: ../fig/2111_protehome.jpg
 ---
 ## Clients

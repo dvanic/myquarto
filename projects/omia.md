@@ -1,8 +1,7 @@
 ---
 title: "OMIA/EVA integration"
 date: '2021-11-19'
-categories: 
-- management
+categories: "Management"
 image: ../fig/2111_omia.jpg
 ---
 

@@ -1,8 +1,8 @@
 ---
-title: Does the rail corridor provide an important ecological niche for wildlife in the Greater Sydney region?
+title: Greater Sydney railways
+subtitle: Does the rail corridor provide an important ecological niche for wildlife in the Greater Sydney region?
 date: 2022-11-30
-categories: 
-- analysis
+categories: "Analysis"
 image: ../fig/221101_railways.png
 ---
 

@@ -1,8 +1,7 @@
 ---
 title: Test comparisons
 date: '2019-05-20'
-categories: 
-- analysis
+categories: "Analysis"
 image: ../fig/2111_testanalysis.jpg
 ---
 

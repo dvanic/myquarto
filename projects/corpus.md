@@ -1,7 +1,8 @@
 ---
-title: "Australian obesity corpus preparation, analysis and comparison with the UK"
+title: "Australian corpus"
+subtitle: "Australian obesity corpus preparation, analysis and comparison with the UK"
 date: 2021-11-21
-categories:  "analysis"
+categories: "Analysis"
 image: ../fig/2111_corpus.jpg
 ---
 

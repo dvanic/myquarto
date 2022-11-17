@@ -1,8 +1,8 @@
 ---
-title: Use of consumer protection tools by Australian sports wagerers
+title: Online sports betting
+subtitle: Use of consumer protection tools by Australian sports wagerers
 date: 2021-10-20
-categories: 
-- analysis
+categories: "Analysis"
 image: ../fig/2111_gambling2.jpg
 ---
 
