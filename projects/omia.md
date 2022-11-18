@@ -5,11 +5,8 @@ categories: "Management"
 image: ../fig/2111_omia.jpg
 ---
 
-<p align="center">
-<img src="https://daryavanichkina.com/fig/2111_omia.jpg" width="500" />
-</p>
 
-Photo by <a href="https://unsplash.com/@tofi?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Tobias Fischer</a> on <a href="https://unsplash.com/s/photos/database?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+![Photo by <a href="https://unsplash.com/@tofi?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Tobias Fischer</a> on <a href="https://unsplash.com/s/photos/database?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>](../fig/2111_omia.jpg){fig-align="center" width=80%}
   
 ## Clients
 

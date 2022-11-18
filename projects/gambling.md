@@ -6,10 +6,9 @@ categories: "Analysis"
 image: ../fig/2111_gambling2.jpg
 ---
 
-<p align="center">
-<img src="https://daryavanichkina.com/fig/2111_gambling2.jpg" width="700" />
-</p>
 
+
+![](../fig/2111_gambling2.jpg){fig-align="center" width=80%}
 
 ## Clients
 

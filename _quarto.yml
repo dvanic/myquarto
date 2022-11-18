@@ -25,10 +25,12 @@ website:
         text: "CV"
       - href: contact.html
         text: "Contact"
-      - href: posts.html
-        text: "Blog"
-      - icon: rss
-        href: posts.xml
+      - text: "Blog"
+        menu:
+          - text: "Posts"
+            href: posts.html
+          - text: "RSS feed"
+            href: posts.xml
       - icon: github
         href: https://github.com/dvanic
 format:

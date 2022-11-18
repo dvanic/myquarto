@@ -6,10 +6,9 @@ categories: "Analysis"
 image: ../fig/2211_nowcasting_grid.png
 ---
 
-<p align="center">
-<img src="https://daryavanichkina.com/fig/2211_nowcasting_grid.png" width="700" />
-</p>
 
+
+![](../fig/2211_nowcasting_grid.png){fig-align="center" width=80%}
 
 ## Clients
 

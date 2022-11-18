@@ -6,10 +6,7 @@ categories: "Analysis"
 image: ../fig/221101_railways.png
 ---
 
-<p align="center">
-<img src="https://daryavanichkina.com/fig/221101_railways.png" width="700" />
-</p>
-
+![](../fig/221101_railways.png){fig-align="center" width=80%}
 
 ## Clients
 

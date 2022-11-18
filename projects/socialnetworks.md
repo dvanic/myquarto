@@ -4,13 +4,8 @@ date: '2021-05-10'
 categories: "Management"
 image: ../fig/2111_socialnetwork.jpg
 ---
-
-<p align="center">
-<img src="https://daryavanichkina.com/fig/2111_socialnetwork.jpg" width="500" />
-</p>
-
-Photo by <a href="https://unsplash.com/@jjying?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">JJ Ying</a> on <a href="https://unsplash.com/s/photos/network?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
+![Photo by <a href="https://unsplash.com/@jjying?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">JJ Ying</a> on <a href="https://unsplash.com/s/photos/network?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>](../fig/2111_socialnetwork.jpg){fig-align="center" width=80%}
 
 ## Clients
 

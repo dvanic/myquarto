@@ -2,7 +2,7 @@
 image: fig/daryaVhead1.jpg
 about:
   template: jolla
-  image-width: 30em
+  image-width: 50%
   links:
     - icon: github
       href: https://github.com/dvanic

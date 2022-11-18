@@ -117,14 +117,19 @@ ga('send', {
   <li class="nav-item">
     <a class="nav-link" href="../contact.html">Contact</a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../posts.html">Blog</a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-blog" role="button" data-bs-toggle="dropdown" aria-expanded="false">Blog</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-blog">    
+        <li>
+    <a class="dropdown-item" href="../posts.html">
+ <span class="dropdown-text">Posts</span></a>
   </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="../posts.xml"><i class="bi bi-rss" role="img">
-</i> 
- </a>
+        <li>
+    <a class="dropdown-item" href="../posts.xml">
+ <span class="dropdown-text">RSS feed</span></a>
   </li>  
+    </ul>
+  </li>
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/dvanic"><i class="bi bi-github" role="img">
 </i> 
@@ -173,9 +178,11 @@ ga('send', {
 
 </header>
 
-<p align="center">
-<img src="https://daryavanichkina.com/fig/2111_gambling2.jpg" width="700">
-</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../fig/2111_gambling2.jpg" class="img-fluid figure-img" style="width:80.0%"></p>
+</figure>
+</div>
 <section id="clients" class="level2">
 <h2 class="anchored" data-anchor-id="clients">Clients</h2>
 <ul>

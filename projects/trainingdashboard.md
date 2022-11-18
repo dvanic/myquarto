@@ -5,11 +5,7 @@ categories: "Analysis"
 image: ../fig/2111_sihtraining.jpg
 ---
 
-<p align="center">
-<img src="https://daryavanichkina.com/fig/2111_sihtraining.jpg" width="500" />
-</p>
-Photo by <a href="https://unsplash.com/@jasongoodman_youxventures?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Jason Goodman</a> on <a href="https://unsplash.com/s/photos/training?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-  
+![Photo by <a href="https://unsplash.com/@jasongoodman_youxventures?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Jason Goodman</a> on <a href="https://unsplash.com/s/photos/training?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>](../fig/2111_sihtraining.jpg){fig-align="center" width=80%}
 
 ## Clients
 

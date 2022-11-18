@@ -4,13 +4,8 @@ date: '2019-05-20'
 categories: "Analysis"
 image: ../fig/2111_testanalysis.jpg
 ---
-
-<p align="center">
-<img src="https://daryavanichkina.com/fig/2111_testanalysis.jpg" width="500" />
-</p>
-
-Photo by <a href="https://unsplash.com/@chrisliverani?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Chris Liverani</a> on <a href="https://unsplash.com/s/photos/test?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
+![Photo by <a href="https://unsplash.com/@chrisliverani?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Chris Liverani</a> on <a href="https://unsplash.com/s/photos/test?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>](../fig/2111_testanalysis.jpg){fig-align="center" width=80%}
 
 ## Purpose
 

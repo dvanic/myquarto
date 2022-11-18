@@ -4,13 +4,8 @@ date: '2020-05-20'
 categories: "Management"
 image: ../fig/2111_flu.jpg
 ---
-
-<p align="center">
-<img src="https://daryavanichkina.com/fig/2111_flu.jpg" width="500" />
-</p>
-
-Photo by <a href="https://unsplash.com/@chrisliverani?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Chris Liverani</a> on <a href="https://unsplash.com/s/photos/flu?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
+![Photo by <a href="https://unsplash.com/@chrisliverani?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Chris Liverani</a> on <a href="https://unsplash.com/s/photos/flu?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>](../fig/2111_flu.jpg){fig-align="center" width=80%}
 
 ## Purpose
 

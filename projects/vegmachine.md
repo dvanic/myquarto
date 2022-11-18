@@ -5,9 +5,7 @@ categories: "Analysis"
 image: ../fig/2111_vegmachine.jpg
 ---
 
-<p align="center">
-<img src="https://daryavanichkina.com/fig/2111_vegmachine.jpg" width="500" />
-</p>
+![](../fig/2111_vegmachine.jpg){fig-align="center" width=80%}
 
 ## Client
 
